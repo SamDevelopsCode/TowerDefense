@@ -9,17 +9,28 @@ using UnityEngine.Serialization;
 [ExecuteInEditMode]
 public class CoordinateLabeler : MonoBehaviour
 {
-
     [SerializeField] private TextMeshPro textLabel;
 
     private Vector2Int _coordinates;
 
+    private void Start()
+    {
+        print(textLabel.IsActive());
+    }
+
     
+
     private void Update()
     {
+        if (!Application.isPlaying)
         {
             DisplayCoordinates();
             UpdateObjectName();
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            textLabel.enabled = !textLabel.enabled;
         }
     }
 
@@ -35,8 +46,5 @@ public class CoordinateLabeler : MonoBehaviour
     {
         name = _coordinates.ToString();
     }
-    
-    
-    
     
 }

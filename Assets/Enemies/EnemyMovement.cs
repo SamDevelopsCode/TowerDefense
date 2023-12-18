@@ -23,7 +23,7 @@ public class EnemyMovement : MonoBehaviour
             var endPosition = gridPoint.transform.position;
             var travelPercent = 0f;
             
-            transform.LookAt(gridPoint.transform);
+            transform.LookAt(endPosition);
             while (travelPercent < 1f)
             {
                 travelPercent += Time.deltaTime * _moveSpeed;

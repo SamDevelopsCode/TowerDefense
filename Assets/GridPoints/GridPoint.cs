@@ -12,10 +12,8 @@ public class GridPoint : MonoBehaviour
     
     private void OnMouseOver()
     {
-        Debug.Log(transform.name);
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log(name);
             if (!isDefensePlaceable) return;
             
             var defenseInstance = Instantiate(defensePrefab, transform.position, quaternion.identity);
