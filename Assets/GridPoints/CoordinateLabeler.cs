@@ -13,12 +13,6 @@ public class CoordinateLabeler : MonoBehaviour
 
     private Vector2Int _coordinates;
 
-    private void Start()
-    {
-        print(textLabel.IsActive());
-    }
-
-    
 
     private void Update()
     {

@@ -12,9 +12,29 @@ public class EnemyMovement : MonoBehaviour
     
     private void Start()
     {
+        FindPath();
+        PlaceEnemyAtStart();
         StartCoroutine(MoveAlongPath());
     }
 
+    private void PlaceEnemyAtStart()
+    {
+        transform.position = path[0].transform.position;
+    }
+
+
+    private void FindPath()
+    {
+        path.Clear();
+        
+        GameObject gridpointParent = GameObject.FindGameObjectWithTag("Path");
+
+        foreach (Transform child in gridpointParent.transform)
+        {
+            path.Add(child.GetComponent<GridPoint>());
+        }
+    }
+    
     private IEnumerator MoveAlongPath()
     {
         foreach (var gridPoint in path)
