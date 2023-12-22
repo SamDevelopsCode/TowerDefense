@@ -4,25 +4,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class TargetingWeapon : MonoBehaviour
+public class TargetLocator : MonoBehaviour
 {
     [SerializeField] private Transform _turretSupport;
-    [SerializeField] private Transform raycastStartPos;
+    [SerializeField] private Transform _raycastStartPos;
 
-    [SerializeField] private float damage = 5f;
-    [SerializeField] private float secondsTillNextShot = 3f;
+    [SerializeField] private float _damage = 5f;
+    [SerializeField] private float _secondsTillNextShot = 3f;
+
+    [SerializeField] private float _turretRange = 3f;
     
     private GameObject _target;
 
     private void Start()
     {
         _target = FindObjectOfType<Health>().gameObject;
-        InvokeRepeating("Shoot", secondsTillNextShot, secondsTillNextShot);
+        InvokeRepeating("Shoot", _secondsTillNextShot, _secondsTillNextShot);
     }
 
     private void Update()
     {
         AimWeapon();
+        FindClosestTarget();
+    }
+    
+
+    private void FindClosestTarget()
+    {
+        //get a list of targets
+        //find all the targets in range
+        //loop through each target in range and see which one is closer
+        //set closest one to the target until they leave range
+        //this should repeat
     }
 
     private void AimWeapon()
@@ -36,7 +49,7 @@ public class TargetingWeapon : MonoBehaviour
         {
             Debug.Log("Shooting now");
             var healthComponent = _target.GetComponent<Health>();
-            healthComponent.TakeDamage(damage);
+            healthComponent.TakeDamage(_damage);
         }
     }
     
@@ -46,13 +59,13 @@ public class TargetingWeapon : MonoBehaviour
         Debug.Log("Shooting now");
         var distanceToEnemy = Vector3.Distance(transform.position, _target.transform.position);
         var directionToEnemy = _target.transform.position - transform.position;
-        if (Physics.Raycast(raycastStartPos.position, directionToEnemy + new Vector3(0, .5f,0), out RaycastHit raycastHit, distanceToEnemy))
+        if (Physics.Raycast(_raycastStartPos.position, directionToEnemy + new Vector3(0, .5f,0), out RaycastHit raycastHit, distanceToEnemy))
         {
             var objectHit = raycastHit.collider.gameObject;
             Debug.Log("hit: " + objectHit.name);
             if (objectHit.transform.parent.TryGetComponent(out Health health))
             {
-                health.TakeDamage(damage);
+                health.TakeDamage(_damage);
             }
         }
     }

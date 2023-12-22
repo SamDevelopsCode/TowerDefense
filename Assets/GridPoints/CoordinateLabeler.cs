@@ -13,6 +13,10 @@ public class CoordinateLabeler : MonoBehaviour
 
     private Vector2Int _coordinates;
 
+    private void Start()
+    {
+        textLabel.enabled = false;
+    }
 
     private void Update()
     {

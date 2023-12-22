@@ -8,36 +8,38 @@ public class EnemyMovement : MonoBehaviour
 {
     
     [SerializeField][Range(0f, 5f)] private float _moveSpeed = 2.0f;
-    [SerializeField] private List<GridPoint> path = new List<GridPoint>();
+    [SerializeField] private List<GridPoint> _path = new List<GridPoint>();
     
-    private void Start()
+    private void OnEnable()
     {
         FindPath();
         PlaceEnemyAtStart();
         StartCoroutine(MoveAlongPath());
     }
+    
 
     private void PlaceEnemyAtStart()
     {
-        transform.position = path[0].transform.position;
+        transform.position = _path[0].transform.position;
     }
 
 
     private void FindPath()
     {
-        path.Clear();
+        _path.Clear();
         
         GameObject gridpointParent = GameObject.FindGameObjectWithTag("Path");
 
         foreach (Transform child in gridpointParent.transform)
         {
-            path.Add(child.GetComponent<GridPoint>());
+            _path.Add(child.GetComponent<GridPoint>());
         }
     }
     
+    
     private IEnumerator MoveAlongPath()
     {
-        foreach (var gridPoint in path)
+        foreach (var gridPoint in _path)
         {
             var startPosition = transform.position;
             var endPosition = gridPoint.transform.position;
@@ -51,6 +53,9 @@ public class EnemyMovement : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
+        
+        gameObject.SetActive(false);
+
     }
 
     

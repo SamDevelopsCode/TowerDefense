@@ -2,25 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float maxHealth = 10f;
-    [SerializeField] private float currentHealth;
+    [SerializeField] private float _maxHealth = 10f;
+    [SerializeField] private float _currentHealth;
 
-    private void Start()
+    private void OnEnable()
     {
-        currentHealth = maxHealth;
+        _currentHealth = _maxHealth;
     }
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        Debug.Log("Current Health: " + currentHealth);
+        _currentHealth -= damage;
+        Debug.Log("Current Health: " + _currentHealth);
 
-        if (currentHealth <= 0)
+        if (_currentHealth <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
