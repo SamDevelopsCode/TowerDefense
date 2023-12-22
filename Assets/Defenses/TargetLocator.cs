@@ -7,7 +7,6 @@ using UnityEngine.Serialization;
 public class TargetLocator : MonoBehaviour
 {
     [SerializeField] private Transform _turretSupport;
-    [SerializeField] private Transform _raycastStartPos;
 
     [SerializeField] private float _damage = 5f;
     [SerializeField] private float _secondsTillNextShot = 3f;
@@ -16,21 +15,16 @@ public class TargetLocator : MonoBehaviour
     
     private GameObject _target;
 
-    private void Start()
-    {
-        _target = FindObjectOfType<Health>().gameObject;
-        InvokeRepeating("Shoot", _secondsTillNextShot, _secondsTillNextShot);
-    }
-
     private void Update()
     {
-        AimWeapon();
         FindClosestTarget();
+        AimWeapon();
     }
     
 
     private void FindClosestTarget()
     {
+        // Physics.SphereCast();
         //get a list of targets
         //find all the targets in range
         //loop through each target in range and see which one is closer
@@ -52,21 +46,8 @@ public class TargetLocator : MonoBehaviour
             healthComponent.TakeDamage(_damage);
         }
     }
-    
-    
-    private void RaycastTowardsEnemy()
-    {
-        Debug.Log("Shooting now");
-        var distanceToEnemy = Vector3.Distance(transform.position, _target.transform.position);
-        var directionToEnemy = _target.transform.position - transform.position;
-        if (Physics.Raycast(_raycastStartPos.position, directionToEnemy + new Vector3(0, .5f,0), out RaycastHit raycastHit, distanceToEnemy))
-        {
-            var objectHit = raycastHit.collider.gameObject;
-            Debug.Log("hit: " + objectHit.name);
-            if (objectHit.transform.parent.TryGetComponent(out Health health))
-            {
-                health.TakeDamage(_damage);
-            }
-        }
-    }
+
+   
 }
+
+
