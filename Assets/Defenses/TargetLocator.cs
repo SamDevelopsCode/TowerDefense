@@ -8,7 +8,6 @@ public class TargetLocator : MonoBehaviour
 {
     [SerializeField] private Transform _turretSupport;
     [SerializeField] private float _damage = 5f;
-    [SerializeField] private float _secondsTillNextShot = 3f;
     [SerializeField] private float _turretRange = 6f;
     [SerializeField] private float _shotsPerSecond = 2f;
     
