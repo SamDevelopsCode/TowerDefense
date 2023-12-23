@@ -1,0 +1,807 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 53
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e07c9b2c97f84356bb2bfac29363e611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StyleTrainerData:
+    rid: 3861180772111614114
+  m_DefaultStyleData:
+    rid: 3861180772111614115
+  m_DefaultStyleVersion: 2023111600
+  m_DefaultStyles:
+  - rid: 3861180772111614422
+  m_AssetPath: 
+  m_PreviousProjectIDs: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3861180772111614114
+      type: {class: StyleTrainerData, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+        m_State: 1
+        m_Disposing: 0
+        m_Styles:
+        - rid: 3861180772111614423
+        m_Version: 202231001
+    - rid: 3861180772111614115
+      type: {class: StyleTrainerData, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 11000000-0000-0000-0000-000000000011
+        m_State: 1
+        m_Disposing: 0
+        m_Styles:
+        - rid: 3861180772111614877
+        m_Version: 202231001
+    - rid: 3861180772111614422
+      type: {class: StyleData, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 00000000-0000-0000-0000-000000000000
+        m_State: 1
+        m_Disposing: 0
+        m_IsFallback: 1
+        m_Thumbnail:
+          rid: -2
+        m_Visible: 0
+        selectedCheckPointGUID: 00000000-0000-0000-0000-000000000000
+        m_FavoriteCheckPointGUID: active
+        parentID: 00000000-0000-0000-0000-000000000000
+        m_ProjectID: 00000000-0000-0000-0000-000000000000
+        m_TrainingSteps: 2000
+        m_CheckPoints:
+        - m_Guid: 00000000-0000-0000-0000-000000000000
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 00000000-0000-0000-0000-000000000000
+          m_Name: Default
+          m_Description: Default style.
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 
+            m_State: 0
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: 
+          m_ValidationImagesData: []
+          m_TrainingSteps: 2000
+        m_SampleOutputPrompts: []
+        m_TrainingSetData: []
+        m_Name: Default
+        m_Description: Default style.
+    - rid: 3861180772111614423
+      type: {class: StyleData, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 925e66c9-cea8-4481-a719-2a808fc06e50
+        m_State: 1
+        m_Disposing: 0
+        m_IsFallback: 0
+        m_Thumbnail:
+          rid: 3861180772111614425
+        m_Visible: 1
+        selectedCheckPointGUID: cb7a4e48-2d1d-4a12-a0ac-e08023e6f56a
+        m_FavoriteCheckPointGUID: cb7a4e48-2d1d-4a12-a0ac-e08023e6f56a
+        parentID: 00000000-0000-0000-0000-000000000000
+        m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+        m_TrainingSteps: 2000
+        m_CheckPoints:
+        - m_Guid: 049b42dc-633a-49ca-afc8-47661c9db53b
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_Name: MyCustomTestStyle
+          m_Description: A custom test for whatever the fuck this does.
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: c64b653b-d435-439e-9b94-9e923a8a4e5e
+            m_State: 5
+            m_Disposing: 1
+            m_TrainingSet: []
+            m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_ValidationImagesData:
+          - m_Guid: 8adc12f6-3717-498e-8950-022be39e6dfa
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 8adc12f6-3717-498e-8950-022be39e6dfa
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny mage intent on destroying capitalism.
+          - m_Guid: 63a424ed-d1b1-4b37-ba8a-08152b95497c
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 63a424ed-d1b1-4b37-ba8a-08152b95497c
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny warrior that wants to use your tears to drink.
+          - m_Guid: 3b88e8dd-371a-4ce5-bb16-72bc1f9d1581
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 3b88e8dd-371a-4ce5-bb16-72bc1f9d1581
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny rouge hellbent on poking you.
+          - m_Guid: 589f9a77-b810-46f5-b320-b6b35a361bd9
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 589f9a77-b810-46f5-b320-b6b35a361bd9
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny berserker full of wrath against your ideals.
+          - m_Guid: 49887b25-512f-4b01-a9d3-b501eec2c611
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 49887b25-512f-4b01-a9d3-b501eec2c611
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny furry pet that has a big bark and no bite.
+          m_TrainingSteps: 200
+        - m_Guid: d0e8badb-d705-414e-8d3c-98574e6331ff
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_Name: MyCustomTestStyle
+          m_Description: A custom test for whatever the fuck this does.
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: c64b653b-d435-439e-9b94-9e923a8a4e5e
+            m_State: 5
+            m_Disposing: 1
+            m_TrainingSet: []
+            m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_ValidationImagesData:
+          - m_Guid: 9c1c91e4-1545-40c8-b1ce-f1ccf586bccb
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 9c1c91e4-1545-40c8-b1ce-f1ccf586bccb
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny mage intent on destroying capitalism.
+          - m_Guid: 02bf724a-7278-44ac-bc4f-3879ba925909
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 02bf724a-7278-44ac-bc4f-3879ba925909
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny warrior that wants to use your tears to drink.
+          - m_Guid: 8e9ee051-216b-4966-932c-9627ac9a04fc
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 8e9ee051-216b-4966-932c-9627ac9a04fc
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny rouge hellbent on poking you.
+          - m_Guid: 37a42545-caee-4867-a136-518650d39138
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 37a42545-caee-4867-a136-518650d39138
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny berserker full of wrath against your ideals.
+          - m_Guid: 4caa8912-b069-4e7e-8dd0-6134473dc16d
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 4caa8912-b069-4e7e-8dd0-6134473dc16d
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny furry pet that has a big bark and no bite.
+          m_TrainingSteps: 400
+        - m_Guid: dfa92a51-43a1-4792-bd44-ad6610a70367
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_Name: MyCustomTestStyle
+          m_Description: A custom test for whatever the fuck this does.
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: c64b653b-d435-439e-9b94-9e923a8a4e5e
+            m_State: 5
+            m_Disposing: 1
+            m_TrainingSet: []
+            m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_ValidationImagesData:
+          - m_Guid: 09f67fff-7df6-466a-abca-a2786092a69d
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 09f67fff-7df6-466a-abca-a2786092a69d
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny mage intent on destroying capitalism.
+          - m_Guid: ad12b803-c81d-4580-86c5-bbb672e1eb05
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: ad12b803-c81d-4580-86c5-bbb672e1eb05
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny warrior that wants to use your tears to drink.
+          - m_Guid: dc73aff2-58cc-417d-b5c6-fed7775d97c7
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: dc73aff2-58cc-417d-b5c6-fed7775d97c7
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny rouge hellbent on poking you.
+          - m_Guid: f1865bb1-7f81-4072-b8c0-c72b2c335c64
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: f1865bb1-7f81-4072-b8c0-c72b2c335c64
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny berserker full of wrath against your ideals.
+          - m_Guid: 4da13f3e-239a-493d-8e0d-2f7fa0c21742
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 4da13f3e-239a-493d-8e0d-2f7fa0c21742
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny furry pet that has a big bark and no bite.
+          m_TrainingSteps: 600
+        - m_Guid: 34430b4b-913d-4aff-9a0d-05be07d44832
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_Name: MyCustomTestStyle
+          m_Description: A custom test for whatever the fuck this does.
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: c64b653b-d435-439e-9b94-9e923a8a4e5e
+            m_State: 5
+            m_Disposing: 1
+            m_TrainingSet: []
+            m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_ValidationImagesData:
+          - m_Guid: 4439a6e4-0b61-453c-8e5d-88bcc0ceab0c
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 4439a6e4-0b61-453c-8e5d-88bcc0ceab0c
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny mage intent on destroying capitalism.
+          - m_Guid: a3011250-77ba-43a9-a376-c102aa2bab18
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: a3011250-77ba-43a9-a376-c102aa2bab18
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny warrior that wants to use your tears to drink.
+          - m_Guid: 65272b10-d62e-4a14-a9c4-dc75fc09bbe0
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 65272b10-d62e-4a14-a9c4-dc75fc09bbe0
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny rouge hellbent on poking you.
+          - m_Guid: f56af306-860a-4872-8174-ffe6446e765d
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: f56af306-860a-4872-8174-ffe6446e765d
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny berserker full of wrath against your ideals.
+          - m_Guid: b61b5846-ad6a-4562-9ec9-9246d53d2c85
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: b61b5846-ad6a-4562-9ec9-9246d53d2c85
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny furry pet that has a big bark and no bite.
+          m_TrainingSteps: 800
+        - m_Guid: 38d42bc2-dc69-455f-a454-7e70d38848b9
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_Name: MyCustomTestStyle
+          m_Description: A custom test for whatever the fuck this does.
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: c64b653b-d435-439e-9b94-9e923a8a4e5e
+            m_State: 5
+            m_Disposing: 1
+            m_TrainingSet: []
+            m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_ValidationImagesData:
+          - m_Guid: 8328a547-f2f0-43cc-a9fc-5a5861ab1de7
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 8328a547-f2f0-43cc-a9fc-5a5861ab1de7
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny mage intent on destroying capitalism.
+          - m_Guid: da007a75-d396-48a6-ba64-e695c5166cf4
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: da007a75-d396-48a6-ba64-e695c5166cf4
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny warrior that wants to use your tears to drink.
+          - m_Guid: 62d6bdb1-ab4b-42a6-b600-17b7a45ba2fb
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 62d6bdb1-ab4b-42a6-b600-17b7a45ba2fb
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny rouge hellbent on poking you.
+          - m_Guid: 09f0dd39-f629-49a5-bf1c-c1ccdca29802
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 09f0dd39-f629-49a5-bf1c-c1ccdca29802
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny berserker full of wrath against your ideals.
+          - m_Guid: bc0e3d14-37f0-4836-8708-002902d4aa04
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: bc0e3d14-37f0-4836-8708-002902d4aa04
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny furry pet that has a big bark and no bite.
+          m_TrainingSteps: 1000
+        - m_Guid: 54958ad1-6e90-4369-a358-e5bbe3d3dc12
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_Name: MyCustomTestStyle
+          m_Description: A custom test for whatever the fuck this does.
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: c64b653b-d435-439e-9b94-9e923a8a4e5e
+            m_State: 5
+            m_Disposing: 1
+            m_TrainingSet: []
+            m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_ValidationImagesData:
+          - m_Guid: f61d306a-2ba1-4bef-8a84-1cda388b2963
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: f61d306a-2ba1-4bef-8a84-1cda388b2963
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny mage intent on destroying capitalism.
+          - m_Guid: d82a0b45-765a-4892-821c-6a3caeec99db
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: d82a0b45-765a-4892-821c-6a3caeec99db
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny warrior that wants to use your tears to drink.
+          - m_Guid: 5d759ba0-1903-435c-937e-e3bc7f81dacb
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 5d759ba0-1903-435c-937e-e3bc7f81dacb
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny rouge hellbent on poking you.
+          - m_Guid: 0d1e6914-39ac-4415-8e57-e5137af7d352
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 0d1e6914-39ac-4415-8e57-e5137af7d352
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny berserker full of wrath against your ideals.
+          - m_Guid: f63f7732-b91e-49b5-bf7a-d9ebc7812dd9
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: f63f7732-b91e-49b5-bf7a-d9ebc7812dd9
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny furry pet that has a big bark and no bite.
+          m_TrainingSteps: 1200
+        - m_Guid: 893fc958-50b9-4820-b32a-9da73d6f4437
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_Name: MyCustomTestStyle
+          m_Description: A custom test for whatever the fuck this does.
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: c64b653b-d435-439e-9b94-9e923a8a4e5e
+            m_State: 5
+            m_Disposing: 1
+            m_TrainingSet: []
+            m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_ValidationImagesData:
+          - m_Guid: 665d2c06-8b67-484e-a5b2-d4297bca165d
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 665d2c06-8b67-484e-a5b2-d4297bca165d
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny mage intent on destroying capitalism.
+          - m_Guid: 5b0da82c-493f-475e-8106-d78d716c30fd
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 5b0da82c-493f-475e-8106-d78d716c30fd
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny warrior that wants to use your tears to drink.
+          - m_Guid: c515be66-1cd1-42f7-9b7c-882d79841bbb
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: c515be66-1cd1-42f7-9b7c-882d79841bbb
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny rouge hellbent on poking you.
+          - m_Guid: 106e48ac-e9df-4eb7-8b2a-ae3f19e47f6f
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 106e48ac-e9df-4eb7-8b2a-ae3f19e47f6f
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny berserker full of wrath against your ideals.
+          - m_Guid: 4ca7ad80-e72b-444b-9bc4-349b6601880d
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 4ca7ad80-e72b-444b-9bc4-349b6601880d
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny furry pet that has a big bark and no bite.
+          m_TrainingSteps: 1400
+        - m_Guid: 22e8ec3e-5693-421c-8679-931df87d7b37
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_Name: MyCustomTestStyle
+          m_Description: A custom test for whatever the fuck this does.
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: c64b653b-d435-439e-9b94-9e923a8a4e5e
+            m_State: 5
+            m_Disposing: 1
+            m_TrainingSet: []
+            m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_ValidationImagesData:
+          - m_Guid: cab0f67e-4a92-4b4e-bd62-e710dc490b62
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: cab0f67e-4a92-4b4e-bd62-e710dc490b62
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny mage intent on destroying capitalism.
+          - m_Guid: 8d0936b7-fa87-4622-b5f2-a90880882112
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 8d0936b7-fa87-4622-b5f2-a90880882112
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny warrior that wants to use your tears to drink.
+          - m_Guid: 30176e1f-2ca0-455f-9b18-e97304aaa9a7
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 30176e1f-2ca0-455f-9b18-e97304aaa9a7
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny rouge hellbent on poking you.
+          - m_Guid: 9032f309-f7f1-49c6-839c-29f622285ddf
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 9032f309-f7f1-49c6-839c-29f622285ddf
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny berserker full of wrath against your ideals.
+          - m_Guid: d46b2589-5e00-4588-a084-8b42f22b889f
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: d46b2589-5e00-4588-a084-8b42f22b889f
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny furry pet that has a big bark and no bite.
+          m_TrainingSteps: 1600
+        - m_Guid: 9e2e58e5-18dd-451f-a5e9-06d7aa0367c2
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_Name: MyCustomTestStyle
+          m_Description: A custom test for whatever the fuck this does.
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: c64b653b-d435-439e-9b94-9e923a8a4e5e
+            m_State: 5
+            m_Disposing: 1
+            m_TrainingSet: []
+            m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_ValidationImagesData:
+          - m_Guid: a680203f-d542-4663-9667-f336f0a28b5c
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: a680203f-d542-4663-9667-f336f0a28b5c
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny mage intent on destroying capitalism.
+          - m_Guid: 9a7a1a70-0bc3-4ba3-9e8e-428b600b608a
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 9a7a1a70-0bc3-4ba3-9e8e-428b600b608a
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny warrior that wants to use your tears to drink.
+          - m_Guid: 0d415f85-c790-40e9-bca8-6a071a6222e2
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 0d415f85-c790-40e9-bca8-6a071a6222e2
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny rouge hellbent on poking you.
+          - m_Guid: 9308c126-8514-40f6-a16c-1aee4966bc98
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 9308c126-8514-40f6-a16c-1aee4966bc98
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny berserker full of wrath against your ideals.
+          - m_Guid: e8909d27-a21c-47d2-8945-47c67a8fb677
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: e8909d27-a21c-47d2-8945-47c67a8fb677
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny furry pet that has a big bark and no bite.
+          m_TrainingSteps: 1800
+        - m_Guid: cb7a4e48-2d1d-4a12-a0ac-e08023e6f56a
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_Name: MyCustomTestStyle
+          m_Description: A custom test for whatever the fuck this does.
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: c64b653b-d435-439e-9b94-9e923a8a4e5e
+            m_State: 5
+            m_Disposing: 1
+            m_TrainingSet: []
+            m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+          m_ValidationImagesData:
+          - m_Guid: 2395e40f-541c-43e9-8f45-c76f1cd85005
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 2395e40f-541c-43e9-8f45-c76f1cd85005
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny mage intent on destroying capitalism.
+          - m_Guid: 4338e129-1a08-4f5c-b1b7-4b1da41c39b0
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 4338e129-1a08-4f5c-b1b7-4b1da41c39b0
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny warrior that wants to use your tears to drink.
+          - m_Guid: e3ff3766-ed15-445f-b113-fad36a5fb93d
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: e3ff3766-ed15-445f-b113-fad36a5fb93d
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny rouge hellbent on poking you.
+          - m_Guid: 34eceeb4-183a-4f72-9f2b-30cc27ed2c9b
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 34eceeb4-183a-4f72-9f2b-30cc27ed2c9b
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny berserker full of wrath against your ideals.
+          - m_Guid: 470c97bc-e48e-48f9-b7d4-49755671cb8d
+            m_State: 5
+            m_Disposing: 1
+            m_ImageArtifact:
+              m_Guid: 470c97bc-e48e-48f9-b7d4-49755671cb8d
+              m_State: 1
+              m_Disposing: 1
+            m_Prompt: A tiny furry pet that has a big bark and no bite.
+          m_TrainingSteps: 2000
+        m_SampleOutputPrompts:
+        - A tiny mage intent on destroying capitalism.
+        - A tiny warrior that wants to use your tears to drink.
+        - A tiny rouge hellbent on poking you.
+        - A tiny berserker full of wrath against your ideals.
+        - A tiny furry pet that has a big bark and no bite.
+        m_TrainingSetData:
+        - m_Guid: c64b653b-d435-439e-9b94-9e923a8a4e5e
+          m_State: 5
+          m_Disposing: 0
+          m_TrainingSet:
+          - m_Guid: 00000000-0000-0000-0000-000000000000
+            m_State: 3
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 3861180772111614426
+          - m_Guid: 00000000-0000-0000-0000-000000000000
+            m_State: 3
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 3861180772111614427
+          - m_Guid: 00000000-0000-0000-0000-000000000000
+            m_State: 3
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 3861180772111614428
+          - m_Guid: 00000000-0000-0000-0000-000000000000
+            m_State: 3
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 3861180772111614429
+          - m_Guid: 00000000-0000-0000-0000-000000000000
+            m_State: 3
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 3861180772111614430
+          m_ProjectID: 00c1995a-83a8-4770-b9e7-98ffc71a34f0
+        m_Name: MyCustomTestStyle
+        m_Description: A custom test for whatever the fuck this does.
+    - rid: 3861180772111614425
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 00000000-0000-0000-0000-000000000000
+        m_State: 3
+        m_Disposing: 1
+    - rid: 3861180772111614426
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: StyleTrainerTempGUID-f2dd36fa-e125-41d8-9c90-49fe3ebd2b95
+        m_State: 3
+        m_Disposing: 1
+    - rid: 3861180772111614427
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: StyleTrainerTempGUID-88fdb4df-683d-49a7-b475-bd07fa4dbbeb
+        m_State: 3
+        m_Disposing: 1
+    - rid: 3861180772111614428
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: StyleTrainerTempGUID-0a658512-3904-4a63-aa86-edce9b93f581
+        m_State: 3
+        m_Disposing: 1
+    - rid: 3861180772111614429
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: StyleTrainerTempGUID-f629a23e-e3ef-415e-b5bf-20c8d383ab5c
+        m_State: 3
+        m_Disposing: 1
+    - rid: 3861180772111614430
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: StyleTrainerTempGUID-2453e8c4-7cf8-461b-9d59-8e3ca4d2e489
+        m_State: 3
+        m_Disposing: 0
+    - rid: 3861180772111614877
+      type: {class: StyleData, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 5cc104e0-423a-473e-8034-b9d346cb2357
+        m_State: 1
+        m_Disposing: 0
+        m_IsFallback: 0
+        m_Thumbnail:
+          rid: -2
+        m_Visible: 1
+        selectedCheckPointGUID: 00000000-0000-0000-0000-000000000000
+        m_FavoriteCheckPointGUID: active
+        parentID: 00000000-0000-0000-0000-000000000000
+        m_ProjectID: 11000000-0000-0000-0000-000000000011
+        m_TrainingSteps: 2000
+        m_CheckPoints:
+        - m_Guid: 03fa404b-39fc-4979-9272-deb5d8c4b24c
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 11000000-0000-0000-0000-000000000011
+          m_Name: Happy Harvest [Orion V4 2000]
+          m_Description: 8 Nov 2023
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 3e758588-960f-44f5-865a-d5eaa1b1dec4
+            m_State: 5
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: 11000000-0000-0000-0000-000000000011
+          m_ValidationImagesData:
+          - m_Guid: 96b39a19-2d3e-4bc5-aa3c-38667ed6eba5
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 96b39a19-2d3e-4bc5-aa3c-38667ed6eba5
+              m_State: 5
+              m_Disposing: 0
+            m_Prompt: A chicken
+          - m_Guid: 05de072c-ebbc-43d7-886b-7ac4f9cbd079
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 05de072c-ebbc-43d7-886b-7ac4f9cbd079
+              m_State: 5
+              m_Disposing: 0
+            m_Prompt: A cow
+          - m_Guid: 2dbfc212-f87b-45f9-a05a-06368e190ca1
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 2dbfc212-f87b-45f9-a05a-06368e190ca1
+              m_State: 5
+              m_Disposing: 0
+            m_Prompt: A dog
+          - m_Guid: e0139464-a868-402a-95b8-b4c26685a97b
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: e0139464-a868-402a-95b8-b4c26685a97b
+              m_State: 5
+              m_Disposing: 0
+            m_Prompt: A farmer
+          - m_Guid: 4421bead-a3ff-4c09-9514-61e127eb470e
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 4421bead-a3ff-4c09-9514-61e127eb470e
+              m_State: 5
+              m_Disposing: 0
+            m_Prompt: A pine tree
+          m_TrainingSteps: 1200
+        m_SampleOutputPrompts:
+        - A chicken
+        - A cow
+        - A dog
+        - A farmer
+        - A pine tree
+        m_TrainingSetData:
+        - m_Guid: 3e758588-960f-44f5-865a-d5eaa1b1dec4
+          m_State: 5
+          m_Disposing: 0
+          m_TrainingSet: []
+          m_ProjectID: 11000000-0000-0000-0000-000000000011
+        m_Name: Default
+        m_Description: Default Style
