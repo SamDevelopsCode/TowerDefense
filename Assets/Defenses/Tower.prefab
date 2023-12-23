@@ -94,8 +94,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8755263093136699191}
   - component: {fileID: 5643754497345568921}
+  - component: {fileID: -1145779383494683623}
   m_Layer: 0
-  m_Name: Defender
+  m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,8 +134,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turretSupport: {fileID: 8431893735698177812}
   _damage: 5
-  _secondsTillNextShot: 3
-  _turretRange: 20
+  _turretRange: 15
+  _shotsPerSecond: 1
+--- !u!114 &-1145779383494683623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5132297016179339958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9025deab5b7a4554fac2bf48ebcd1e47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5372639098592305352
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +326,7 @@ GameObject:
   - component: {fileID: 12022460446092689}
   - component: {fileID: 2169225742114076418}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: RangeVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -328,8 +341,8 @@ Transform:
   m_GameObject: {fileID: 7662054299567815403}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_LocalPosition: {x: 0, y: 0.58, z: 0}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8755263093136699191}

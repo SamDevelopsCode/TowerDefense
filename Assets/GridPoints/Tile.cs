@@ -5,11 +5,12 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class GridPoint : MonoBehaviour
+public class Tile : MonoBehaviour
 {
-
-    [SerializeField] private GameObject _defensePrefab;
+    public event Action OnTowerSpawnAttempted;
+    
     [SerializeField] private bool _isDefensePlaceable = false;
+
     
     private void OnMouseOver()
     {
@@ -17,10 +18,8 @@ public class GridPoint : MonoBehaviour
         {
             if (!_isDefensePlaceable) return;
             
-            var defenseInstance = Instantiate(_defensePrefab, transform.position, quaternion.identity);
+            OnTowerSpawnAttempted?.Invoke();
             _isDefensePlaceable = false;
-        }
-        
-        
+        }        
     }
 }

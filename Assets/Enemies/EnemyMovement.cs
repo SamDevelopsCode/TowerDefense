@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
 {
     
     [SerializeField][Range(0f, 5f)] private float _moveSpeed = 2.0f;
-    [SerializeField] private List<GridPoint> _path = new List<GridPoint>();
+    [SerializeField] private List<Tile> _path = new List<Tile>();
     
     private void OnEnable()
     {
@@ -32,17 +32,17 @@ public class EnemyMovement : MonoBehaviour
 
         foreach (Transform child in gridPointParent.transform)
         {
-            _path.Add(child.GetComponent<GridPoint>());
+            _path.Add(child.GetComponent<Tile>());
         }
     }
     
     
     private IEnumerator MoveAlongPath()
     {
-        foreach (var gridPoint in _path)
+        foreach (var tile in _path)
         {
             var startPosition = transform.position;
-            var endPosition = gridPoint.transform.position;
+            var endPosition = tile.transform.position;
             var travelPercent = 0f;
             
             transform.LookAt(endPosition);

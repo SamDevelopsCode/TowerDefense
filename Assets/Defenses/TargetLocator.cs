@@ -38,7 +38,7 @@ public class TargetLocator : MonoBehaviour
         else if (!_canShoot)
         {
             _shootTimer += Time.deltaTime;
-
+            
             if (_shootTimer >= _shotsPerSecond)
             {
                 _canShoot = true;

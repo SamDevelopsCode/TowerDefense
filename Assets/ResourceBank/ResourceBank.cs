@@ -23,8 +23,12 @@ public class ResourceBank : MonoBehaviour
 
     public void DetractFromBalance(int amount)
     {
-        _currentBalance -= amount;
+        if (_currentBalance >= amount)
+        {
+            _currentBalance -= amount;
+        }
     }
+
     
     
     

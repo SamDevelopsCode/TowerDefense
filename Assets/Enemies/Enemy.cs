@@ -7,14 +7,13 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _resourceAmountDroppedOnDeath = 25;
 
-
-    [SerializeField] private Health healthComponent;
+    [SerializeField] private Health _healthComponent;
     private ResourceBank _resourceBank;
 
 
     private void Start()
     {
-        healthComponent.OnEntityDied += DropResources;
+        _healthComponent.OnEntityDied += DropResources;
         _resourceBank = FindObjectOfType<ResourceBank>();
     }
 

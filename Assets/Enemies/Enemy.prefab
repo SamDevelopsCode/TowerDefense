@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resourceAmountDroppedOnDeath: 25
-  healthComponent: {fileID: 5362991843178886080}
+  _healthComponent: {fileID: 5362991843178886080}
 --- !u!114 &2138451040933082354
 MonoBehaviour:
   m_ObjectHideFlags: 0
