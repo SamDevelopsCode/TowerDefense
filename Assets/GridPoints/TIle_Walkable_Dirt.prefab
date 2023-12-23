@@ -33,6 +33,11 @@ PrefabInstance:
       propertyPath: isDefensePlaceable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3828168830159294304, guid: 50413ac79d8179e4db51f37e48828355,
+        type: 3}
+      propertyPath: _isDefensePlaceable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5891237444976467797, guid: 50413ac79d8179e4db51f37e48828355,
         type: 3}
       propertyPath: m_LocalPosition.x

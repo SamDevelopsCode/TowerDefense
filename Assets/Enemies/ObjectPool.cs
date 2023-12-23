@@ -9,8 +9,7 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] private int _objectPoolSize = 5;
     [SerializeField] private int _maxEnemySpawnNumber = 10;
     [SerializeField] private float _timeBetweenSpawn = 1.0f;
-
-
+    
     private GameObject[] _objectPool;
     
     private int _enemiesSpawned = 0;
@@ -53,11 +52,11 @@ public class ObjectPool : MonoBehaviour
 
     private void EnableObjectInPool()
     {
-        foreach (var _poolObject in _objectPool)
+        foreach (var poolObject in _objectPool)
         {
-            if (!_poolObject.activeInHierarchy)
+            if (!poolObject.activeInHierarchy)
             {
-                _poolObject.SetActive(true);
+                poolObject.SetActive(true);
                 return;
             }
         }

@@ -6,6 +6,9 @@ using UnityEngine.Serialization;
 
 public class Health : MonoBehaviour
 {
+
+    public event Action OnEntityDied;
+    
     [SerializeField] private float _maxHealth = 10f;
     [SerializeField] private float _currentHealth;
 
@@ -21,6 +24,7 @@ public class Health : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
+            OnEntityDied?.Invoke();
             gameObject.SetActive(false);
         }
     }

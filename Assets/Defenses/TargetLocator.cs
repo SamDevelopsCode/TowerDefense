@@ -7,29 +7,66 @@ using UnityEngine.Serialization;
 public class TargetLocator : MonoBehaviour
 {
     [SerializeField] private Transform _turretSupport;
-
     [SerializeField] private float _damage = 5f;
     [SerializeField] private float _secondsTillNextShot = 3f;
-
-    [SerializeField] private float _turretRange = 3f;
+    [SerializeField] private float _turretRange = 6f;
+    [SerializeField] private float _shotsPerSecond = 2f;
+    
     
     private GameObject _target;
-
+    private bool _canShoot = true;
+    private float _shootTimer = 0f;
+    
+    
     private void Update()
     {
         FindClosestTarget();
-        AimWeapon();
+
+        if (_target != null)
+        {
+            AimWeapon();
+            AttemptToShoot();
+        }
     }
-    
+
+    private void AttemptToShoot()
+    {
+        if (_canShoot)
+        {
+            Shoot();
+            _canShoot = false;
+        } 
+        else if (!_canShoot)
+        {
+            _shootTimer += Time.deltaTime;
+
+            if (_shootTimer >= _shotsPerSecond)
+            {
+                _canShoot = true;
+                _shootTimer = 0f;
+            }
+        }
+    }
+
 
     private void FindClosestTarget()
     {
-        // Physics.SphereCast();
-        //get a list of targets
-        //find all the targets in range
-        //loop through each target in range and see which one is closer
-        //set closest one to the target until they leave range
-        //this should repeat
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        GameObject closetTarget = null;
+        float maxAttackRange = _turretRange;
+
+
+        foreach (var enemy in enemies)
+        {
+            var distanceToTarget = Vector3.Distance(transform.position, enemy.transform.position);
+
+            if (distanceToTarget < maxAttackRange)
+            {
+                closetTarget = enemy.gameObject;
+                maxAttackRange = distanceToTarget;
+            }
+        }
+        _target = closetTarget;
     }
 
     private void AimWeapon()
@@ -39,15 +76,9 @@ public class TargetLocator : MonoBehaviour
 
     private void Shoot()
     {
-        if (_target != null)
-        {
-            Debug.Log("Shooting now");
-            var healthComponent = _target.GetComponent<Health>();
-            healthComponent.TakeDamage(_damage);
-        }
-    }
-
-   
+        var healthComponent = _target.GetComponent<Health>();
+        healthComponent.TakeDamage(_damage);
+    }   
 }
 
 

@@ -9,13 +9,13 @@ using UnityEngine.Serialization;
 [ExecuteInEditMode]
 public class CoordinateLabeler : MonoBehaviour
 {
-    [SerializeField] private TextMeshPro textLabel;
+    [SerializeField] private TextMeshPro _textLabel;
 
     private Vector2Int _coordinates;
 
     private void Start()
     {
-        textLabel.enabled = false;
+        _textLabel.enabled = false;
     }
 
     private void Update()
@@ -28,7 +28,7 @@ public class CoordinateLabeler : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            textLabel.enabled = !textLabel.enabled;
+            _textLabel.enabled = !_textLabel.enabled;
         }
     }
 
@@ -37,7 +37,7 @@ public class CoordinateLabeler : MonoBehaviour
         var position = transform.position;
         _coordinates.x = Mathf.RoundToInt(position.x / 10);
         _coordinates.y = Mathf.RoundToInt(position.z / 10);
-        textLabel.text = _coordinates.ToString();
+        _textLabel.text = _coordinates.ToString();
     }
 
     private void UpdateObjectName()

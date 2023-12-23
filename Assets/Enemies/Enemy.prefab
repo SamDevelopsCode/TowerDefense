@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4194434424471567338}
   - component: {fileID: 2138451040933082354}
   - component: {fileID: 5362991843178886080}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db06ce5eb4df4594aa4abd16a05b647b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _resourceAmountDroppedOnDeath: 25
+  healthComponent: {fileID: 5362991843178886080}
 --- !u!114 &2138451040933082354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4707a8228cb8fc4dbf7f431b8960c61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 2
+  _moveSpeed: 1
   _path: []
 --- !u!114 &5362991843178886080
 MonoBehaviour:
@@ -88,7 +90,7 @@ GameObject:
   - component: {fileID: 5312967233235302597}
   - component: {fileID: 1738632017312742430}
   - component: {fileID: 4161007062641462146}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

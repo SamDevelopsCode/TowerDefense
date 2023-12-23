@@ -28,9 +28,9 @@ public class EnemyMovement : MonoBehaviour
     {
         _path.Clear();
         
-        GameObject gridpointParent = GameObject.FindGameObjectWithTag("Path");
+        var gridPointParent = GameObject.FindGameObjectWithTag("Path");
 
-        foreach (Transform child in gridpointParent.transform)
+        foreach (Transform child in gridPointParent.transform)
         {
             _path.Add(child.GetComponent<GridPoint>());
         }
