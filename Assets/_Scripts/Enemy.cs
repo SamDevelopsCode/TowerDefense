@@ -8,17 +8,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int _resourceAmountDroppedOnDeath = 25;
 
     [SerializeField] private Health _healthComponent;
-    private ResourceBank _resourceBank;
+    private CurrencyManager _currencyManager;
 
 
     private void Start()
     {
         _healthComponent.OnEntityDied += DropResources;
-        _resourceBank = FindObjectOfType<ResourceBank>();
+        _currencyManager = FindObjectOfType<CurrencyManager>();
     }
 
     private void DropResources()
     {
-        _resourceBank.AddToBalance(_resourceAmountDroppedOnDeath);
+        _currencyManager.AddToBalance(_resourceAmountDroppedOnDeath);
     }
 }
