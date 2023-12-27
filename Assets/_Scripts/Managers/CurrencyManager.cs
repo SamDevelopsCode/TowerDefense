@@ -11,7 +11,21 @@ public class CurrencyManager : MonoBehaviour
 	[SerializeField] private int _startingBalance = 100;
 
 	[SerializeField] private int _currentBalance;
-	public int CurrentBalance { get { return _currentBalance; } }
+
+	
+	public int CurrentBalance
+	{
+		get
+		{
+			return _currentBalance;
+		}
+		set
+		{
+			_currentBalance = value;
+			UIManager.Instance.UpdateGoldBalanceUI(_currentBalance);
+			
+		}
+	}
 
 
 	private void Awake()
@@ -19,25 +33,24 @@ public class CurrencyManager : MonoBehaviour
 		Instance = this;
 	}
 
+	
 	private void Start()
 	{
-		_currentBalance = _startingBalance;
+		CurrentBalance = _startingBalance;
 	}
 
+	
 	public void AddToBalance(int amount)
 	{
-		_currentBalance += amount;
+		CurrentBalance += amount;
 	}
 
+	
 	public void DetractFromBalance(int amount)
 	{
-		if (_currentBalance >= amount)
+		if (CurrentBalance >= amount)
 		{
-			_currentBalance -= amount;
+			CurrentBalance -= amount;
 		}
 	}
-
-	
-	
-	
 }

@@ -25,7 +25,6 @@ public class Health : MonoBehaviour
         if (_currentHealth <= 0)
         {
             OnEntityDied?.Invoke();
-            gameObject.SetActive(false);
         }
     }
 }

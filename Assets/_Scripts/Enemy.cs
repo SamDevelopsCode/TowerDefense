@@ -26,5 +26,6 @@ public class Enemy : MonoBehaviour
     private void DropResources()
     {
         _currencyManager.AddToBalance(_resourceAmountDroppedOnDeath);
+        Destroy(gameObject);
     }
 }
