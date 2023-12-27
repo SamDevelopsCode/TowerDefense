@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
-		UpdateGameState(GameState.LevelSelect);
+		UpdateGameState(GameState.TowerPlacement);
 	}
 
 
@@ -30,12 +30,9 @@ public class GameManager : MonoBehaviour
 
 		switch (newState)
 		{
-			case GameState.LevelSelect:
-				HandleLevelSelect();
-				break;
 			case GameState.TowerPlacement:
 				break;
-			case GameState.EnemyWaveIncoming:
+			case GameState.EnemyWave:
 				break;
 			case GameState.Victory:
 				break;
@@ -47,18 +44,12 @@ public class GameManager : MonoBehaviour
 		
 		OnGameStateChanged?.Invoke(newState);
 	}
-
-	private void HandleLevelSelect()
-	{
-		
-	}
 }
 
 public enum GameState
 {
-	LevelSelect,
 	TowerPlacement,
-	EnemyWaveIncoming,
+	EnemyWave,
 	Victory,
 	Lose
 }

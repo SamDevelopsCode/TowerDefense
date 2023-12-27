@@ -484,15 +484,15 @@ RectTransform:
   m_GameObject: {fileID: 3235376939920236207}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9855222, y: 1.9855222, z: 1.9855222}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5506836624392360504}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1939.8551, y: 258.11792}
-  m_SizeDelta: {x: 120, y: 30}
+  m_AnchoredPosition: {x: -10, y: 130}
+  m_SizeDelta: {x: 110, y: 30}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &4276234435996436402
 CanvasRenderer:
@@ -1007,14 +1007,14 @@ RectTransform:
   m_GameObject: {fileID: 5387231965561054675}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9855222, y: 1.9855222, z: 1.9855222}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5506836624392360504}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1939.8551, y: 196.56674}
+  m_AnchoredPosition: {x: -10, y: 100}
   m_SizeDelta: {x: 110, y: 30}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &6684773801901177836
@@ -1141,14 +1141,14 @@ RectTransform:
   m_GameObject: {fileID: 6732802176716046578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9855222, y: 1.9855222, z: 1.9855222}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5506836624392360504}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1939.8551, y: 129.05896}
+  m_AnchoredPosition: {x: -11, y: 65}
   m_SizeDelta: {x: 110, y: 30}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &536030889296722380
@@ -1392,7 +1392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 159838237473863750}
   m_Layer: 0
-  m_Name: Canvases
+  m_Name: UICanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
