@@ -534,7 +534,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 999
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1451,6 +1451,7 @@ GameObject:
   - component: {fileID: 8832487916636128679}
   - component: {fileID: 2302153814750408742}
   - component: {fileID: 1879750902852215396}
+  - component: {fileID: 1597776573798692395}
   m_Layer: 5
   m_Name: GameUI
   m_TagString: Untagged
@@ -1548,3 +1549,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1597776573798692395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788856605497559880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65dc0162306651d44ac3f69956485151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _goldBalance: {fileID: 2103417241407409362}
+  _baseHealthAmount: {fileID: 2928472298420437833}
+  _waveNumber: {fileID: 7599459459184183818}

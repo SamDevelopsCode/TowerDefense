@@ -25,9 +25,9 @@ public class UIManager : MonoBehaviour
     }
     
     
-    public void UpdateBaseHealthUI()
+    public void UpdateBaseHealthUI(int currentBaseHealth, int maxBaseHealth)
     {
-        // TODO create a base and update its  health here
+        _baseHealthAmount.text = currentBaseHealth.ToString() + "/" + maxBaseHealth.ToString();
     }
     
     
