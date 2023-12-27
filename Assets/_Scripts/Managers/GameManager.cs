@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
 	{
 		UpdateGameState(GameState.TowerPlacement);
 	}
-
+	
 
 	public void UpdateGameState(GameState newState)
 	{
@@ -44,6 +45,12 @@ public class GameManager : MonoBehaviour
 		
 		OnGameStateChanged?.Invoke(newState);
 	}
+
+	public void QuitToMainMenu()
+	{
+		SceneManager.LoadScene(0);
+	}
+	
 }
 
 public enum GameState

@@ -12,8 +12,13 @@ public class TowerManager : MonoBehaviour
 	[SerializeField] private Tower _towerPrefab;
 	
 	private Tower _selectedTowerType;
-	
-	
+	private bool _canPlaceTowers;
+
+	private void Awake()
+	{
+		GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+	}
+
 	private void Start() 
 	{
 		for (int i = 0; i < _placeableTiles.childCount; i++)
@@ -22,7 +27,11 @@ public class TowerManager : MonoBehaviour
 			_placeableTiles.GetChild(i).GetComponent<Tile>().OnTowerPlaceAttempted += HandleOnTowerPlaceAttempted;
 		}
 	}
-	
+
+	private void GameManagerOnGameStateChanged(GameState state)
+	{
+		_canPlaceTowers = state == GameState.TowerPlacement;
+	}
 		
 	private void Update() 
 	{
@@ -42,17 +51,20 @@ public class TowerManager : MonoBehaviour
 	
 	private void HandleOnTowerPlaceAttempted(Tile tile)
 	{
-		if (_selectedTowerType == null)
+		if (_canPlaceTowers)
 		{
-			Debug.Log("No tower has been selected.");			
-			return;
-		}
-		Debug.Log(_selectedTowerType.TowerCost);
+			if (_selectedTowerType == null)
+			{
+				Debug.Log("No tower has been selected.");			
+				return;
+			}
+			Debug.Log(_selectedTowerType.TowerCost);
 		
-		if (_selectedTowerType.TowerCost <= CurrencyManager.Instance.CurrentBalance)
-		{
-			_towerSpawner.SpawnTower(_selectedTowerType, tile.transform);
-			CurrencyManager.Instance.DetractFromBalance(_selectedTowerType.TowerCost);
+			if (_selectedTowerType.TowerCost <= CurrencyManager.Instance.CurrentBalance)
+			{
+				_towerSpawner.SpawnTower(_selectedTowerType, tile.transform);
+				CurrencyManager.Instance.DetractFromBalance(_selectedTowerType.TowerCost);
+			}
 		}
 	}
 	

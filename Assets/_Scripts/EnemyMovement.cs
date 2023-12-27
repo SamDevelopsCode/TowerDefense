@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField][Range(0f, 5f)] private float _moveSpeed = 2.0f;
     [SerializeField] private List<Tile> _path = new List<Tile>();
     
-    private void OnEnable()
+    private void Start()
     {
         FindPath();
         PlaceEnemyAtStart();
@@ -20,7 +20,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void PlaceEnemyAtStart()
     {
-        transform.position = _path[0].transform.position;
+        GameObject startingTile = GameObject.FindGameObjectWithTag("StartingTile");
+
+        transform.position = startingTile.transform.position;
     }
 
 
@@ -54,7 +56,7 @@ public class EnemyMovement : MonoBehaviour
             }
         }
         
-        gameObject.SetActive(false);
+        Destroy(gameObject);
 
     }
 

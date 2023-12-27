@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,16 +10,22 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float _timeBetweenSpawn = 1.0f;
     
     private int _enemiesSpawned = 0;
-    
-    
-    private void Start()
+    private bool _enemiesCurrentlySpawning;
+
+
+    public void SpawnEnemyWave()
     {
-        StartCoroutine(SpawnEnemies());
+        if (!_enemiesCurrentlySpawning)
+        {
+            StartCoroutine(SpawnEnemies());
+        }
     }
-    
     
     private IEnumerator SpawnEnemies()
     {
+        GameManager.Instance.UpdateGameState(GameState.EnemyWave);
+        _enemiesCurrentlySpawning = true;
+        
         while (_enemiesSpawned < _maxEnemySpawnNumber)
         {
             var enemyInstance = Instantiate(_enemyPrefab, transform);

@@ -10,6 +10,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Health _healthComponent;
     private CurrencyManager _currencyManager;
 
+    private EnemyManager _enemyManager;
+
+    private void Awake()
+    {
+        _enemyManager = transform.parent.GetComponent<EnemyManager>();
+    }
 
     private void Start()
     {
