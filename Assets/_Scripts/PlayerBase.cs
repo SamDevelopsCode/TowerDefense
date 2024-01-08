@@ -8,6 +8,8 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private int _maxBaseHealth = 100;
     private int _currentBaseHealth;
 
+    public event Action<GameState> OnPlayerBaseDestroyed;
+
     public int CurrentBaseHealth
     {
         get
@@ -16,11 +18,11 @@ public class PlayerBase : MonoBehaviour
         }
         set
         {
-            _currentBaseHealth = Mathf.Min(0, value);
+            _currentBaseHealth = Mathf.Max(0, value);
 
             if (_currentBaseHealth == 0)
             {
-                //load end game scene
+                OnPlayerBaseDestroyed?.Invoke(GameState.Lose);
             }
             
             UIManager.Instance.UpdateBaseHealthUI(_currentBaseHealth, _maxBaseHealth);

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class EndOfLevelUIManager : MonoBehaviour
+public class EndOfLevelUI : MonoBehaviour
 {
     public void LoadMainMenu()
     {

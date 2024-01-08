@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+	[SerializeField] private PlayerBase _playerBase;
+	
 	public static GameManager Instance;
 
 	public GameState State;
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
 	private void Awake()
 	{
 		Instance = this;
+		_playerBase.OnPlayerBaseDestroyed += UpdateGameState;
 	}
 	
 
@@ -36,8 +39,10 @@ public class GameManager : MonoBehaviour
 			case GameState.EnemyWave:
 				break;
 			case GameState.Victory:
+				LoadEndOfLevelScene();
 				break;
 			case GameState.Lose:
+				LoadEndOfLevelScene();
 				break;
 			default:
 				throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -49,6 +54,11 @@ public class GameManager : MonoBehaviour
 	public void QuitToMainMenu()
 	{
 		SceneManager.LoadScene(0);
+	}
+	
+	public void LoadEndOfLevelScene()
+	{
+		SceneManager.LoadScene(2);
 	}
 	
 }
