@@ -16,7 +16,13 @@ public class PlayerBase : MonoBehaviour
         }
         set
         {
-            _currentBaseHealth = value;
+            _currentBaseHealth = Mathf.Min(0, value);
+
+            if (_currentBaseHealth == 0)
+            {
+                //load end game scene
+            }
+            
             UIManager.Instance.UpdateBaseHealthUI(_currentBaseHealth, _maxBaseHealth);
         }
     }

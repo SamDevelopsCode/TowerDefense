@@ -53,17 +53,21 @@ public class TowerManager : MonoBehaviour
 	{
 		if (_canPlaceTowers)
 		{
+			print("Tried to place tower");
 			if (_selectedTowerType == null)
 			{
 				Debug.Log("No tower has been selected.");			
 				return;
 			}
-			Debug.Log(_selectedTowerType.TowerCost);
 		
 			if (_selectedTowerType.TowerCost <= CurrencyManager.Instance.CurrentBalance)
 			{
 				_towerSpawner.SpawnTower(_selectedTowerType, tile.transform);
 				CurrencyManager.Instance.DetractFromBalance(_selectedTowerType.TowerCost);
+			}
+			else
+			{
+				Debug.Log("Not enough funds. Tower cost: " + _selectedTowerType.TowerCost.ToString() + ". Current money: " + CurrencyManager.Instance.CurrentBalance.ToString());
 			}
 		}
 	}
