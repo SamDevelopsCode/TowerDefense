@@ -16,15 +16,15 @@ public class Tile : MonoBehaviour
 	public event Action<string> OnTileMouseOver;
 	public event Action<Tile> OnTowerPlaceAttempted;
 	
-	private bool hasMouseEntered = false;
+	private bool _mouseHasEnteredTile = false;
 		
 
 	private void OnMouseOver()
 	{		
-		if (!hasMouseEntered)
+		if (!_mouseHasEnteredTile)
 		{
 			OnTileMouseOver?.Invoke(name);
-			hasMouseEntered = true;
+			_mouseHasEnteredTile = true;
 		}		
 		
 		if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -40,7 +40,7 @@ public class Tile : MonoBehaviour
 	
 	private void OnMouseExit() 
 	{
-		hasMouseEntered = false;
+		_mouseHasEnteredTile = false;
 	}
 	
 }

@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 5891237444976467797}
   - component: {fileID: 1775169045147128660}
   - component: {fileID: 3828168830159294304}
-  - component: {fileID: 7755582393131790522}
   m_Layer: 0
-  m_Name: Tile
+  m_Name: TileBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,30 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4993b8f809a6445a5538b734dc0145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defensePrefab: {fileID: 5132297016179339958, guid: cfac2ba935051684e84d09eaccb5d799,
-    type: 3}
-  _isDefensePlaceable: 1
---- !u!65 &7755582393131790522
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469005161836314840}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: -4.5, z: 0}
+  _isDefensePlaceable: 0
 --- !u!1 &3221659352711718290
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +243,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: (0, 0)
+  m_text: (7, 2)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

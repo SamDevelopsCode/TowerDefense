@@ -6,7 +6,17 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _resourceAmountDroppedOnDeath = 25;
+    [SerializeField] private int _damageToBase = 5;
 
+    public int DamageToBase
+    {
+        get
+        {
+            return _damageToBase;
+        }
+    }
+    
+    
     [SerializeField] private Health _healthComponent;
     private CurrencyManager _currencyManager;
 
