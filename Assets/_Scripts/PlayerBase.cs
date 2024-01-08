@@ -44,8 +44,8 @@ public class PlayerBase : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collided with enemy most likely");
-        TakeDamage(other.transform.parent.GetComponent<Enemy>().DamageToBase);
-        Destroy(other.transform.parent.gameObject);
+        var enemy = other.transform.parent;
+        TakeDamage(enemy.GetComponent<Enemy>().DamageToBase);
+        Destroy(enemy.gameObject);
     }
 }

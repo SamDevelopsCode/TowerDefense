@@ -8,7 +8,6 @@ public class TowerManager : MonoBehaviour
 {
 	[SerializeField] private Transform _placeableTiles;
 	[SerializeField] private TowerSpawner _towerSpawner;
-	
 	[SerializeField] private Tower _towerPrefab;
 	
 	private Tower _selectedTowerType;
