@@ -42,7 +42,6 @@ public class Tile : MonoBehaviour
 			
 			OnTowerPlaceAttempted?.Invoke(this);
 			
-			// TODO: should not set to false UNLESS tower is placed
 			// TowerManager handles assignment of _isDefensePlaceable after event invocation
 		}        
 	}

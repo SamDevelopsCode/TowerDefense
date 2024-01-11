@@ -30,8 +30,6 @@ namespace TowerDefense.Managers
 
 		public void UpdateGameState(GameState newState)
 		{
-			State = newState;
-
 			switch (newState)
 			{
 				case GameState.TowerPlacement:

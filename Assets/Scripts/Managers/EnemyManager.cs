@@ -1,39 +1,38 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using JetBrains.Annotations;
+using TowerDefense.Enemies;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace TowerDefense.Managers
 {
     public class EnemyManager : MonoBehaviour
     {
-        [SerializeField] private GameObject _enemyPrefab;
-        [SerializeField] private int _maxEnemySpawnNumber = 10;
-        [SerializeField] private float _timeBetweenSpawn = 1.0f;
+        [SerializeField] private List<Wave> enemyWaves= new List<Wave>();
     
-        private int _enemiesSpawned = 0;
         private bool _enemiesCurrentlySpawning;
+        private int _currentWaveNumber = 0;
 
+        // private IEnumerator SpawnWave(int waveNumber)
+        // {
+        //     var currentWave = _enemyWaves[waveNumber];
+        //     var enemiesSpawned = 0;
+        //     
+        //     while (enemiesSpawned < currentWave.numberOfEnemies)
+        //     {
+        //         var enemyInstance = Instantiate(currentWave.enemyPrefab, transform);
+        //         enemiesSpawned += 1;
+        //         yield return new WaitForSeconds(currentWave.timeBetweenSpawns);
+        //     }
+        //     _currentWaveNumber += 1;
+        // }
 
-        public void SpawnEnemyWave()
-        {
-            if (!_enemiesCurrentlySpawning)
-            {
-                StartCoroutine(SpawnEnemies());
-            }
-        }
-    
-    
-        private IEnumerator SpawnEnemies()
-        {
-            GameManager.Instance.UpdateGameState(GameState.EnemyWave);
-            _enemiesCurrentlySpawning = true;
+        // public void SpawnNextWave(int waveNumber)
+        // {
+        //     StartCoroutine(SpawnWave(_currentWaveNumber));
+        // }
         
-            while (_enemiesSpawned < _maxEnemySpawnNumber)
-            {
-                var enemyInstance = Instantiate(_enemyPrefab, transform);
-            
-                _enemiesSpawned += 1;
-                yield return new WaitForSeconds(_timeBetweenSpawn);
-            }
-        }
     }
 }

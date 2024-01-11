@@ -17,9 +17,10 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _currentHealth -= damage;
+        _currentHealth = Mathf.Max(0, _currentHealth);
         Debug.Log("Current Health: " + _currentHealth);
 
-        if (_currentHealth <= 0)
+        if (_currentHealth == 0)
         {
             OnEntityDied?.Invoke();
         }
