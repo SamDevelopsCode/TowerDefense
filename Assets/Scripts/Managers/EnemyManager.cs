@@ -30,7 +30,7 @@ namespace TowerDefense.Managers
             {
                 for (int i = 0; i < group.numberOfEnemies; i++)
                 {
-                    var enemyInstance = Instantiate(group.enemyPrefab, transform);
+                    var enemyInstance = Instantiate(group.enemyPrefabs[i], transform);
                     yield return new WaitForSeconds(group.timeBetweenSpawns);
                 }
 
