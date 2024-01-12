@@ -3569,6 +3569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyWaves:
   - {fileID: 11400000, guid: 0a0e7f400f126dc40a70c8fbb06947d2, type: 2}
+  - {fileID: 11400000, guid: 8647614dffabf2b409e71773199d0b29, type: 2}
 --- !u!4 &967969994
 Transform:
   m_ObjectHideFlags: 0

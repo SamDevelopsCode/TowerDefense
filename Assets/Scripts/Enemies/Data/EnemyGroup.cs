@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace TowerDefense.Enemies
 {
-    [CreateAssetMenu(fileName = "EnemyWave_00", menuName = "Enemy / Create Enemy Wave") ]
-    public class EnemyWaveComponent : ScriptableObject
+    [CreateAssetMenu(fileName = "EnemyGroup00", menuName = "Enemy / Create Enemy Group") ]
+    public class EnemyGroup : ScriptableObject
     {
         [SerializeField] public GameObject enemyPrefab;
         [SerializeField] public int numberOfEnemies;

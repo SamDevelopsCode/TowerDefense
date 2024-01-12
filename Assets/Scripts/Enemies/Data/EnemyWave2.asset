@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f59158f9c38441e816b3225bed7d17b, type: 3}
-  m_Name: EnemyWave1
+  m_Name: EnemyWave2
   m_EditorClassIdentifier: 
   enemyGroups:
-  - {fileID: 11400000, guid: 2ca9fea155acb8c46a843dc7a0e086f1, type: 2}
-  - {fileID: 11400000, guid: fe690172798b4fb4791bc1ae09a49c4e, type: 2}
-  - {fileID: 11400000, guid: 2ca9fea155acb8c46a843dc7a0e086f1, type: 2}
+  - {fileID: 11400000, guid: 98ed228e371549d41aa57715995d2f40, type: 2}
+  - {fileID: 11400000, guid: 98ed228e371549d41aa57715995d2f40, type: 2}
