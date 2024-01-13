@@ -18,7 +18,6 @@ namespace TowerDefense.Managers
         private bool _waveCanSpawn;
         private int _currentWaveNumber = 0;
         
-        
 
         private void Start()
         {
