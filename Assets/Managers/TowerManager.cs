@@ -43,6 +43,11 @@ namespace TowerDefense.Managers
 			{
 				_selectedTowerType = _towerPrefab;
 				Debug.Log("Tower type 1 chosen.");
+			}
+			else if (Input.GetKeyDown(KeyCode.Alpha2))
+			{
+				_selectedTowerType = _towerPrefab;
+				Debug.Log("Tower type 2 chosen.");
 			}	
 		}
 

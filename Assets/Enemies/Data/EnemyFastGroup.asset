@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe2751a0ba2543c99606967c146d69a8, type: 3}
-  m_Name: EnemyBasicGroup
+  m_Name: EnemyFastGroup
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 922021689141863168, guid: cff2cc1645c7c6b41a5e75beaa675188, type: 3}
-  - {fileID: 439488202574299873, guid: a04be5c46f34e5b4eb74ef190d94d2a3, type: 3}
-  - {fileID: 4094406653750195682, guid: 450eeb883cc3a5c479f909f02384412c, type: 3}
-  numberOfEnemies: 5
-  timeBetweenSpawns: 1
+  enemyPrefab: {fileID: 922021689141863168, guid: cff2cc1645c7c6b41a5e75beaa675188,
+    type: 3}
+  numberOfEnemies: 10
+  timeToStartSpawning: 0
+  timeBetweenSpawns: 0.5

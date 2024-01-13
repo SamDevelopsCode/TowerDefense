@@ -30,11 +30,11 @@ namespace TowerDefense.Managers
             {
                 for (int i = 0; i < group.numberOfEnemies; i++)
                 {
-                    var enemyInstance = Instantiate(group.enemyPrefabs[i], transform);
+                    var enemyInstance = Instantiate(group.enemyPrefab, transform);
                     yield return new WaitForSeconds(group.timeBetweenSpawns);
                 }
 
-                yield return new WaitForSeconds(3.0f);
+                yield return new WaitForSeconds(.1f);
             }
             _currentWaveNumber += 1;
         }
