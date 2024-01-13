@@ -1,83 +1,86 @@
 using TowerDefense.Enemies;
 using UnityEngine;
 
-public class TargetLocator : MonoBehaviour
+namespace TowerDefense.Tower
 {
-    [SerializeField] private Transform _turretSupport;
-    [SerializeField] private float _damage = 5f;
-    [SerializeField] private float _turretRange = 6f;
-    [SerializeField] private float _shotsPerSecond = 2f;
-    
-    
-    private GameObject _target;
-    private bool _canShoot = true;
-    private float _shootTimer = 0f;
-    
-    
-    private void Update()
+    public class TargetLocator : MonoBehaviour
     {
-        FindClosestTarget();
-
-        if (_target != null)
+        [SerializeField] private Transform _turretSupport;
+        [SerializeField] private float _damage = 5f;
+        [SerializeField] private float _turretRange = 6f;
+        [SerializeField] private float _shotsPerSecond = 2f;
+    
+    
+        private GameObject _target;
+        private bool _canShoot = true;
+        private float _shootTimer = 0f;
+    
+    
+        private void Update()
         {
-            AimWeapon();
-            AttemptToShoot();
+            FindClosestTarget();
+
+            if (_target != null)
+            {
+                AimWeapon();
+                AttemptToShoot();
+            }
         }
-    }
     
 
-    private void AttemptToShoot()
-    {
-        if (_canShoot)
+        private void AttemptToShoot()
         {
-            Shoot();
-            _canShoot = false;
-        } 
-        else if (!_canShoot)
-        {
-            _shootTimer += Time.deltaTime;
+            if (_canShoot)
+            {
+                Shoot();
+                _canShoot = false;
+            } 
+            else if (!_canShoot)
+            {
+                _shootTimer += Time.deltaTime;
             
-            if (_shootTimer >= _shotsPerSecond)
-            {
-                _canShoot = true;
-                _shootTimer = 0f;
+                if (_shootTimer >= _shotsPerSecond)
+                {
+                    _canShoot = true;
+                    _shootTimer = 0f;
+                }
             }
         }
-    }
 
 
-    private void FindClosestTarget()
-    {
-        Enemy[] enemies = FindObjectsOfType<Enemy>();
-        GameObject closetTarget = null;
-        float maxAttackRange = _turretRange;
-
-
-        foreach (var enemy in enemies)
+        private void FindClosestTarget()
         {
-            var distanceToTarget = Vector3.Distance(transform.position, enemy.transform.position);
+            Enemy[] enemies = FindObjectsOfType<Enemy>();
+            GameObject closetTarget = null;
+            float maxAttackRange = _turretRange;
 
-            if (distanceToTarget < maxAttackRange)
+
+            foreach (var enemy in enemies)
             {
-                closetTarget = enemy.gameObject;
-                maxAttackRange = distanceToTarget;
+                var distanceToTarget = Vector3.Distance(transform.position, enemy.transform.position);
+
+                if (distanceToTarget < maxAttackRange)
+                {
+                    closetTarget = enemy.gameObject;
+                    maxAttackRange = distanceToTarget;
+                }
             }
+            _target = closetTarget;
         }
-        _target = closetTarget;
-    }
 
     
-    private void AimWeapon()
-    {
-        _turretSupport.LookAt(_target.transform.position);
-    }
+        private void AimWeapon()
+        {
+            _turretSupport.LookAt(_target.transform.position);
+        }
 
     
-    private void Shoot()
-    {
-        var healthComponent = _target.GetComponent<Health>();
-        healthComponent.TakeDamage(_damage);
-    }   
+        private void Shoot()
+        {
+            var healthComponent = _target.GetComponent<Health>();
+            healthComponent.TakeDamage(_damage);
+        }   
+    }
 }
 
 

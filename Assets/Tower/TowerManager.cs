@@ -1,19 +1,21 @@
 using System;
-using TowerDefense.Tower;
+using System.Collections.Generic;
+using TowerDefense.Managers;
 using UnityEngine;
 
-namespace TowerDefense.Managers
+namespace TowerDefense.Tower
 {
 	public class TowerManager : MonoBehaviour
 	{
 		[SerializeField] private Transform _placeableTiles;
 		[SerializeField] private TowerSpawner _towerSpawner;
-		[SerializeField] private Tower.Tower _towerPrefab;
+		[SerializeField] private List<GameObject> _towerPrefabs = new();
 
 		public event Action<bool> onTowerPlacementSuccess;
 		
-		private Tower.Tower _selectedTowerType;
+		private Tower _selectedTowerType;
 		private bool _canPlaceTowers;
+		
 
 		private void Awake()
 		{
@@ -41,13 +43,13 @@ namespace TowerDefense.Managers
 		{
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
-				_selectedTowerType = _towerPrefab;
-				Debug.Log("Tower type 1 chosen.");
+				_selectedTowerType = _towerPrefabs[0].GetComponent<Tower>();
+				Debug.Log("Tower type Light chosen.");
 			}
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
 			{
-				_selectedTowerType = _towerPrefab;
-				Debug.Log("Tower type 2 chosen.");
+				_selectedTowerType = _towerPrefabs[1].GetComponent<Tower>();
+				Debug.Log("Tower type Heavy chosen.");
 			}	
 		}
 

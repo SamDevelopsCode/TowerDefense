@@ -30,7 +30,9 @@ namespace TowerDefense.Managers
 
 		public void UpdateGameState(GameState newState)
 		{
-			switch (newState)
+			State = newState;
+			
+			switch (State)
 			{
 				case GameState.TowerPlacement:
 					break;
@@ -50,18 +52,19 @@ namespace TowerDefense.Managers
 		}
 
 	
-		public void QuitToMainMenu()
+		private void QuitToMainMenu()
 		{
 			SceneManager.LoadScene(0);
 		}
 	
 	
-		public void LoadEndOfLevelScene()
+		private void LoadEndOfLevelScene()
 		{
 			SceneManager.LoadScene(2);
 		}
 	}
 
+	
 	public enum GameState
 	{
 		TowerPlacement,

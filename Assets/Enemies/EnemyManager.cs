@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using TowerDefense.Enemies;
+using TowerDefense.Tower;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -14,11 +15,14 @@ namespace TowerDefense.Managers
         [SerializeField] private List<Wave> enemyWaves = new List<Wave>();
     
         private bool _enemiesCurrentlySpawning;
+        private bool _waveCanSpawn;
         private int _currentWaveNumber = 0;
+        
+        
 
         private void Start()
         {
-            _currentWaveNumber = 0;
+            UIManager.Instance.UpdateWaveNumberUI(_currentWaveNumber, enemyWaves.Count);
         }
 
         
@@ -42,6 +46,10 @@ namespace TowerDefense.Managers
         
         public void SpawnNextWave(int waveNumber)
         {
+            if (!_waveCanSpawn) return;
+            
+            GameManager.Instance.UpdateGameState(GameState.EnemyWave);
+            UIManager.Instance.UpdateWaveNumberUI(_currentWaveNumber + 1, enemyWaves.Count);
             StartCoroutine(SpawnWave(_currentWaveNumber));
         }
         

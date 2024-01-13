@@ -939,8 +939,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _placeableTiles: {fileID: 424671679}
   _towerSpawner: {fileID: 237957974}
-  _towerPrefab: {fileID: -1145779383494683623, guid: cfac2ba935051684e84d09eaccb5d799,
-    type: 3}
+  _towerPrefabs:
+  - {fileID: 5322820219245357172, guid: 428bccf3a1303634f91676ce5edc36be, type: 3}
+  - {fileID: 859164012439251943, guid: ae5d249ea14671f43ae638553b240fa6, type: 3}
 --- !u!4 &237957973
 Transform:
   m_ObjectHideFlags: 0
@@ -6757,7 +6758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a57d27252e8d51c4897050087979172d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingBalance: 100
+  _startingBalance: 200
   _currentBalance: 0
 --- !u!4 &1867524199
 Transform:
