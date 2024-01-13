@@ -3176,7 +3176,7 @@ PrefabInstance:
     - target: {fileID: 7794703260849969103, guid: 9fb0911e741a04f4badb079a351f0e9d,
         type: 3}
       propertyPath: _maxBaseHealth
-      value: 10000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8814383694211724629, guid: 9fb0911e741a04f4badb079a351f0e9d,
         type: 3}
@@ -6757,7 +6757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a57d27252e8d51c4897050087979172d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingBalance: 1000
+  _startingBalance: 100
   _currentBalance: 0
 --- !u!4 &1867524199
 Transform:
