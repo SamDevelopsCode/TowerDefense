@@ -30,8 +30,9 @@ namespace TowerDefense.Tower
         }
     
     
-        public void UpdateWaveNumberUI()
+        public void UpdateWaveNumberUI(int currentWave, int maxWaves)
         {
+            _waveNumber.text = currentWave.ToString() + "/" + maxWaves.ToString();
             // TODO create waves spawning and update the current wave number here
         }
     }

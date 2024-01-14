@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace TowerDefense.Enemies
+namespace TowerDefense.Enemies.Data
 {
     [CreateAssetMenu(fileName = "EnemyWave", menuName = "Enemy / Create New Wave") ]
     public class Wave : ScriptableObject

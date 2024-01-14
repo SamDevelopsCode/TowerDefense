@@ -7,6 +7,7 @@ namespace TowerDefense.Managers
 	public class GameManager : MonoBehaviour
 	{
 		[SerializeField] private PlayerBase _playerBase;
+		[SerializeField] private EnemyManager _enemyManager;
 	
 		public static GameManager Instance;
 
@@ -19,6 +20,7 @@ namespace TowerDefense.Managers
 		{
 			Instance = this;
 			_playerBase.OnPlayerBaseDestroyed += UpdateGameState;
+			_enemyManager.EnemyWaveCompleted += UpdateGameState;
 		}
 	
 
@@ -30,7 +32,9 @@ namespace TowerDefense.Managers
 
 		public void UpdateGameState(GameState newState)
 		{
-			switch (newState)
+			State = newState;
+			
+			switch (State)
 			{
 				case GameState.TowerPlacement:
 					break;
@@ -50,18 +54,19 @@ namespace TowerDefense.Managers
 		}
 
 	
-		public void QuitToMainMenu()
+		private void QuitToMainMenu()
 		{
 			SceneManager.LoadScene(0);
 		}
 	
 	
-		public void LoadEndOfLevelScene()
+		private void LoadEndOfLevelScene()
 		{
 			SceneManager.LoadScene(2);
 		}
 	}
 
+	
 	public enum GameState
 	{
 		TowerPlacement,

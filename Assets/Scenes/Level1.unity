@@ -939,8 +939,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _placeableTiles: {fileID: 424671679}
   _towerSpawner: {fileID: 237957974}
-  _towerPrefab: {fileID: -1145779383494683623, guid: cfac2ba935051684e84d09eaccb5d799,
-    type: 3}
+  _towerPrefabs:
+  - {fileID: 5322820219245357172, guid: 428bccf3a1303634f91676ce5edc36be, type: 3}
+  - {fileID: 859164012439251943, guid: ae5d249ea14671f43ae638553b240fa6, type: 3}
 --- !u!4 &237957973
 Transform:
   m_ObjectHideFlags: 0
@@ -3176,7 +3177,7 @@ PrefabInstance:
     - target: {fileID: 7794703260849969103, guid: 9fb0911e741a04f4badb079a351f0e9d,
         type: 3}
       propertyPath: _maxBaseHealth
-      value: 10000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8814383694211724629, guid: 9fb0911e741a04f4badb079a351f0e9d,
         type: 3}
@@ -3549,7 +3550,7 @@ GameObject:
   - component: {fileID: 967969994}
   - component: {fileID: 967969993}
   m_Layer: 0
-  m_Name: EnemyManager
+  m_Name: EnemyWaveSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3567,9 +3568,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a2097c07c5db84aadffa2c4dccf54c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyWaves:
-  - {fileID: 11400000, guid: 0a0e7f400f126dc40a70c8fbb06947d2, type: 2}
-  - {fileID: 11400000, guid: 8647614dffabf2b409e71773199d0b29, type: 2}
+  _enemyParent: {fileID: 1082520303}
+  _enemyWaves:
+  - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
+  - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
+  - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
+  - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
+  - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
 --- !u!4 &967969994
 Transform:
   m_ObjectHideFlags: 0
@@ -3582,7 +3587,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1082520303}
   m_Father: {fileID: 2146520577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &975128165 stripped
@@ -3858,6 +3864,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1688025225}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1082520302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1082520303}
+  - component: {fileID: 1082520304}
+  m_Layer: 0
+  m_Name: EnemyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1082520303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082520302}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 967969994}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1082520304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082520302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c11293c06c726c45952d339e55920ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listOfEnemiesInWave: []
 --- !u!4 &1096373074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7870693180746903167, guid: d5e627b8061cb2a499c1fb13808bebde,
@@ -6031,6 +6082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerBase: {fileID: 1042247243}
+  _enemyManager: {fileID: 1082520304}
   State: 0
 --- !u!1001 &1688025225
 PrefabInstance:
@@ -6757,7 +6809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a57d27252e8d51c4897050087979172d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingBalance: 1000
+  _startingBalance: 200
   _currentBalance: 0
 --- !u!4 &1867524199
 Transform:
@@ -7339,7 +7391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2146520577}
   m_Layer: 0
-  m_Name: Managers
+  m_Name: Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -43,10 +43,14 @@ public class PlayerBase : MonoBehaviour
     }
     
     
+    /* Using the setter KilledByTower to set a boolean
+     that then calls StartDeathSequence to handle the
+     event that enemy makes it to base without dropping
+     resources for the player. */
     private void OnTriggerEnter(Collider other)
     {
-        var enemy = other.transform.parent;
-        TakeDamage(enemy.GetComponent<Enemy>().DamageToBase);
-        Destroy(enemy.gameObject);
+        var enemy = other.transform.parent.GetComponent<Enemy>();
+        enemy.KilledByTower = false;
+        TakeDamage(enemy.DamageToBase);
     }
 }
