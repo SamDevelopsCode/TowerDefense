@@ -11,10 +11,7 @@ namespace TowerDefense.Enemies
         [SerializeField] private int _damageToBase = 5;
         public int DamageToBase
         {
-            get
-            {
-                return _damageToBase;
-            }
+            get => _damageToBase;
         }
         
         private bool _killedByTower;
@@ -36,6 +33,7 @@ namespace TowerDefense.Enemies
         
         private void Start()
         {
+            EnemyManager.Instance.AddEnemyToList(gameObject);
             _healthComponent.OnEnemyDied += StartDeathSequence;
             _currencyManager = FindObjectOfType<CurrencyManager>();
         }
@@ -49,6 +47,8 @@ namespace TowerDefense.Enemies
         
         private void StartDeathSequence()
         {
+            EnemyManager.Instance.DeleteEnemyFromList(gameObject);
+            
             if (_killedByTower)
             {
                 DropResources();

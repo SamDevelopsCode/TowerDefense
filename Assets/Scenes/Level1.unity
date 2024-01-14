@@ -3571,10 +3571,6 @@ MonoBehaviour:
   _enemyParent: {fileID: 1082520303}
   _enemyWaves:
   - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
-  - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
-  - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
-  - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
-  - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
 --- !u!4 &967969994
 Transform:
   m_ObjectHideFlags: 0

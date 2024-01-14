@@ -11,11 +11,20 @@ namespace TowerDefense.Enemies
     {
         [SerializeField] private Transform _enemyParent;
         [SerializeField] private List<Wave> _enemyWaves = new();
-    
+
+        public List<Wave> EnemyWaves
+        {
+            get => _enemyWaves;
+        }
+        
         private bool _enemiesCurrentlySpawning;
         private bool _waveCanSpawn = true;
         
         private int _currentWaveNumber = 0;
+        public int CurrentWaveNumber
+        {
+            get => _currentWaveNumber;
+        }
         
 
         private void Awake()
@@ -39,7 +48,6 @@ namespace TowerDefense.Enemies
                 for (int i = 0; i < group.numberOfEnemies; i++)
                 {
                     var enemyInstance = Instantiate(group.enemyPrefab, _enemyParent.transform);
-                    _enemyParent.GetComponent<EnemyManager>().AddEnemyToList(enemyInstance);
                     yield return new WaitForSeconds(group.timeBetweenSpawns);
                 }
 
