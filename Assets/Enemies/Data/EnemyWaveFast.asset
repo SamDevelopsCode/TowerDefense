@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe2751a0ba2543c99606967c146d69a8, type: 3}
-  m_Name: EnemyFastGroup
+  m_Script: {fileID: 11500000, guid: 2f59158f9c38441e816b3225bed7d17b, type: 3}
+  m_Name: EnemyWaveFast
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 439488202574299873, guid: a04be5c46f34e5b4eb74ef190d94d2a3,
-    type: 3}
-  numberOfEnemies: 5
-  timeToStartSpawning: 0
-  timeBetweenSpawns: 0.5
+  enemyGroups:
+  - {fileID: 11400000, guid: 98ed228e371549d41aa57715995d2f40, type: 2}

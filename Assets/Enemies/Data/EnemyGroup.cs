@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace TowerDefense.Enemies
+namespace TowerDefense.Enemies.Data
 {
     [CreateAssetMenu(fileName = "EnemyGroup", menuName = "Enemy / Create Enemy Group") ]
     public class EnemyGroup : ScriptableObject

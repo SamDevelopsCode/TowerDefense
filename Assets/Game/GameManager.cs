@@ -7,6 +7,7 @@ namespace TowerDefense.Managers
 	public class GameManager : MonoBehaviour
 	{
 		[SerializeField] private PlayerBase _playerBase;
+		[SerializeField] private EnemyManager _enemyManager;
 	
 		public static GameManager Instance;
 
@@ -19,6 +20,7 @@ namespace TowerDefense.Managers
 		{
 			Instance = this;
 			_playerBase.OnPlayerBaseDestroyed += UpdateGameState;
+			_enemyManager.EnemyWaveCompleted += UpdateGameState;
 		}
 	
 

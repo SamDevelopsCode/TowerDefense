@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public event Action OnEntityDied;
+    public event Action OnEnemyDied;
     
     [SerializeField] private float _maxHealth = 10f;
     [SerializeField] private float _currentHealth;
@@ -22,7 +22,7 @@ public class Health : MonoBehaviour
 
         if (_currentHealth == 0)
         {
-            OnEntityDied?.Invoke();
+            OnEnemyDied?.Invoke();
         }
     }
 }
