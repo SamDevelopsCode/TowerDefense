@@ -10,7 +10,7 @@ public class PlayerBase : MonoBehaviour
     private int _currentBaseHealth;
 
     public event Action<GameState> OnPlayerBaseDestroyed;
-
+    
     public int CurrentBaseHealth
     {
         get

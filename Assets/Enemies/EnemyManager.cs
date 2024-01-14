@@ -8,23 +8,37 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] public List<GameObject> _listOfEnemiesInWave = new();
 
+    public static EnemyManager Instance;
+    
     public event Action<GameState> EnemyWaveCompleted;
+
+    private EnemyWaveSpawner _enemyWaveSpawner;
     
-    
+    private void Awake()
+    {
+        Instance = this;
+        _enemyWaveSpawner = transform.parent.GetComponent<EnemyWaveSpawner>();
+    }
+
+
     public void AddEnemyToList(GameObject enemy)
     {
-        enemy.GetComponent<Enemy>().OnEnemyReachedPlayerBase += DeleteEnemyFromList;
         _listOfEnemiesInWave.Add(enemy);
     }
 
 
-    private void DeleteEnemyFromList(GameObject enemy)
+    public void DeleteEnemyFromList(GameObject enemy)
     {
         _listOfEnemiesInWave.Remove(enemy);
 
         if (_listOfEnemiesInWave.Count == 0)
         {
             EnemyWaveCompleted?.Invoke(GameState.TowerPlacement);
+                
+            if (_enemyWaveSpawner.CurrentWaveNumber == _enemyWaveSpawner.EnemyWaves.Count)
+            {
+                GameManager.Instance.UpdateGameState(GameState.Victory);
+            }
         }
     }
 }
