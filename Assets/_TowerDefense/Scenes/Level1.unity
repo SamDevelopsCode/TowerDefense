@@ -937,7 +937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89dbd19bfeb0280419616e865deb3ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _placeableTiles: {fileID: 424671679}
+  _validTowerTilesParent: {fileID: 424671679}
   _towerSpawner: {fileID: 237957974}
   _towerPrefabs:
   - {fileID: 5322820219245357172, guid: 428bccf3a1303634f91676ce5edc36be, type: 3}
@@ -1664,7 +1664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424671679}
   m_Layer: 0
-  m_Name: PlaceableTiles
+  m_Name: ValidTowerTiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

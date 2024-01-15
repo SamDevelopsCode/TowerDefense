@@ -7,12 +7,10 @@ namespace TowerDefense.Tower
 {
 	public class TowerManager : MonoBehaviour
 	{
-		[SerializeField] private Transform _placeableTiles;
+		[SerializeField] private Transform _validTowerTilesParent;
 		[SerializeField] private TowerSpawner _towerSpawner;
 		[SerializeField] private List<GameObject> _towerPrefabs = new();
 
-		public event Action<bool> onTowerPlacementSuccess;
-		
 		private Tower _selectedTowerType;
 		private bool _canPlaceTowers;
 		
@@ -25,10 +23,10 @@ namespace TowerDefense.Tower
 	
 		private void Start() 
 		{
-			for (int i = 0; i < _placeableTiles.childCount; i++)
+			for (int i = 0; i < _validTowerTilesParent.childCount; i++)
 			{
-				_placeableTiles.GetChild(i).GetComponent<Tile>().OnTileMouseOver += HandleOnMouseTileOver;
-				_placeableTiles.GetChild(i).GetComponent<Tile>().OnTowerPlaceAttempted += HandleOnTowerPlaceAttempted;
+				_validTowerTilesParent.GetChild(i).GetComponent<Tile>().OnTileMouseOver += HandleOnMouseTileOver;
+				_validTowerTilesParent.GetChild(i).GetComponent<Tile>().OnTowerPlaceAttempted += HandleOnTowerPlaceAttempted;
 			}
 		}
 
@@ -56,7 +54,7 @@ namespace TowerDefense.Tower
 
 		private void HandleOnMouseTileOver(string tileName)
 		{
-			//TODO spawn or move a transparent version of the selected tower type to the tile position
+			//TODO spawn and move a transparent version of the selected tower type to the tile position
 		}
 	
 	
@@ -67,14 +65,13 @@ namespace TowerDefense.Tower
 				print("Tried to place tower");
 				if (_selectedTowerType == null)
 				{
-					Debug.Log("No tower has been selected.");			
+					Debug.Log("No tower has been selected.");
 					return;
 				}
 		
 				if (_selectedTowerType.TowerCost <= CurrencyManager.Instance.CurrentBalance)
 				{
 					tile.IsTowerPlaceable = false;
-					// onTowerPlacementSuccess?.Invoke(false);
 					_towerSpawner.SpawnTower(_selectedTowerType, tile.transform);
 					CurrencyManager.Instance.DetractFromBalance(_selectedTowerType.TowerCost);
 				}
