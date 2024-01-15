@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BallistaTowerLv2
       objectReference: {fileID: 0}
+    - target: {fileID: 5643754497345568921, guid: cfac2ba935051684e84d09eaccb5d799,
+        type: 3}
+      propertyPath: _towerPivot
+      value: 
+      objectReference: {fileID: 3269565688270102925}
     - target: {fileID: 8755263093136699191, guid: cfac2ba935051684e84d09eaccb5d799,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -149,6 +154,12 @@ PrefabInstance:
 --- !u!4 &16288432751388338 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8699166899354025471, guid: 15275c798d0572a4398e8814ba5fd15d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8683072066549521229}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3269565688270102925 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6187854222917647040, guid: 15275c798d0572a4398e8814ba5fd15d,
     type: 3}
   m_PrefabInstance: {fileID: 8683072066549521229}
   m_PrefabAsset: {fileID: 0}

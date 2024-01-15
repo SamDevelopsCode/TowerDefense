@@ -5,11 +5,10 @@ namespace TowerDefense.Tower
 {
     public class TargetLocator : MonoBehaviour
     {
-        [SerializeField] private Transform _turretSupport;
+        [SerializeField] private Transform _towerPivot;
         [SerializeField] private float _damage = 5f;
         [SerializeField] private float _turretRange = 6f;
         [SerializeField] private float _shotsPerSecond = 2f;
-    
     
         private GameObject _target;
         private bool _canShoot = true;
@@ -71,7 +70,7 @@ namespace TowerDefense.Tower
     
         private void AimWeapon()
         {
-            _turretSupport.LookAt(_target.transform.position);
+            _towerPivot.LookAt(_target.transform.position);
         }
 
     

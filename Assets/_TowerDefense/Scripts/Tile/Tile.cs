@@ -44,10 +44,20 @@ public class Tile : MonoBehaviour
 		}		
 		
 		if (Input.GetKeyDown(KeyCode.Mouse0))
-		{			
-			if (!_isTowerPlaceable) return;
+		{
+			if (_isTowerPlaceable)
+			{
+				OnTowerPlaceAttempted?.Invoke(this);
+			}
+			else if (towerParent.childCount == 1)
+			{
+				Debug.Log(towerParent.GetChild(0).name);
+			}
+			//TODO if we click on a tile, check if it has a tower as a child of the TowerParent GameObject
+			//If it does, show the TowerStats + Upgrade button + Sell button
 			
-			OnTowerPlaceAttempted?.Invoke(this);
+			
+			
 		}
 	}
 	
@@ -57,6 +67,4 @@ public class Tile : MonoBehaviour
 		_mouseHasEnteredTile = false;
 	}
 	
-	//TODO if we click on a tile, check if it has a tower as a child of the TowerParent GameObject
-	//If it does, show the TowerStats + Upgrade button + Sell button
 }
