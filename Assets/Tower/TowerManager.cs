@@ -39,7 +39,7 @@ namespace TowerDefense.Tower
 		}
 	
 		
-		private void Update() 
+		private void Update()
 		{
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
@@ -73,8 +73,8 @@ namespace TowerDefense.Tower
 		
 				if (_selectedTowerType.TowerCost <= CurrencyManager.Instance.CurrentBalance)
 				{
-					// tile.IsDefensePlaceable = false;
-					onTowerPlacementSuccess?.Invoke(true);
+					tile.IsTowerPlaceable = false;
+					// onTowerPlacementSuccess?.Invoke(false);
 					_towerSpawner.SpawnTower(_selectedTowerType, tile.transform);
 					CurrencyManager.Instance.DetractFromBalance(_selectedTowerType.TowerCost);
 				}

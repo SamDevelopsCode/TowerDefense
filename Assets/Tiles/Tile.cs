@@ -6,6 +6,12 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
 	[SerializeField] private bool _isTowerPlaceable = false;
+
+	public bool IsTowerPlaceable
+	{
+		get => _isTowerPlaceable;
+		set => _isTowerPlaceable = value;
+	}
 	
 
 	private TowerManager _towerManager;
@@ -13,7 +19,7 @@ public class Tile : MonoBehaviour
 	public event Action<string> OnTileMouseOver;
 	public event Action<Tile> OnTowerPlaceAttempted;
 	
-	private bool _mouseHasEnteredTile = false;
+	private bool _mouseHasEnteredTile;
 
 
 	private void Awake()
@@ -44,11 +50,11 @@ public class Tile : MonoBehaviour
 			OnTowerPlaceAttempted?.Invoke(this);
 			
 			// TowerManager handles assignment of _isDefensePlaceable after event invocation
-		}        
+		}
 	}
 	
 	
-	private void OnMouseExit() 
+	private void OnMouseExit()
 	{
 		_mouseHasEnteredTile = false;
 	}
