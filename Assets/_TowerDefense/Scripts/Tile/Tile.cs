@@ -48,8 +48,6 @@ public class Tile : MonoBehaviour
 			if (!_isTowerPlaceable) return;
 			
 			OnTowerPlaceAttempted?.Invoke(this);
-			
-			// TowerManager listens for event and handles assignment of _isDefensePlaceable after receiving event
 		}
 	}
 	
@@ -58,10 +56,7 @@ public class Tile : MonoBehaviour
 	{
 		_mouseHasEnteredTile = false;
 	}
-
 	
-	private void SetIsTowerPlaceable(bool isTowerPlaceable)
-	{
-		_isTowerPlaceable = isTowerPlaceable;
-	}
+	//TODO if we click on a tile, check if it has a tower as a child of the TowerParent GameObject
+	//If it does, show the TowerStats + Upgrade button + Sell button
 }
