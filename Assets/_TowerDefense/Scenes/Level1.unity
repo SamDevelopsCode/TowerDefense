@@ -940,8 +940,8 @@ MonoBehaviour:
   _validTowerTilesParent: {fileID: 424671679}
   _towerSpawner: {fileID: 237957974}
   _towerPrefabs:
-  - {fileID: 5322820219245357172, guid: 428bccf3a1303634f91676ce5edc36be, type: 3}
-  - {fileID: 859164012439251943, guid: ae5d249ea14671f43ae638553b240fa6, type: 3}
+  - {fileID: 1768835863222528420, guid: 7b991801014f88e42ab557e26ed6023f, type: 3}
+  - {fileID: 1768835863222528420, guid: a0f35f2115dbf2541b46c6862670a03e, type: 3}
 --- !u!4 &237957973
 Transform:
   m_ObjectHideFlags: 0
