@@ -6,6 +6,7 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
 	[SerializeField] private bool _isTowerPlaceable = false;
+	[SerializeField] public Transform towerParent;
 
 	public bool IsTowerPlaceable
 	{
@@ -31,7 +32,6 @@ public class Tile : MonoBehaviour
 	private void Start()
 	{
 		_isTowerPlaceable = true;
-		_towerManager.onTowerPlacementSuccess += SetIsTowerPlaceable;
 	}
 
 
@@ -49,7 +49,7 @@ public class Tile : MonoBehaviour
 			
 			OnTowerPlaceAttempted?.Invoke(this);
 			
-			// TowerManager handles assignment of _isDefensePlaceable after event invocation
+			// TowerManager listens for event and handles assignment of _isDefensePlaceable after receiving event
 		}
 	}
 	

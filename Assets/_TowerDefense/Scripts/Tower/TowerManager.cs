@@ -72,7 +72,7 @@ namespace TowerDefense.Tower
 				if (_selectedTowerType.TowerCost <= CurrencyManager.Instance.CurrentBalance)
 				{
 					tile.IsTowerPlaceable = false;
-					_towerSpawner.SpawnTower(_selectedTowerType, tile.transform);
+					_towerSpawner.SpawnTower(_selectedTowerType, tile.towerParent);
 					CurrencyManager.Instance.DetractFromBalance(_selectedTowerType.TowerCost);
 				}
 				else
