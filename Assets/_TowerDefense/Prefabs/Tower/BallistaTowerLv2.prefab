@@ -13,6 +13,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: BallistaTowerLv2
       objectReference: {fileID: 0}
+    - target: {fileID: 5564936145135578991, guid: cfac2ba935051684e84d09eaccb5d799,
+        type: 3}
+      propertyPath: towerData
+      value: 
+      objectReference: {fileID: 11400000, guid: 2c89e39e00532be45b6e613fab9f93f3,
+        type: 2}
     - target: {fileID: 5643754497345568921, guid: cfac2ba935051684e84d09eaccb5d799,
         type: 3}
       propertyPath: _towerPivot

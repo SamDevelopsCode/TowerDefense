@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8755263093136699191}
   - component: {fileID: 5643754497345568921}
-  - component: {fileID: -1145779383494683623}
+  - component: {fileID: 5564936145135578991}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -45,11 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6572e18ca4dba24fa811ac5f85fd25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _turretSupport: {fileID: 0}
+  _towerPivot: {fileID: 0}
+  _tower: {fileID: 5564936145135578991}
   _damage: 5
   _turretRange: 15
   _shotsPerSecond: 1
---- !u!114 &-1145779383494683623
+--- !u!114 &5564936145135578991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,7 +59,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5132297016179339958}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9025deab5b7a4554fac2bf48ebcd1e47, type: 3}
+  m_Script: {fileID: 11500000, guid: d5b8732a29e2f7149b70cbe6a917e668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerCost: 100
+  towerData: {fileID: 0}

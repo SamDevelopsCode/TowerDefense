@@ -1,4 +1,5 @@
 using System;
+using _TowerDefense.Towers;
 using TowerDefense.Managers;
 using TowerDefense.Tower;
 using UnityEngine;
@@ -13,7 +14,6 @@ public class Tile : MonoBehaviour
 		get => _isTowerPlaceable;
 		set => _isTowerPlaceable = value;
 	}
-	
 
 	private TowerManager _towerManager;
 	
@@ -49,15 +49,11 @@ public class Tile : MonoBehaviour
 			{
 				OnTowerPlaceAttempted?.Invoke(this);
 			}
-			else if (towerParent.childCount == 1)
+			else
 			{
-				Debug.Log(towerParent.GetChild(0).name);
+				Debug.Log(towerParent.GetChild(0).name + " at " + towerParent.parent.name);
+				// show the TowerStats + Upgrade button + Sell button
 			}
-			//TODO if we click on a tile, check if it has a tower as a child of the TowerParent GameObject
-			//If it does, show the TowerStats + Upgrade button + Sell button
-			
-			
-			
 		}
 	}
 	

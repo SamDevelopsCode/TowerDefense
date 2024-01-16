@@ -1,20 +1,29 @@
+using System;
 using TowerDefense.Enemies;
 using UnityEngine;
 
-namespace TowerDefense.Tower
+namespace _TowerDefense.Towers
 {
-    public class TargetLocator : MonoBehaviour
+    public class TargetAndAttack : MonoBehaviour
     {
         [SerializeField] private Transform _towerPivot;
-        [SerializeField] private float _damage = 5f;
-        [SerializeField] private float _turretRange = 6f;
-        [SerializeField] private float _shotsPerSecond = 2f;
-    
+        
         private GameObject _target;
+        
         private bool _canShoot = true;
         private float _shootTimer = 0f;
-    
-    
+
+        private Tower _tower;
+        private TowerData _towerData;
+        
+        
+        private void Awake()
+        {
+            _tower = GetComponent<Tower>();
+            _towerData = _tower.towerData;
+        }
+
+
         private void Update()
         {
             FindClosestTarget();
@@ -38,7 +47,7 @@ namespace TowerDefense.Tower
             {
                 _shootTimer += Time.deltaTime;
             
-                if (_shootTimer >= _shotsPerSecond)
+                if (_shootTimer >= _towerData.shotsPerSecond)
                 {
                     _canShoot = true;
                     _shootTimer = 0f;
@@ -51,7 +60,7 @@ namespace TowerDefense.Tower
         {
             Enemy[] enemies = FindObjectsOfType<Enemy>();
             GameObject closetTarget = null;
-            float maxAttackRange = _turretRange;
+            float maxAttackRange = _towerData.towerRange;
 
 
             foreach (var enemy in enemies)
@@ -77,7 +86,7 @@ namespace TowerDefense.Tower
         private void Shoot()
         {
             var healthComponent = _target.GetComponent<Health>();
-            healthComponent.TakeDamage(_damage);
+            healthComponent.TakeDamage(_towerData.damagePerShot);
         }   
     }
 }

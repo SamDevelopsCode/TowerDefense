@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
 using TowerDefense.Managers;
 using UnityEngine;
 
-namespace TowerDefense.Tower
+namespace _TowerDefense.Towers
 {
 	public class TowerManager : MonoBehaviour
 	{
@@ -25,8 +24,8 @@ namespace TowerDefense.Tower
 		{
 			for (int i = 0; i < _validTowerTilesParent.childCount; i++)
 			{
-				_validTowerTilesParent.GetChild(i).GetComponent<Tile>().OnTileMouseOver += HandleOnMouseTileOver;
-				_validTowerTilesParent.GetChild(i).GetComponent<Tile>().OnTowerPlaceAttempted += HandleOnTowerPlaceAttempted;
+				_validTowerTilesParent.GetChild(i).GetComponent<Tile>().OnTileMouseOver += HandleMouseTileOver;
+				_validTowerTilesParent.GetChild(i).GetComponent<Tile>().OnTowerPlaceAttempted += HandleTowerPlaceAttempted;
 			}
 		}
 
@@ -42,7 +41,7 @@ namespace TowerDefense.Tower
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
 				_selectedTowerType = _towerPrefabs[0].GetComponent<Tower>();
-				Debug.Log("Tower type Light chosen.");
+				Debug.Log("Tower type Ballista chosen.");
 			}
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
 			{
@@ -52,14 +51,16 @@ namespace TowerDefense.Tower
 		}
 
 
-		private void HandleOnMouseTileOver(string tileName)
+		private void HandleMouseTileOver(string tileName)
 		{
 			//TODO spawn and move a transparent version of the selected tower type to the tile position
 		}
 	
 	
-		private void HandleOnTowerPlaceAttempted(Tile tile)
+		private void HandleTowerPlaceAttempted(Tile tile)
 		{
+			var towerCost = _selectedTowerType.towerData.towerCost;
+			
 			if (_canPlaceTowers)
 			{
 				print("Tried to place tower");
@@ -68,16 +69,16 @@ namespace TowerDefense.Tower
 					Debug.Log("No tower has been selected.");
 					return;
 				}
-		
-				if (_selectedTowerType.TowerCost <= CurrencyManager.Instance.CurrentBalance)
+			
+				if (towerCost <= CurrencyManager.Instance.CurrentBalance)
 				{
 					tile.IsTowerPlaceable = false;
 					_towerSpawner.SpawnTower(_selectedTowerType, tile.towerParent);
-					CurrencyManager.Instance.DetractFromBalance(_selectedTowerType.TowerCost);
+					CurrencyManager.Instance.DetractFromBalance(towerCost);
 				}
 				else
 				{
-					Debug.Log("Not enough funds. Tower cost: " + _selectedTowerType.TowerCost.ToString() + ". Current money: " + CurrencyManager.Instance.CurrentBalance.ToString());
+					Debug.Log("Not enough funds. Tower cost: " + towerCost.ToString() + ". Current money: " + CurrencyManager.Instance.CurrentBalance.ToString());
 				}
 			}
 		}
