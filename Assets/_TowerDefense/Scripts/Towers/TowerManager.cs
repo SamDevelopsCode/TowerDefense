@@ -8,7 +8,7 @@ namespace _TowerDefense.Towers
 	{
 		[SerializeField] private Transform _validTowerTilesParent;
 		[SerializeField] private TowerSpawner _towerSpawner;
-		[SerializeField] private List<GameObject> _towerPrefabs = new();
+		[SerializeField] private List<GameObject> _towerBaseTypePrefabs = new();
 
 		private Tower _selectedTowerType;
 		private bool _canPlaceTowers;
@@ -38,21 +38,26 @@ namespace _TowerDefense.Towers
 		
 		private void Update()
 		{
+			SelectTowerType();
+		}
+
+		private void SelectTowerType()
+		{
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
-				_selectedTowerType = _towerPrefabs[0].GetComponent<Tower>();
+				_selectedTowerType = _towerBaseTypePrefabs[0].GetComponent<Tower>();
 				Debug.Log("Tower type Ballista chosen.");
 			}
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
 			{
-				_selectedTowerType = _towerPrefabs[1].GetComponent<Tower>();
+				_selectedTowerType = _towerBaseTypePrefabs[1].GetComponent<Tower>();
 				Debug.Log("Tower type Fire chosen.");
 			}	
 			else if (Input.GetKeyDown(KeyCode.Alpha3))
 			{
-				_selectedTowerType = _towerPrefabs[2].GetComponent<Tower>();
+				_selectedTowerType = _towerBaseTypePrefabs[2].GetComponent<Tower>();
 				Debug.Log("Tower type Lightning chosen.");
-			}	
+			}
 		}
 
 
@@ -68,14 +73,15 @@ namespace _TowerDefense.Towers
 			
 			if (_canPlaceTowers)
 			{
-				print("Tried to place tower");
 				if (_selectedTowerType == null)
 				{
 					Debug.Log("No tower has been selected.");
 					return;
 				}
 			
-				if (towerCost <= CurrencyManager.Instance.CurrentBalance)
+				
+				
+				if (CurrencyManager.Instance.CanAffordTower(towerCost))
 				{
 					tile.IsTowerPlaceable = false;
 					_towerSpawner.SpawnTower(_selectedTowerType, tile.towerParent);
@@ -83,7 +89,7 @@ namespace _TowerDefense.Towers
 				}
 				else
 				{
-					Debug.Log("Not enough funds. Tower cost: " + towerCost.ToString() + ". Current money: " + CurrencyManager.Instance.CurrentBalance.ToString());
+					Debug.Log("Not enough funds. Tower cost: " + towerCost + ". Current money: " + CurrencyManager.Instance.CurrentBalance);
 				}
 			}
 		}

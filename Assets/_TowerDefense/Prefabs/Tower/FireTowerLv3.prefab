@@ -19,6 +19,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 2b7806d932473cb4ebb0d6c2af357070,
         type: 2}
+    - target: {fileID: 5643754497345568921, guid: cfac2ba935051684e84d09eaccb5d799,
+        type: 3}
+      propertyPath: _towerPivot
+      value: 
+      objectReference: {fileID: 2002598733604665033}
     - target: {fileID: 8755263093136699191, guid: cfac2ba935051684e84d09eaccb5d799,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -152,6 +157,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6c772b3a2d8df4409c4b9ebbddd2566, type: 3}
+--- !u!4 &2002598733604665033 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2613841789957634578, guid: a6c772b3a2d8df4409c4b9ebbddd2566,
+    type: 3}
+  m_PrefabInstance: {fileID: 4579197315945450715}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7388924709864028720 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6414859053613512427, guid: a6c772b3a2d8df4409c4b9ebbddd2566,

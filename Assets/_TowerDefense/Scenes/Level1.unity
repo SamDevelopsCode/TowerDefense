@@ -939,7 +939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _validTowerTilesParent: {fileID: 424671679}
   _towerSpawner: {fileID: 237957974}
-  _towerPrefabs:
+  _towerBaseTypePrefabs:
   - {fileID: 1768835863222528420, guid: 7b991801014f88e42ab557e26ed6023f, type: 3}
   - {fileID: 6571934166652837949, guid: d15e7286334f175469cb141d23e3ffdc, type: 3}
   - {fileID: 8383758421163145422, guid: b667732197a94f44e880839d63d6592e, type: 3}

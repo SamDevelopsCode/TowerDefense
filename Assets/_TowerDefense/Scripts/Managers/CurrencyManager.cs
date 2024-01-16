@@ -14,15 +14,11 @@ namespace TowerDefense.Managers
 	
 		public int CurrentBalance
 		{
-			get
-			{
-				return _currentBalance;
-			}
+			get => _currentBalance;
 			set
 			{
 				_currentBalance = value;
 				UIManager.Instance.UpdateGoldBalanceUI(_currentBalance);
-			
 			}
 		}
 
@@ -51,6 +47,13 @@ namespace TowerDefense.Managers
 			{
 				CurrentBalance -= amount;
 			}
+		}
+
+		public bool CanAffordTower(int towerCost)
+		{
+			if (towerCost <= CurrentBalance) return true;
+
+			return false;
 		}
 	}
 }

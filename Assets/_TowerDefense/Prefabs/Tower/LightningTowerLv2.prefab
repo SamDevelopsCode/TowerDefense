@@ -19,6 +19,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3ec3dd3090f93bd4eb00d9411e3d4e5a,
         type: 2}
+    - target: {fileID: 5643754497345568921, guid: cfac2ba935051684e84d09eaccb5d799,
+        type: 3}
+      propertyPath: _towerPivot
+      value: 
+      objectReference: {fileID: 6192321793219781998}
     - target: {fileID: 8755263093136699191, guid: cfac2ba935051684e84d09eaccb5d799,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -155,6 +160,12 @@ PrefabInstance:
 --- !u!4 &5569705112601809103 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8808965022465303797, guid: 0b3bc7b313eb61c46a727add8df439e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3995865285200213050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6192321793219781998 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7105450488185360724, guid: 0b3bc7b313eb61c46a727add8df439e9,
     type: 3}
   m_PrefabInstance: {fileID: 3995865285200213050}
   m_PrefabAsset: {fileID: 0}
