@@ -41,8 +41,10 @@ public class Tile : MonoBehaviour
 			}
 			else
 			{
+				TowerData towerData = towerParent.GetChild(0).GetComponent<Tower>().towerData;
 				Debug.Log(towerParent.GetChild(0).name + " at " + towerParent.parent.name);
-				// show the TowerStats + Upgrade button + Sell button
+				Debug.Log($"Tower cost: {towerData.towerCost}, Tower Range: {towerData.towerRange}");
+				//TODO show the TowerStats + Upgrade button + Sell button
 			}
 		}
 	}
