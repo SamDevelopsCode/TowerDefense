@@ -1,37 +1,27 @@
 using System;
 using _TowerDefense.Towers;
-using TowerDefense.Managers;
-using TowerDefense.Tower;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-	[SerializeField] private bool _isTowerPlaceable = false;
 	[SerializeField] public Transform towerParent;
+	[SerializeField] private bool _canPlaceTower;
 
-	public bool IsTowerPlaceable
+	public bool CanPlaceTower
 	{
-		get => _isTowerPlaceable;
-		set => _isTowerPlaceable = value;
+		get => _canPlaceTower;
+		set => _canPlaceTower = value;
 	}
 
-	private TowerManager _towerManager;
-	
 	public event Action<string> OnTileMouseOver;
 	public event Action<Tile> OnTowerPlaceAttempted;
 	
 	private bool _mouseHasEnteredTile;
 
 
-	private void Awake()
-	{
-		_towerManager = FindObjectOfType<TowerManager>();
-	}
-
-
 	private void Start()
 	{
-		_isTowerPlaceable = true;
+		_canPlaceTower = true;
 	}
 
 
@@ -45,7 +35,7 @@ public class Tile : MonoBehaviour
 		
 		if (Input.GetKeyDown(KeyCode.Mouse0))
 		{
-			if (_isTowerPlaceable)
+			if (_canPlaceTower)
 			{
 				OnTowerPlaceAttempted?.Invoke(this);
 			}
@@ -62,5 +52,4 @@ public class Tile : MonoBehaviour
 	{
 		_mouseHasEnteredTile = false;
 	}
-	
 }

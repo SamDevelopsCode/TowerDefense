@@ -78,12 +78,10 @@ namespace _TowerDefense.Towers
 					Debug.Log("No tower has been selected.");
 					return;
 				}
-			
-				
 				
 				if (CurrencyManager.Instance.CanAffordTower(towerCost))
 				{
-					tile.IsTowerPlaceable = false;
+					tile.CanPlaceTower = false;
 					_towerSpawner.SpawnTower(_selectedTowerType, tile.towerParent);
 					CurrencyManager.Instance.DetractFromBalance(towerCost);
 				}
