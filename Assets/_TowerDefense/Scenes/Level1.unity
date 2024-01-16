@@ -941,7 +941,8 @@ MonoBehaviour:
   _towerSpawner: {fileID: 237957974}
   _towerPrefabs:
   - {fileID: 1768835863222528420, guid: 7b991801014f88e42ab557e26ed6023f, type: 3}
-  - {fileID: 1768835863222528420, guid: a0f35f2115dbf2541b46c6862670a03e, type: 3}
+  - {fileID: 6571934166652837949, guid: d15e7286334f175469cb141d23e3ffdc, type: 3}
+  - {fileID: 8383758421163145422, guid: b667732197a94f44e880839d63d6592e, type: 3}
 --- !u!4 &237957973
 Transform:
   m_ObjectHideFlags: 0
