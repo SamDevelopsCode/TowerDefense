@@ -55,11 +55,13 @@ namespace _TowerDefense.Towers
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
 			{
 				_selectedTowerType = _towerBaseTypePrefabs[1].GetComponent<Tower>();
+				TowerSelected?.Invoke(_selectedTowerType.towerData);
 				Debug.Log("Tower type Fire chosen.");
 			}	
 			else if (Input.GetKeyDown(KeyCode.Alpha3))
 			{
 				_selectedTowerType = _towerBaseTypePrefabs[2].GetComponent<Tower>();
+				TowerSelected?.Invoke(_selectedTowerType.towerData);
 				Debug.Log("Tower type Lightning chosen.");
 			}
 		}
