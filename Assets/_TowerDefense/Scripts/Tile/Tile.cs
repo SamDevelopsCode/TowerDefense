@@ -24,7 +24,7 @@ public class Tile : MonoBehaviour
 		_canPlaceTower = true;
 	}
 
-
+	
 	private void OnMouseOver()
 	{
 		if (!_mouseHasEnteredTile)
@@ -37,7 +37,7 @@ public class Tile : MonoBehaviour
 		{
 			if (_canPlaceTower)
 			{
-				OnTowerPlaceAttempted?.Invoke(this);
+				OnTowerPlaceAttempted?.Invoke(this); 
 			}
 			else
 			{

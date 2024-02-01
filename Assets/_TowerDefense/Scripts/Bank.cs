@@ -3,12 +3,11 @@ using UnityEngine;
 
 namespace TowerDefense.Managers
 {
-	public class CurrencyManager : MonoBehaviour
+	public class Bank : MonoBehaviour
 	{
-		public static CurrencyManager Instance;
+		public static Bank Instance;
 	
 		[SerializeField] private int _startingBalance = 100;
-
 		[SerializeField] private int _currentBalance;
 
 	
@@ -40,7 +39,7 @@ namespace TowerDefense.Managers
 			CurrentBalance += amount;
 		}
 
-	
+		
 		public void DetractFromBalance(int amount)
 		{
 			if (CurrentBalance >= amount)
@@ -49,6 +48,7 @@ namespace TowerDefense.Managers
 			}
 		}
 
+		
 		public bool CanAffordTower(int towerCost)
 		{
 			if (towerCost <= CurrentBalance) return true;

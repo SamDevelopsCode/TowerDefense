@@ -28,20 +28,20 @@ namespace TowerDefense.Enemies
         public event Action<GameObject> OnEnemyReachedPlayerBase; 
         
         [SerializeField] private Health _healthComponent;
-        private CurrencyManager _currencyManager;
+        private Bank _bank;
 
         
         private void Start()
         {
             EnemyManager.Instance.AddEnemyToList(gameObject);
             _healthComponent.OnEnemyDied += StartDeathSequence;
-            _currencyManager = FindObjectOfType<CurrencyManager>();
+            _bank = FindObjectOfType<Bank>();
         }
 
     
         private void DropResources()
         {
-            _currencyManager.AddToBalance(_resourceAmountDroppedOnDeath);
+            _bank.AddToBalance(_resourceAmountDroppedOnDeath);
         }
 
         

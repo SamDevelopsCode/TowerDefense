@@ -20,20 +20,19 @@ namespace TowerDefense.Tower
     
         public void UpdateGoldBalanceUI(int currentGoldBalance)
         {
-            _goldBalance.text = currentGoldBalance.ToString();
+            _goldBalance.text = $"{currentGoldBalance}";
         }
     
     
         public void UpdateBaseHealthUI(int currentBaseHealth, int maxBaseHealth)
         {
-            _baseHealthAmount.text = currentBaseHealth.ToString() + "/" + maxBaseHealth.ToString();
+            _baseHealthAmount.text = $"{currentBaseHealth} / {maxBaseHealth}";
         }
     
     
         public void UpdateWaveNumberUI(int currentWave, int maxWaves)
         {
-            _waveNumber.text = currentWave.ToString() + "/" + maxWaves.ToString();
-            // TODO create waves spawning and update the current wave number here
+            _waveNumber.text = $"{currentWave} / {maxWaves}";
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TowerDefense.Managers;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace _TowerDefense.Towers
 
 		private Tower _selectedTowerType;
 		private bool _canPlaceTowers;
+
+		public event Action<TowerData> TowerSelected;
 		
 
 		private void Awake()
@@ -24,8 +27,7 @@ namespace _TowerDefense.Towers
 		{
 			for (int i = 0; i < _validTowerTilesParent.childCount; i++)
 			{
-				_validTowerTilesParent.GetChild(i).GetComponent<Tile>().OnTileMouseOver += HandleMouseTileOver;
-				_validTowerTilesParent.GetChild(i).GetComponent<Tile>().OnTowerPlaceAttempted += HandleTowerPlaceAttempted;
+				_validTowerTilesParent.GetChild(i).GetComponent<Tile>().OnTowerPlaceAttempted += OnTowerPlaceAttempted;
 			}
 		}
 
@@ -41,11 +43,13 @@ namespace _TowerDefense.Towers
 			SelectTowerType();
 		}
 
+		
 		private void SelectTowerType()
 		{
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
 				_selectedTowerType = _towerBaseTypePrefabs[0].GetComponent<Tower>();
+				TowerSelected?.Invoke(_selectedTowerType.towerData);
 				Debug.Log("Tower type Ballista chosen.");
 			}
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -61,35 +65,29 @@ namespace _TowerDefense.Towers
 		}
 
 
-		private void HandleMouseTileOver(string tileName)
+		private void OnTowerPlaceAttempted(Tile tile)
 		{
-			//TODO spawn and move a transparent version of the selected tower type to the tile position
-		}
-	
-	
-		private void HandleTowerPlaceAttempted(Tile tile)
-		{
+			if (!_canPlaceTowers) return;
+			
+			if (_selectedTowerType == null)
+			{
+				Debug.Log("No tower has been selected.");
+				return;
+			}
+			
 			var towerCost = _selectedTowerType.towerData.towerCost;
 			
-			if (_canPlaceTowers)
+			if (Bank.Instance.CanAffordTower(towerCost))
 			{
-				if (_selectedTowerType == null)
-				{
-					Debug.Log("No tower has been selected.");
-					return;
-				}
-				
-				if (CurrencyManager.Instance.CanAffordTower(towerCost))
-				{
-					tile.CanPlaceTower = false;
-					_towerSpawner.SpawnTower(_selectedTowerType, tile.towerParent);
-					CurrencyManager.Instance.DetractFromBalance(towerCost);
-				}
-				else
-				{
-					Debug.Log("Not enough funds. Tower cost: " + towerCost + ". Current money: " + CurrencyManager.Instance.CurrentBalance);
-				}
+				tile.CanPlaceTower = false;
+				_towerSpawner.SpawnTower(_selectedTowerType, tile.towerParent);
+				Bank.Instance.DetractFromBalance(towerCost);
 			}
+			else
+			{
+				Debug.Log("Not enough funds. Tower cost: " + towerCost + ". Current money: " + Bank.Instance.CurrentBalance);
+			}
+			
 		}
 	}
 }
