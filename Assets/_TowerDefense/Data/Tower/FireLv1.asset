@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9025deab5b7a4554fac2bf48ebcd1e47, type: 3}
   m_Name: FireLv1
   m_EditorClassIdentifier: 
-  towerCost: 75
-  towerRange: 15
+  icon: {fileID: 21300000, guid: d763aada83655b041b8ae77bd5a80668, type: 3}
+  name: Fire [Tier 1]
+  cost: 100
+  range: 6
   damagePerShot: 25
   shotsPerSecond: 2

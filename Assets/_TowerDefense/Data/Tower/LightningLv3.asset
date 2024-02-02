@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9025deab5b7a4554fac2bf48ebcd1e47, type: 3}
   m_Name: LightningLv3
   m_EditorClassIdentifier: 
-  towerCost: 400
-  towerRange: 15
+  icon: {fileID: 21300000, guid: cf28e59247f6aa04eb1b1c06641097f1, type: 3}
+  name: Lightning [Tier 3]
+  cost: 100
+  range: 6
   damagePerShot: 50
   shotsPerSecond: 0.75

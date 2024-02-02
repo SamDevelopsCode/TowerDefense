@@ -77,7 +77,7 @@ namespace _TowerDefense.Towers
 				return;
 			}
 			
-			var towerCost = _selectedTowerType.towerData.towerCost;
+			var towerCost = _selectedTowerType.towerData.cost;
 			
 			if (Bank.Instance.CanAffordTower(towerCost))
 			{

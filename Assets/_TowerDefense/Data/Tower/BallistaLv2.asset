@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9025deab5b7a4554fac2bf48ebcd1e47, type: 3}
   m_Name: BallistaLv2
   m_EditorClassIdentifier: 
-  towerCost: 50
-  towerRange: 17
+  icon: {fileID: 21300000, guid: afd1370d2d916ea4ca232af59f518ae5, type: 3}
+  name: Ballista [Tier 2]
+  cost: 100
+  range: 6
   damagePerShot: 7
   shotsPerSecond: 0.8

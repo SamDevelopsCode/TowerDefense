@@ -60,7 +60,7 @@ namespace _TowerDefense.Towers
         {
             Enemy[] enemies = FindObjectsOfType<Enemy>();
             GameObject closetTarget = null;
-            float maxAttackRange = _towerData.towerRange;
+            float maxAttackRange = _towerData.range;
 
 
             foreach (var enemy in enemies)
