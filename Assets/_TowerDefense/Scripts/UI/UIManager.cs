@@ -12,7 +12,6 @@ namespace TowerDefense.Tower
         [SerializeField] private TextMeshProUGUI _baseHealthAmount;
         [SerializeField] private TextMeshProUGUI _waveNumber;
 
-        [SerializeField] private TowerManager _towerManager;
         
         private void Awake()
         {

@@ -12,5 +12,13 @@ namespace _TowerDefense.Towers
 		[SerializeField] public float range = 6f;
 		[SerializeField] public float damagePerShot = 5f;
 		[SerializeField] public float shotsPerSecond = 2f;
+		[SerializeField] public TowerType towerType;
+		
+		public enum TowerType
+		{
+			Ballista,
+			Fire,
+			Lightning,
+		}
 	}
 }
