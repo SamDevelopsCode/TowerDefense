@@ -2,12 +2,13 @@ using System;
 using UnityEngine;
 
 public class Health : MonoBehaviour
-{
-    public event Action OnEnemyDied;
-    
+{    
     [SerializeField] private float _maxHealth = 10f;
     [SerializeField] private float _currentHealth;
 
+    public event Action OnEnemyDied;
+    
+    
     private void OnEnable()
     {
         _currentHealth = _maxHealth;
