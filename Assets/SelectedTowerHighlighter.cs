@@ -21,6 +21,12 @@ public class SelectedTowerHighlighter : MonoBehaviour
     
     private void Start()
     {
+        GetChildrenSelectors();
+    }
+
+    
+    private void GetChildrenSelectors()
+    {
         _selectors = new GameObject[_selectionIndicators.childCount];
 
         for (int i = 0; i < _selectionIndicators.childCount; i++)
@@ -30,28 +36,34 @@ public class SelectedTowerHighlighter : MonoBehaviour
     }
 
     
-    private void OnTowerSelected(TowerData towerData)
+    private void DisableChildrenSelectors()
     {
         foreach (GameObject selector in _selectors)
         {
             selector.SetActive(false);
         }
-        
-        if (towerData.towerType == TowerData.TowerType.Ballista)
+    }
+
+    
+    private void OnTowerSelected(TowerData towerData)
+    {
+        DisableChildrenSelectors();
+
+        switch (towerData.towerType)
         {
-            _selectors[0].SetActive(true);
-        }
-        else if (towerData.towerType == TowerData.TowerType.Fire)
-        {
-            _selectors[1].SetActive(true);
-        }
-        else if (towerData.towerType == TowerData.TowerType.Lightning)
-        {
-            _selectors[2].SetActive(true);
-        }
-        else
-        {
-            Debug.Log("ERROR: SelectedTowerType not a valid selection.");
+            case TowerData.TowerType.Ballista:
+                _selectors[0].SetActive(true);
+                break;
+            case TowerData.TowerType.Fire:
+                _selectors[1].SetActive(true);
+                break;
+            case TowerData.TowerType.Lightning:
+                _selectors[2].SetActive(true);
+                break;
+            default:
+                Debug.Log("ERROR: SelectedTowerType not a valid type of tower.");
+                break;
         }
     }
+
 }
