@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense.Enemies.Data;
@@ -27,12 +28,18 @@ namespace TowerDefense.Enemies
         }
         
 
-        private void Awake()
+        private void OnEnable()
         {
             GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
         }
         
         
+        private void OnDisable()
+        {
+            GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+        }
+        
+
         private void Start()
         {
             CoreGameUI.Instance.UpdateWaveNumberUI(_currentWaveNumber, _enemyWaves.Count);

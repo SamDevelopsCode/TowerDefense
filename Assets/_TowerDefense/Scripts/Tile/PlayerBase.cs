@@ -13,10 +13,7 @@ public class PlayerBase : MonoBehaviour
     
     public int CurrentBaseHealth
     {
-        get
-        {
-            return _currentBaseHealth;
-        }
+        get => _currentBaseHealth;
         set
         {
             _currentBaseHealth = Mathf.Max(0, value);

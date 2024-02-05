@@ -1,3 +1,4 @@
+using System;
 using _TowerDefense.Towers;
 using TMPro;
 using TowerDefense.Managers;
@@ -22,10 +23,24 @@ namespace TowerDefense.Tower
         private void Awake()
         {
             Instance = this;
+        }
+
+        
+        private void OnEnable()
+        {
             _towerManager.TowerSelected += OnTowerSelected;
             _towerManager.TowerPlacementFailed += SetWaveSpawnsCurrentView;
-            _towerManager.TowerPlacementSucceded += SetWaveSpawnsCurrentView;
+            _towerManager.TowerPlacementSucceeded += SetWaveSpawnsCurrentView;
             GameManager.OnGameStateChanged += OnGameStateChanged;
+        }
+
+
+        private void OnDisable()
+        {
+            _towerManager.TowerSelected -= OnTowerSelected;
+            _towerManager.TowerPlacementFailed -= SetWaveSpawnsCurrentView;
+            _towerManager.TowerPlacementSucceeded -= SetWaveSpawnsCurrentView;
+            GameManager.OnGameStateChanged -= OnGameStateChanged;
         }
 
 

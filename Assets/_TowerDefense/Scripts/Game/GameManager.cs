@@ -20,10 +20,20 @@ namespace TowerDefense.Managers
 		private void Awake()
 		{
 			Instance = this;
+		}
+
+		private void OnEnable()
+		{
 			_playerBase.OnPlayerBaseDestroyed += UpdateGameState;
 			_enemyManager.EnemyWaveCompleted += UpdateGameState;
 		}
-	
+
+		private void OnDisable()
+		{
+			_playerBase.OnPlayerBaseDestroyed -= UpdateGameState;
+			_enemyManager.EnemyWaveCompleted -= UpdateGameState;
+		}
+
 
 		private void Start()
 		{

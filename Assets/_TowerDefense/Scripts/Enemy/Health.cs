@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     public event Action OnEnemyDied;
     
     
-    private void OnEnable()
+    private void Awake()
     {
         _currentHealth = _maxHealth;
     }

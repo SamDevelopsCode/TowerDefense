@@ -12,16 +12,22 @@ public class SelectedTowerHighlighter : MonoBehaviour
     [SerializeField] private Transform _selectionIndicators;
 
     private GameObject[] _selectors;
-   
 
-    private void Awake()
+    private void OnEnable()
     {
         _towerManager.TowerSelected += OnTowerSelected;
         _towerManager.TowerPlacementFailed += DisableChildrenSelectors;
-        _towerManager.TowerPlacementSucceded += DisableChildrenSelectors;
+        _towerManager.TowerPlacementSucceeded += DisableChildrenSelectors;
     }
 
-    
+    private void OnDisable()
+    {
+        _towerManager.TowerSelected -= OnTowerSelected;
+        _towerManager.TowerPlacementFailed -= DisableChildrenSelectors;
+        _towerManager.TowerPlacementSucceeded -= DisableChildrenSelectors;
+    }
+
+
     private void Start()
     {
         GetChildrenSelectors();

@@ -17,15 +17,21 @@ namespace _TowerDefense.Towers
 
 		public event Action<TowerData> TowerSelected;
 		public event Action TowerPlacementFailed;
-		public event Action TowerPlacementSucceded;
+		public event Action TowerPlacementSucceeded;
 		
 
-		private void Awake()
+		private void OnEnable()
 		{
 			GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
 		}
 
-	
+		
+		private void OnDisable()
+		{
+			GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+		}
+
+
 		private void Start() 
 		{
 			for (int i = 0; i < _validTowerTilesParent.childCount; i++)
@@ -83,14 +89,14 @@ namespace _TowerDefense.Towers
 				return;
 			}
 			
-			var towerCost = _selectedTowerType.towerData.cost;
+			int towerCost = _selectedTowerType.towerData.cost;
 			
 			if (Bank.Instance.CanAffordTower(towerCost))
 			{
 				tile.CanPlaceTower = false;
 				_towerSpawner.SpawnTower(_selectedTowerType, tile.towerParent);
 				Bank.Instance.DetractFromBalance(towerCost);
-				TowerPlacementSucceded?.Invoke();
+				TowerPlacementSucceeded?.Invoke();
 				_selectedTowerType = null;
 			}
 			else
