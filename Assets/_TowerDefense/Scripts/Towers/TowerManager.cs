@@ -16,6 +16,8 @@ namespace _TowerDefense.Towers
 		private bool _canPlaceTowers;
 
 		public event Action<TowerData> TowerSelected;
+		public event Action TowerPlacementFailed;
+		public event Action TowerPlacementSucceded;
 		
 
 		private void Awake()
@@ -70,7 +72,10 @@ namespace _TowerDefense.Towers
 
 		private void OnTowerPlaceAttempted(Tile tile)
 		{
-			if (!_canPlaceTowers) return;
+			if (!_canPlaceTowers)
+			{
+				return;
+			}
 			
 			if (_selectedTowerType == null)
 			{
@@ -85,9 +90,12 @@ namespace _TowerDefense.Towers
 				tile.CanPlaceTower = false;
 				_towerSpawner.SpawnTower(_selectedTowerType, tile.towerParent);
 				Bank.Instance.DetractFromBalance(towerCost);
+				TowerPlacementSucceded?.Invoke();
+				_selectedTowerType = null;
 			}
 			else
 			{
+				TowerPlacementFailed?.Invoke();
 				Debug.Log("Not enough funds. Tower cost: " + towerCost + ". Current money: " + Bank.Instance.CurrentBalance);
 			}
 			

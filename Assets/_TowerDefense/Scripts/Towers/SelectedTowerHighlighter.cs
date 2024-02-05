@@ -17,6 +17,8 @@ public class SelectedTowerHighlighter : MonoBehaviour
     private void Awake()
     {
         _towerManager.TowerSelected += OnTowerSelected;
+        _towerManager.TowerPlacementFailed += DisableChildrenSelectors;
+        _towerManager.TowerPlacementSucceded += DisableChildrenSelectors;
     }
 
     

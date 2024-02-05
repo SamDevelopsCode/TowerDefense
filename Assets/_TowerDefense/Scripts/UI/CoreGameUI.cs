@@ -23,10 +23,12 @@ namespace TowerDefense.Tower
         {
             Instance = this;
             _towerManager.TowerSelected += OnTowerSelected;
+            _towerManager.TowerPlacementFailed += SetWaveSpawnsCurrentView;
+            _towerManager.TowerPlacementSucceded += SetWaveSpawnsCurrentView;
             GameManager.OnGameStateChanged += OnGameStateChanged;
         }
 
-        
+
         private void OnGameStateChanged(GameState state)
         {
             if (state == GameState.EnemyWave)
@@ -50,7 +52,7 @@ namespace TowerDefense.Tower
         }
         
         
-        private void SetWaveSpawnsCurrentView()
+        public void SetWaveSpawnsCurrentView()
         {
             _towerStatsUI.SetActive(false);
             _waveStatsUI.SetActive(true);
