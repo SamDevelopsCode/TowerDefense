@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace TowerDefense.Managers
 {
-    public class MainMenuManager : MonoBehaviour
+    public class MainMenuUI : MonoBehaviour
     {
         [SerializeField] private CanvasGroup LevelSelect;
 

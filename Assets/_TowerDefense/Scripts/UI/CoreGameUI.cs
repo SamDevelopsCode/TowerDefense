@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace TowerDefense.Tower
 {
-    public class UIManager : MonoBehaviour
+    public class CoreGameUI : MonoBehaviour
     {
-        public static UIManager Instance;
+        public static CoreGameUI Instance;
     
         [SerializeField] private TextMeshProUGUI _goldBalance;
         [SerializeField] private TextMeshProUGUI _baseHealthAmount;
         [SerializeField] private TextMeshProUGUI _waveNumber;
+        [SerializeField] private GameObject _waveStats;
 
         
         private void Awake()

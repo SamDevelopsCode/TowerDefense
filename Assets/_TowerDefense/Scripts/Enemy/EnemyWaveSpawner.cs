@@ -35,7 +35,7 @@ namespace TowerDefense.Enemies
         
         private void Start()
         {
-            UIManager.Instance.UpdateWaveNumberUI(_currentWaveNumber, _enemyWaves.Count);
+            CoreGameUI.Instance.UpdateWaveNumberUI(_currentWaveNumber, _enemyWaves.Count);
         }
 
         
@@ -62,12 +62,11 @@ namespace TowerDefense.Enemies
             if (!_waveCanSpawn) return;
             
             GameManager.Instance.UpdateGameState(GameState.EnemyWave);
-            UIManager.Instance.UpdateWaveNumberUI(_currentWaveNumber + 1, _enemyWaves.Count);
+            CoreGameUI.Instance.UpdateWaveNumberUI(_currentWaveNumber + 1, _enemyWaves.Count);
             StartCoroutine(SpawnWave(_currentWaveNumber));
         }
         
         
-        // Using the event when changing the game's state to handle when waves can spawn
         private void GameManagerOnGameStateChanged(GameState state)
         {
             _waveCanSpawn = state == GameState.TowerPlacement;

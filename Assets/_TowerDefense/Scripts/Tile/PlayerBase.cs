@@ -26,7 +26,7 @@ public class PlayerBase : MonoBehaviour
                 OnPlayerBaseDestroyed?.Invoke(GameState.Lose);
             }
             
-            UIManager.Instance.UpdateBaseHealthUI(_currentBaseHealth, _maxBaseHealth);
+            CoreGameUI.Instance.UpdateBaseHealthUI(_currentBaseHealth, _maxBaseHealth);
         }
     }
     
