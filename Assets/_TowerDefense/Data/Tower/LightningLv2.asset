@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: LightningLv2
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 97e18f1fc5b0a0f4f8cd10b9e3f91763, type: 3}
-  name: Lightning [Tier 2]
+  towerName: Lightning [Tier 2]
   cost: 100
   range: 6
   damagePerShot: 50
   shotsPerSecond: 1.25
+  towerType: 2

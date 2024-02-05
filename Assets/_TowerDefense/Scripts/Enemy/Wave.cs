@@ -6,6 +6,6 @@ namespace TowerDefense.Enemies.Data
     [CreateAssetMenu(fileName = "EnemyWave", menuName = "Enemy / Create New Wave") ]
     public class Wave : ScriptableObject
     {
-        [SerializeField] public List<EnemyGroup> enemyGroups = new List<EnemyGroup>();
+        [SerializeField] public List<EnemyGroup> enemyGroups = new();
     }
 }

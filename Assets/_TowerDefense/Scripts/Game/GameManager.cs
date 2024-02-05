@@ -1,4 +1,5 @@
 using System;
+using TowerDefense.Tower;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -53,7 +54,7 @@ namespace TowerDefense.Managers
 			OnGameStateChanged?.Invoke(newState);
 		}
 
-	
+		
 		private void QuitToMainMenu()
 		{
 			SceneManager.LoadScene(0);

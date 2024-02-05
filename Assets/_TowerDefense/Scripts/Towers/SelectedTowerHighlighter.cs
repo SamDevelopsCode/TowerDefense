@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _TowerDefense.Towers;
+using TowerDefense.Tower;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -48,7 +49,7 @@ public class SelectedTowerHighlighter : MonoBehaviour
     private void OnTowerSelected(TowerData towerData)
     {
         DisableChildrenSelectors();
-
+        
         switch (towerData.towerType)
         {
             case TowerData.TowerType.Ballista:

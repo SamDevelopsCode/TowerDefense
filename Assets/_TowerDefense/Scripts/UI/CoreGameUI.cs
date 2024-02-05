@@ -1,5 +1,6 @@
 using _TowerDefense.Towers;
 using TMPro;
+using TowerDefense.Managers;
 using UnityEngine;
 
 namespace TowerDefense.Tower
@@ -11,15 +12,51 @@ namespace TowerDefense.Tower
         [SerializeField] private TextMeshProUGUI _goldBalance;
         [SerializeField] private TextMeshProUGUI _baseHealthAmount;
         [SerializeField] private TextMeshProUGUI _waveNumber;
-        [SerializeField] private GameObject _waveStats;
 
+        [SerializeField] private TowerManager _towerManager;
+        [SerializeField] private TowerStatsUI _towerStats;
+        [SerializeField] private GameObject _towerStatsUI;
+        [SerializeField] private GameObject _waveStatsUI;
+    
         
         private void Awake()
         {
             Instance = this;
+            _towerManager.TowerSelected += OnTowerSelected;
+            GameManager.OnGameStateChanged += OnGameStateChanged;
         }
 
-    
+        
+        private void OnGameStateChanged(GameState state)
+        {
+            if (state == GameState.EnemyWave)
+            {
+                SetWaveSpawnsCurrentView();
+            }
+        }
+
+
+        private void OnTowerSelected(TowerData towerData)
+        {
+            SetTowerStatsToCurrentView();
+            _towerStats.SetTowerStatsUIData(towerData);
+        }
+
+
+        private void SetTowerStatsToCurrentView()
+        {
+            _towerStatsUI.SetActive(true);
+            _waveStatsUI.SetActive(false);
+        }
+        
+        
+        private void SetWaveSpawnsCurrentView()
+        {
+            _towerStatsUI.SetActive(false);
+            _waveStatsUI.SetActive(true);
+        }
+        
+        
         public void UpdateGoldBalanceUI(int currentGoldBalance)
         {
             _goldBalance.text = $"{currentGoldBalance}";
