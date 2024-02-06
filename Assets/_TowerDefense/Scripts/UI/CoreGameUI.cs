@@ -18,6 +18,10 @@ namespace TowerDefense.Tower
         [SerializeField] private TowerStatsUI _towerStats;
         [SerializeField] private GameObject _towerStatsUI;
         [SerializeField] private GameObject _waveStatsUI;
+        [SerializeField] private TextMeshProUGUI _waveTitle;
+        
+        private const string CurrentWaveText = "Current Wave";
+        private const string NextWaveText = "Next Wave";
     
         
         private void Awake()
@@ -49,9 +53,13 @@ namespace TowerDefense.Tower
             if (state == GameState.EnemyWave)
             {
                 SetWaveSpawnsCurrentView();
+                SetWaveTitleToCurrentWave();
+            }
+            else
+            {
+                SetWaveTitleToNextWave();
             }
         }
-
 
         private void OnTowerSelected(TowerData towerData)
         {
@@ -73,7 +81,6 @@ namespace TowerDefense.Tower
             _waveStatsUI.SetActive(true);
         }
         
-        
         public void UpdateGoldBalanceUI(int currentGoldBalance)
         {
             _goldBalance.text = $"{currentGoldBalance}";
@@ -90,5 +97,19 @@ namespace TowerDefense.Tower
         {
             _waveNumber.text = $"{currentWave} / {maxWaves}";
         }
+
+
+        private void SetWaveTitleToCurrentWave()
+        {
+            _waveTitle.text = CurrentWaveText;
+        }
+
+
+        private void SetWaveTitleToNextWave()
+        {
+            _waveTitle.text = NextWaveText;
+        }
+
+        
     }
 }
