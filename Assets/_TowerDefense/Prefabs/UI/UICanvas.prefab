@@ -2780,9 +2780,9 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_Spacing: 9
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
@@ -4394,6 +4394,11 @@ MonoBehaviour:
   _baseHealthAmount: {fileID: 2928472298420437833}
   _waveNumber: {fileID: 7599459459184183818}
   _towerManager: {fileID: 0}
+  _enemyWaveSpawner: {fileID: 0}
   _towerStats: {fileID: 8329778437220533349}
   _towerStatsUI: {fileID: 4510924806127737945}
+  _waveSpawnsUI: {fileID: 4968716245419673572}
   _waveStatsUI: {fileID: 2621273139251319419}
+  _waveTitle: {fileID: 5367922999317956209}
+  _waveSpawnPrefab: {fileID: 2524629604186442161, guid: 8289f0b8cd1c51b48823988ffe69b665,
+    type: 3}

@@ -26,8 +26,10 @@ namespace TowerDefense.Enemies
         {
             get => _currentWaveNumber;
         }
-        
 
+        public event Action<int, Wave> OnNextWaveSpawned;
+
+        
         private void OnEnable()
         {
             GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
@@ -77,6 +79,11 @@ namespace TowerDefense.Enemies
         private void GameManagerOnGameStateChanged(GameState state)
         {
             _waveCanSpawn = state == GameState.TowerPlacement;
+            
+            if (state == GameState.TowerPlacement)
+            {
+                OnNextWaveSpawned?.Invoke(_currentWaveNumber, _enemyWaves[_currentWaveNumber]);
+            }
         }
     }
 }

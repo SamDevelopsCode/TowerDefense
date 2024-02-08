@@ -13,6 +13,8 @@ namespace TowerDefense.Enemies
         {
             get => _damageToBase;
         }
+
+        public Sprite icon;
         
         private bool _killedByTower;
         public bool KilledByTower

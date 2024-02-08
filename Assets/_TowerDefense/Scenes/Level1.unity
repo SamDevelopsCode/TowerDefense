@@ -1267,14 +1267,14 @@ PrefabInstance:
       objectReference: {fileID: 237957972}
     - target: {fileID: 1597776573798692395, guid: d9c30d72b3e58c446aa77a4d93406435,
         type: 3}
-      propertyPath: _waveTitle
-      value: 
-      objectReference: {fileID: 1452856361}
-    - target: {fileID: 1597776573798692395, guid: d9c30d72b3e58c446aa77a4d93406435,
-        type: 3}
       propertyPath: _towerManager
       value: 
       objectReference: {fileID: 237957972}
+    - target: {fileID: 1597776573798692395, guid: d9c30d72b3e58c446aa77a4d93406435,
+        type: 3}
+      propertyPath: _enemyWaveSpawner
+      value: 
+      objectReference: {fileID: 967969993}
     - target: {fileID: 4424054879274725390, guid: d9c30d72b3e58c446aa77a4d93406435,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1302,34 +1302,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6975496355512088513, guid: d9c30d72b3e58c446aa77a4d93406435,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975496355512088513, guid: d9c30d72b3e58c446aa77a4d93406435,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975496355512088513, guid: d9c30d72b3e58c446aa77a4d93406435,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 967969993}
-    - target: {fileID: 6975496355512088513, guid: d9c30d72b3e58c446aa77a4d93406435,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1890858378}
-    - target: {fileID: 6975496355512088513, guid: d9c30d72b3e58c446aa77a4d93406435,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975496355512088513, guid: d9c30d72b3e58c446aa77a4d93406435,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: TowerDefense.Managers.EnemyManager, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 7400861910288330843, guid: d9c30d72b3e58c446aa77a4d93406435,
         type: 3}
       propertyPath: m_Name
@@ -3263,7 +3238,7 @@ PrefabInstance:
     - target: {fileID: 7794703260849969103, guid: 9fb0911e741a04f4badb079a351f0e9d,
         type: 3}
       propertyPath: _maxBaseHealth
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8814383694211724629, guid: 9fb0911e741a04f4badb079a351f0e9d,
         type: 3}
@@ -3657,6 +3632,7 @@ MonoBehaviour:
   _enemyParent: {fileID: 1082520303}
   _enemyWaves:
   - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
+  - {fileID: 11400000, guid: 8647614dffabf2b409e71773199d0b29, type: 2}
   - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
 --- !u!4 &967969994
 Transform:
@@ -5303,18 +5279,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d5e627b8061cb2a499c1fb13808bebde, type: 3}
---- !u!114 &1452856361 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5367922999317956209, guid: d9c30d72b3e58c446aa77a4d93406435,
-    type: 3}
-  m_PrefabInstance: {fileID: 357248964}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1466936868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6998,12 +6962,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: dcd6c171a84c40448b70a07ea4a1e1cd, type: 3}
---- !u!1 &1890858378 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8788856605497559880, guid: d9c30d72b3e58c446aa77a4d93406435,
-    type: 3}
-  m_PrefabInstance: {fileID: 357248964}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1920583866
 PrefabInstance:
   m_ObjectHideFlags: 0

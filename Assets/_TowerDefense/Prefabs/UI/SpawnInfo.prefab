@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3153447486578580773}
   - component: {fileID: 7959175834140039806}
+  - component: {fileID: 7492991366447431159}
   m_Layer: 5
   m_Name: SpawnInfo
   m_TagString: Untagged
@@ -64,6 +65,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7492991366447431159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2524629604186442161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4624b53796647b44b6bfb0b9ddc6659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnImage: {fileID: 1035223441992517551}
+  spawnCount: {fileID: 4943379872820852045}
 --- !u!1 &5122202742134908370
 GameObject:
   m_ObjectHideFlags: 0

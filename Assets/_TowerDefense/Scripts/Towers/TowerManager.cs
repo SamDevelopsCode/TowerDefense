@@ -55,6 +55,11 @@ namespace _TowerDefense.Towers
 		
 		private void SelectTowerType()
 		{
+			if (!_canPlaceTowers)
+			{
+				return;
+			}
+			
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
 				_selectedTowerType = _towerBaseTypePrefabs[0].GetComponent<Tower>();

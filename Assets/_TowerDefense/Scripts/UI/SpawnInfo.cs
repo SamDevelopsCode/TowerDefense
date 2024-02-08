@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using _TowerDefense.Towers;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
+
 
 public class SpawnInfo : MonoBehaviour
 {
     public Image spawnImage;
     public TextMeshProUGUI spawnCount;
 
-    public void UpdateSpawnInfoUI()
+    public void SetSpawnInfoUI(Sprite sprite, int count)
     {
-        
+        spawnImage.sprite = sprite;
+        spawnCount.text = count.ToString();
     }
 }
