@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: LightningLv1
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 52e617cc13f84744b89c9e10ce153a89, type: 3}
-  name: Lightning [Tier 1]
+  towerName: Lightning [Tier 1]
   cost: 100
   range: 6
   damagePerShot: 50
   shotsPerSecond: 2
+  towerType: 2

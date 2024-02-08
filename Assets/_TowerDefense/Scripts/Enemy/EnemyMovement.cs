@@ -53,7 +53,6 @@ namespace TowerDefense.Enemies
                     yield return new WaitForEndOfFrame();
                 }
             }
-            // Destroy(gameObject);
         }
     }
 }

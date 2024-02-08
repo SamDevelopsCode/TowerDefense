@@ -18,17 +18,11 @@ public class TowerStatsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _towerShotPerSecondLabel;
     
     
-    private void Awake()
-    {
-        _towerManager.TowerSelected += OnTowerSelected;
-    }
-    
-    
-    private void OnTowerSelected(TowerData towerData)
+    public void SetTowerStatsUIData(TowerData towerData)
     {
         _towerIconImage.color = _iconBackgroundColor;
         _towerIconImage.sprite = towerData.icon;
-        _towerNameLabel.text = $"{towerData.name}";
+        _towerNameLabel.text = $"{towerData.towerName}";
         _towerCostLabel.text = $"{towerData.cost}";
         _towerRangeLabel.text = $"{towerData.range}";
         _towerDamageLabel.text = $"{towerData.damagePerShot}";

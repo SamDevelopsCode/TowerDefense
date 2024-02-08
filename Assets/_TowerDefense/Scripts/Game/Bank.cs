@@ -17,7 +17,7 @@ namespace TowerDefense.Managers
 			set
 			{
 				_currentBalance = value;
-				UIManager.Instance.UpdateGoldBalanceUI(_currentBalance);
+				CoreGameUI.Instance.UpdateGoldBalanceUI(_currentBalance);
 			}
 		}
 

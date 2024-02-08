@@ -10,9 +10,8 @@ public class EnemyManager : MonoBehaviour
 
     public static EnemyManager Instance;
     
-    public event Action<GameState> EnemyWaveCompleted;
-
     private EnemyWaveSpawner _enemyWaveSpawner;
+    
     
     private void Awake()
     {
@@ -33,11 +32,13 @@ public class EnemyManager : MonoBehaviour
 
         if (_listOfEnemiesInWave.Count == 0)
         {
-            EnemyWaveCompleted?.Invoke(GameState.TowerPlacement);
-                
             if (_enemyWaveSpawner.CurrentWaveNumber == _enemyWaveSpawner.EnemyWaves.Count)
             {
                 GameManager.Instance.UpdateGameState(GameState.Victory);
+            }
+            else
+            {
+                GameManager.Instance.UpdateGameState(GameState.TowerPlacement);
             }
         }
     }

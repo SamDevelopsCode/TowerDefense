@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense.Enemies.Data;
@@ -25,17 +26,25 @@ namespace TowerDefense.Enemies
         {
             get => _currentWaveNumber;
         }
-        
 
-        private void Awake()
+        public event Action<int, Wave> OnNextWaveSpawned;
+
+        
+        private void OnEnable()
         {
             GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
         }
         
         
+        private void OnDisable()
+        {
+            GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+        }
+        
+
         private void Start()
         {
-            UIManager.Instance.UpdateWaveNumberUI(_currentWaveNumber, _enemyWaves.Count);
+            CoreGameUI.Instance.UpdateWaveNumberUI(_currentWaveNumber, _enemyWaves.Count);
         }
 
         
@@ -62,15 +71,19 @@ namespace TowerDefense.Enemies
             if (!_waveCanSpawn) return;
             
             GameManager.Instance.UpdateGameState(GameState.EnemyWave);
-            UIManager.Instance.UpdateWaveNumberUI(_currentWaveNumber + 1, _enemyWaves.Count);
+            CoreGameUI.Instance.UpdateWaveNumberUI(_currentWaveNumber + 1, _enemyWaves.Count);
             StartCoroutine(SpawnWave(_currentWaveNumber));
         }
         
         
-        // Using the event when changing the game's state to handle when waves can spawn
         private void GameManagerOnGameStateChanged(GameState state)
         {
             _waveCanSpawn = state == GameState.TowerPlacement;
+            
+            if (state == GameState.TowerPlacement)
+            {
+                OnNextWaveSpawned?.Invoke(_currentWaveNumber, _enemyWaves[_currentWaveNumber]);
+            }
         }
     }
 }

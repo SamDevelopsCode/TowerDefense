@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _resourceAmountDroppedOnDeath: 25
   _damageToBase: 5
+  icon: {fileID: 21300000, guid: 8ff3f733f44796e4db81e3e56fb21735, type: 3}
   _healthComponent: {fileID: 5362991843178886080}
 --- !u!114 &2138451040933082354
 MonoBehaviour:

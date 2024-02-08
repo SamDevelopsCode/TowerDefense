@@ -20,6 +20,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194434424471567338, guid: cff2cc1645c7c6b41a5e75beaa675188,
         type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 6e59e64da7a007842985d027abce47b7,
+        type: 3}
+    - target: {fileID: 4194434424471567338, guid: cff2cc1645c7c6b41a5e75beaa675188,
+        type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 6e59e64da7a007842985d027abce47b7,
+        type: 3}
+    - target: {fileID: 4194434424471567338, guid: cff2cc1645c7c6b41a5e75beaa675188,
+        type: 3}
       propertyPath: _damageToBase
       value: 1
       objectReference: {fileID: 0}

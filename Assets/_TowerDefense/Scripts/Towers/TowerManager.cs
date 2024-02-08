@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TowerDefense.Managers;
+using TowerDefense.Tower;
 using UnityEngine;
 
 namespace _TowerDefense.Towers
@@ -15,14 +16,22 @@ namespace _TowerDefense.Towers
 		private bool _canPlaceTowers;
 
 		public event Action<TowerData> TowerSelected;
+		public event Action TowerPlacementFailed;
+		public event Action TowerPlacementSucceeded;
 		
 
-		private void Awake()
+		private void OnEnable()
 		{
 			GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
 		}
 
-	
+		
+		private void OnDisable()
+		{
+			GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+		}
+
+
 		private void Start() 
 		{
 			for (int i = 0; i < _validTowerTilesParent.childCount; i++)
@@ -46,6 +55,11 @@ namespace _TowerDefense.Towers
 		
 		private void SelectTowerType()
 		{
+			if (!_canPlaceTowers)
+			{
+				return;
+			}
+			
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
 				_selectedTowerType = _towerBaseTypePrefabs[0].GetComponent<Tower>();
@@ -69,7 +83,10 @@ namespace _TowerDefense.Towers
 
 		private void OnTowerPlaceAttempted(Tile tile)
 		{
-			if (!_canPlaceTowers) return;
+			if (!_canPlaceTowers)
+			{
+				return;
+			}
 			
 			if (_selectedTowerType == null)
 			{
@@ -77,16 +94,19 @@ namespace _TowerDefense.Towers
 				return;
 			}
 			
-			var towerCost = _selectedTowerType.towerData.cost;
+			int towerCost = _selectedTowerType.towerData.cost;
 			
 			if (Bank.Instance.CanAffordTower(towerCost))
 			{
 				tile.CanPlaceTower = false;
 				_towerSpawner.SpawnTower(_selectedTowerType, tile.towerParent);
 				Bank.Instance.DetractFromBalance(towerCost);
+				TowerPlacementSucceeded?.Invoke();
+				_selectedTowerType = null;
 			}
 			else
 			{
+				TowerPlacementFailed?.Invoke();
 				Debug.Log("Not enough funds. Tower cost: " + towerCost + ". Current money: " + Bank.Instance.CurrentBalance);
 			}
 			

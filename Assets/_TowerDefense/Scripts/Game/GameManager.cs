@@ -1,4 +1,5 @@
 using System;
+using TowerDefense.Tower;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,6 @@ namespace TowerDefense.Managers
 	public class GameManager : MonoBehaviour
 	{
 		[SerializeField] private PlayerBase _playerBase;
-		[SerializeField] private EnemyManager _enemyManager;
 	
 		public static GameManager Instance;
 
@@ -19,10 +19,18 @@ namespace TowerDefense.Managers
 		private void Awake()
 		{
 			Instance = this;
-			_playerBase.OnPlayerBaseDestroyed += UpdateGameState;
-			_enemyManager.EnemyWaveCompleted += UpdateGameState;
 		}
-	
+
+		private void OnEnable()
+		{
+			_playerBase.OnPlayerBaseDestroyed += UpdateGameState;
+		}
+
+		private void OnDisable()
+		{
+			_playerBase.OnPlayerBaseDestroyed -= UpdateGameState;
+		}
+
 
 		private void Start()
 		{
@@ -53,7 +61,7 @@ namespace TowerDefense.Managers
 			OnGameStateChanged?.Invoke(newState);
 		}
 
-	
+		
 		private void QuitToMainMenu()
 		{
 			SceneManager.LoadScene(0);
