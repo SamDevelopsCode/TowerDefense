@@ -7,8 +7,6 @@ namespace TowerDefense.Managers
 {
 	public class GameManager : MonoBehaviour
 	{
-		[SerializeField] private PlayerBase _playerBase;
-	
 		public static GameManager Instance;
 
 		public GameState State;
@@ -21,17 +19,7 @@ namespace TowerDefense.Managers
 			Instance = this;
 		}
 
-		private void OnEnable()
-		{
-			_playerBase.OnPlayerBaseDestroyed += UpdateGameState;
-		}
-
-		private void OnDisable()
-		{
-			_playerBase.OnPlayerBaseDestroyed -= UpdateGameState;
-		}
-
-
+		
 		private void Start()
 		{
 			UpdateGameState(GameState.TowerPlacement);

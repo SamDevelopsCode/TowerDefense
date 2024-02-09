@@ -43,8 +43,6 @@ public class Tile : MonoBehaviour
 			else
 			{
 				TowerData towerData = towerParent.GetChild(0).GetComponent<Tower>().towerData;
-				Debug.Log(towerParent.GetChild(0).name + " at " + towerParent.parent.name);
-				Debug.Log($"Tower cost: {towerData.cost}, Tower Range: {towerData.range}");
 				//TODO show the TowerStats + Upgrade button + Sell button
 			}
 		}

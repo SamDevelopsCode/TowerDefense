@@ -1,5 +1,6 @@
 using System;
 using TowerDefense.Enemies;
+using UnityEditor;
 using UnityEngine;
 
 namespace _TowerDefense.Towers
@@ -21,6 +22,18 @@ namespace _TowerDefense.Towers
         {
             _tower = GetComponent<Tower>();
             _towerData = _tower.towerData;
+        }
+
+        private void OnTriggerEnter(Collider collision)
+        {
+            Debug.Log(collision);
+        }
+
+        private void OnDrawGizmos()
+        {
+            // Draw a yellow sphere at the transform's position
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, _towerData.range);
         }
 
 
