@@ -45,7 +45,7 @@ public class PlayerBase : MonoBehaviour
      resources for the player. */
     private void OnTriggerEnter(Collider other)
     {
-        var enemy = other.transform.parent.GetComponent<Enemy>();
+        var enemy = other.GetComponent<Enemy>();
         enemy.KilledByTower = false;
         TakeDamage(enemy.DamageToBase);
     }
