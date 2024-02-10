@@ -22,13 +22,13 @@ namespace _TowerDefense.Towers
 
 		private void OnEnable()
 		{
-			GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+			GameManager.GameStateChanged += GameManagerGameStateChanged;
 		}
 
 		
 		private void OnDisable()
 		{
-			GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+			GameManager.GameStateChanged -= GameManagerGameStateChanged;
 		}
 
 
@@ -41,7 +41,7 @@ namespace _TowerDefense.Towers
 		}
 
 	
-		private void GameManagerOnGameStateChanged(GameState state)
+		private void GameManagerGameStateChanged(GameState state)
 		{
 			_canPlaceTowers = state == GameState.TowerPlacement;
 		}

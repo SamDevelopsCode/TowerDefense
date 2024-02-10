@@ -11,7 +11,7 @@ namespace TowerDefense.Managers
 
 		public GameState State;
 
-		public static event Action<GameState> OnGameStateChanged;
+		public static event Action<GameState> GameStateChanged;
 	
 	
 		private void Awake()
@@ -46,7 +46,7 @@ namespace TowerDefense.Managers
 					throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
 			}
 		
-			OnGameStateChanged?.Invoke(newState);
+			GameStateChanged?.Invoke(newState);
 		}
 
 		

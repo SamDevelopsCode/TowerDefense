@@ -3631,9 +3631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyParent: {fileID: 1082520303}
   _enemyWaves:
-  - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
-  - {fileID: 11400000, guid: 8647614dffabf2b409e71773199d0b29, type: 2}
-  - {fileID: 11400000, guid: def391de17a3ef34096acd063feea794, type: 2}
+  - {fileID: 11400000, guid: 0a0e7f400f126dc40a70c8fbb06947d2, type: 2}
 --- !u!4 &967969994
 Transform:
   m_ObjectHideFlags: 0
@@ -3751,18 +3749,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1871522236}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1042247243 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7794703260849969103, guid: 9fb0911e741a04f4badb079a351f0e9d,
-    type: 3}
-  m_PrefabInstance: {fileID: 880183616}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a854e34f4f874d4abbfdf4a80093081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1057471113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6140,8 +6126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c12240e2fbed84fa4cca4d8cc747d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerBase: {fileID: 1042247243}
-  _enemyManager: {fileID: 1082520304}
   State: 0
 --- !u!1001 &1688025225
 PrefabInstance:
@@ -6868,7 +6852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a57d27252e8d51c4897050087979172d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingBalance: 200
+  _startingBalance: 500
   _currentBalance: 0
 --- !u!4 &1867524199
 Transform:

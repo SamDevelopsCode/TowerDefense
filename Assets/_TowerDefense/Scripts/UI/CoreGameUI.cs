@@ -43,7 +43,7 @@ namespace TowerDefense.Tower
             _towerManager.TowerPlacementFailed += SetWaveSpawnsCurrentView;
             _towerManager.TowerPlacementSucceeded += SetWaveSpawnsCurrentView;
             _enemyWaveSpawner.OnNextWaveSpawned += SetWaveSpawnsData;
-            GameManager.OnGameStateChanged += OnGameStateChanged;
+            GameManager.GameStateChanged += GameStateChanged;
         }
         
 
@@ -53,7 +53,7 @@ namespace TowerDefense.Tower
             _towerManager.TowerPlacementFailed -= SetWaveSpawnsCurrentView;
             _towerManager.TowerPlacementSucceeded -= SetWaveSpawnsCurrentView;
             _enemyWaveSpawner.OnNextWaveSpawned -= SetWaveSpawnsData;
-            GameManager.OnGameStateChanged -= OnGameStateChanged;
+            GameManager.GameStateChanged -= GameStateChanged;
         }
 
         
@@ -76,7 +76,7 @@ namespace TowerDefense.Tower
         }
 
         
-        private void OnGameStateChanged(GameState state)
+        private void GameStateChanged(GameState state)
         {
             if (state == GameState.EnemyWave)
             {
