@@ -43,7 +43,7 @@ public class Tile : MonoBehaviour
 			else
 			{
 				TowerData towerData = towerParent.GetChild(0).GetComponent<Tower>().towerData;
-				//TODO show the TowerStats + Upgrade button + Sell button
+				CoreGameUI.Instance.OnTowerSelected(towerData);
 			}
 		}
 	}
