@@ -20,6 +20,7 @@ public class SelectedTowerHighlighter : MonoBehaviour
         _towerManager.TowerPlacementSucceeded += DisableChildrenSelectors;
     }
 
+    
     private void OnDisable()
     {
         _towerManager.TowerSelected -= OnTowerSelected;

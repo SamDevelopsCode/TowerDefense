@@ -52,6 +52,7 @@ namespace _TowerDefense.Towers
             }
         }
 
+        
         private void SelectCurrentTarget()
         {
             if (_possibleTargets.Count == 0)

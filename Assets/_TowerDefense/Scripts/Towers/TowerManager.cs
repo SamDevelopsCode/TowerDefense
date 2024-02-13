@@ -91,7 +91,7 @@ namespace _TowerDefense.Towers
 				return;
 			}
 			
-			int towerCost = _selectedTowerType.towerData.cost;
+			int towerCost = _selectedTowerType.towerData.cost; 
 			
 			if (Bank.Instance.CanAffordTower(towerCost))
 			{
@@ -106,6 +106,10 @@ namespace _TowerDefense.Towers
 				TowerPlacementFailed?.Invoke();
 				Debug.Log("Not enough funds. Tower cost: " + towerCost + ". Current money: " + Bank.Instance.CurrentBalance);
 			}
+		}
+
+		public void OnTowerUpgradeAttempted()
+		{
 			
 		}
 	}
