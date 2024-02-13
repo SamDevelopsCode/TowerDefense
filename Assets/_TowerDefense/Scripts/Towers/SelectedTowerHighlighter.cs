@@ -45,7 +45,7 @@ public class SelectedTowerHighlighter : MonoBehaviour
     }
 
     
-    private void DisableChildrenSelectors()
+    public void DisableChildrenSelectors()
     {
         foreach (GameObject selector in _selectors)
         {
