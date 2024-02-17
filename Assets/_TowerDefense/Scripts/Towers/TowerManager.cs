@@ -10,16 +10,30 @@ namespace _TowerDefense.Towers
 	{
 		[SerializeField] private Transform _validTowerTilesParent;
 		[SerializeField] private TowerSpawner _towerSpawner;
+		
 		[SerializeField] private List<GameObject> _towerBaseTypePrefabs = new();
+		[SerializeField] private List<TowerCollection> _towerCollections;
+		private Dictionary<int, List<GameObject>> allTowers = new();
 
 		private Tower _selectedTowerType;
+		private TowerData _currentlySelectedTowerData;
+		private Tile _currentlySelectedTowerParentTile;
 		private bool _canPlaceTowers;
 
 		public event Action<TowerData> TowerSelected;
 		public event Action TowerPlacementFailed;
 		public event Action TowerPlacementSucceeded;
-		
 
+		
+		private void Awake()
+		{
+			for (int i = 0; i < _towerCollections.Count; i++)
+			{
+				allTowers.Add(i, _towerCollections[i].towers);
+			}
+		}
+
+		
 		private void OnEnable()
 		{
 			GameManager.GameStateChanged += GameManagerGameStateChanged;
@@ -36,11 +50,13 @@ namespace _TowerDefense.Towers
 		{
 			for (int i = 0; i < _validTowerTilesParent.childCount; i++)
 			{
-				_validTowerTilesParent.GetChild(i).GetComponent<Tile>().OnTowerPlaceAttempted += OnTowerPlaceAttempted;
+				Tile tile = _validTowerTilesParent.GetChild(i).GetComponent<Tile>();
+				tile.TowerPlaceAttempted += OnTowerPlaceAttempted;
+				tile.TowerSelected += OnTowerSelected;
 			}
 		}
 
-	
+		
 		private void GameManagerGameStateChanged(GameState state)
 		{
 			_canPlaceTowers = state == GameState.TowerPlacement;
@@ -77,7 +93,14 @@ namespace _TowerDefense.Towers
 			}
 		}
 
+		
+		private void OnTowerSelected(TowerData towerData, Tile tile)
+		{
+			_currentlySelectedTowerData = towerData;
+			_currentlySelectedTowerParentTile = tile;
+		}
 
+		
 		private void OnTowerPlaceAttempted(Tile tile)
 		{
 			if (!_canPlaceTowers)
@@ -108,9 +131,34 @@ namespace _TowerDefense.Towers
 			}
 		}
 
-		public void OnTowerUpgradeAttempted()
+		
+		public void UpgradeTower()
 		{
+			int currentTowerTypeIndex = ((int)_currentlySelectedTowerData.towerType);
+			GameObject currentTowerGameObject = _currentlySelectedTowerParentTile.towerParent.GetChild(0).gameObject;
+			int currentTowerIndex = currentTowerGameObject.GetComponent<Tower>().towerData.towerTier;
 			
+			if (!(currentTowerIndex <= _towerCollections[currentTowerTypeIndex].towers.Count - 1))
+			{
+				Debug.Log("Upgrade maxed out");
+				return;
+			}
+			
+			Tower upgradedTower =
+				_towerCollections[currentTowerTypeIndex].towers[currentTowerIndex].GetComponent<Tower>();
+			
+			if (Bank.Instance.CanAffordTower(upgradedTower.towerData.cost))
+			{
+				Debug.Log("Can afford tower upgrade.");
+				Destroy(_currentlySelectedTowerParentTile.towerParent.GetChild(0).gameObject);
+				_towerSpawner.SpawnTower(upgradedTower, _currentlySelectedTowerParentTile.towerParent);
+				_currentlySelectedTowerData = upgradedTower.towerData;
+				TowerSelected?.Invoke(_currentlySelectedTowerData);
+			}
+			else
+			{
+				Debug.Log("Can't afford tower upgrade.");
+			}
 		}
 	}
 }

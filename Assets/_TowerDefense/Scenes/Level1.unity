@@ -943,6 +943,10 @@ MonoBehaviour:
   - {fileID: 1768835863222528420, guid: 7b991801014f88e42ab557e26ed6023f, type: 3}
   - {fileID: 6571934166652837949, guid: d15e7286334f175469cb141d23e3ffdc, type: 3}
   - {fileID: 8383758421163145422, guid: b667732197a94f44e880839d63d6592e, type: 3}
+  _towerCollections:
+  - {fileID: 11400000, guid: c8c21526a966b4346a58d8b622dfd350, type: 2}
+  - {fileID: 11400000, guid: e21649dbdf22f8841a345a1890b2e30f, type: 2}
+  - {fileID: 11400000, guid: 88abcc3e2a0cf024a9ba3031e6a65275, type: 2}
 --- !u!4 &237957973
 Transform:
   m_ObjectHideFlags: 0
@@ -1265,6 +1269,41 @@ PrefabInstance:
       propertyPath: _towerManager
       value: 
       objectReference: {fileID: 237957972}
+    - target: {fileID: 1080086386959158703, guid: d9c30d72b3e58c446aa77a4d93406435,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080086386959158703, guid: d9c30d72b3e58c446aa77a4d93406435,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080086386959158703, guid: d9c30d72b3e58c446aa77a4d93406435,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 237957972}
+    - target: {fileID: 1080086386959158703, guid: d9c30d72b3e58c446aa77a4d93406435,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080086386959158703, guid: d9c30d72b3e58c446aa77a4d93406435,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpgradeTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080086386959158703, guid: d9c30d72b3e58c446aa77a4d93406435,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: _TowerDefense.Towers.TowerManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080086386959158703, guid: d9c30d72b3e58c446aa77a4d93406435,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1597776573798692395, guid: d9c30d72b3e58c446aa77a4d93406435,
         type: 3}
       propertyPath: _towerManager

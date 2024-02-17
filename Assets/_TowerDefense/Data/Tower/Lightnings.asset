@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43aaaa3e6790211408ca31e468d7d7c8, type: 3}
+  m_Name: Lightnings
+  m_EditorClassIdentifier: 
+  towers:
+  - {fileID: 8383758421163145422, guid: b667732197a94f44e880839d63d6592e, type: 3}
+  - {fileID: 8383758421163145422, guid: 41bb5dbc1848cf04787ae0f8a9718f16, type: 3}
+  - {fileID: 8383758421163145422, guid: 13622515491be30459290eca6ee9bd43, type: 3}
