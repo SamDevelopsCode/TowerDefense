@@ -24,6 +24,11 @@ PrefabInstance:
       propertyPath: _towerPivot
       value: 
       objectReference: {fileID: 8920400080919062901}
+    - target: {fileID: 6549261341812492627, guid: cfac2ba935051684e84d09eaccb5d799,
+        type: 3}
+      propertyPath: m_Radius
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8755263093136699191, guid: cfac2ba935051684e84d09eaccb5d799,
         type: 3}
       propertyPath: m_LocalPosition.x

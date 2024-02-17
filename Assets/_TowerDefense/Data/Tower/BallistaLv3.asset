@@ -19,3 +19,4 @@ MonoBehaviour:
   damagePerShot: 10
   shotsPerSecond: 0.5
   towerType: 0
+  towerTier: 3

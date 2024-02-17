@@ -12,6 +12,7 @@ namespace _TowerDefense.Towers
 		public float damagePerShot = 5f;
 		public float shotsPerSecond = 2f;
 		public TowerType towerType;
+		public int towerTier;
 		
 		public enum TowerType
 		{

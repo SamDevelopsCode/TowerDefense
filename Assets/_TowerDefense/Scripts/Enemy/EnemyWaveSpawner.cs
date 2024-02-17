@@ -32,13 +32,13 @@ namespace TowerDefense.Enemies
         
         private void OnEnable()
         {
-            GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+            GameManager.GameStateChanged += GameManagerGameStateChanged;
         }
         
         
         private void OnDisable()
         {
-            GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+            GameManager.GameStateChanged -= GameManagerGameStateChanged;
         }
         
 
@@ -76,7 +76,7 @@ namespace TowerDefense.Enemies
         }
         
         
-        private void GameManagerOnGameStateChanged(GameState state)
+        private void GameManagerGameStateChanged(GameState state)
         {
             _waveCanSpawn = state == GameState.TowerPlacement;
             

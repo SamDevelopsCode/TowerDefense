@@ -7,13 +7,11 @@ namespace TowerDefense.Managers
 {
 	public class GameManager : MonoBehaviour
 	{
-		[SerializeField] private PlayerBase _playerBase;
-	
 		public static GameManager Instance;
 
 		public GameState State;
 
-		public static event Action<GameState> OnGameStateChanged;
+		public static event Action<GameState> GameStateChanged;
 	
 	
 		private void Awake()
@@ -21,17 +19,7 @@ namespace TowerDefense.Managers
 			Instance = this;
 		}
 
-		private void OnEnable()
-		{
-			_playerBase.OnPlayerBaseDestroyed += UpdateGameState;
-		}
-
-		private void OnDisable()
-		{
-			_playerBase.OnPlayerBaseDestroyed -= UpdateGameState;
-		}
-
-
+		
 		private void Start()
 		{
 			UpdateGameState(GameState.TowerPlacement);
@@ -58,7 +46,7 @@ namespace TowerDefense.Managers
 					throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
 			}
 		
-			OnGameStateChanged?.Invoke(newState);
+			GameStateChanged?.Invoke(newState);
 		}
 
 		

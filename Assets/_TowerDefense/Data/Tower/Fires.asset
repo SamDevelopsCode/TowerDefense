@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43aaaa3e6790211408ca31e468d7d7c8, type: 3}
+  m_Name: Fires
+  m_EditorClassIdentifier: 
+  towers:
+  - {fileID: 6571934166652837949, guid: d15e7286334f175469cb141d23e3ffdc, type: 3}
+  - {fileID: 6571934166652837949, guid: 207562fb33e69b143b4507f58f95e2c3, type: 3}
+  - {fileID: 6571934166652837949, guid: eca15f24fd592f84390b428468f5b468, type: 3}

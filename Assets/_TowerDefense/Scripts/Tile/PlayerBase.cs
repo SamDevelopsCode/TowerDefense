@@ -9,7 +9,6 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private int _maxBaseHealth = 100;
     private int _currentBaseHealth;
 
-    public event Action<GameState> OnPlayerBaseDestroyed;
     
     public int CurrentBaseHealth
     {
@@ -20,7 +19,7 @@ public class PlayerBase : MonoBehaviour
 
             if (_currentBaseHealth == 0)
             {
-                OnPlayerBaseDestroyed?.Invoke(GameState.Lose);
+                GameManager.Instance.UpdateGameState(GameState.Lose);
             }
             
             CoreGameUI.Instance.UpdateBaseHealthUI(_currentBaseHealth, _maxBaseHealth);
@@ -46,7 +45,7 @@ public class PlayerBase : MonoBehaviour
      resources for the player. */
     private void OnTriggerEnter(Collider other)
     {
-        var enemy = other.transform.parent.GetComponent<Enemy>();
+        var enemy = other.GetComponent<Enemy>();
         enemy.KilledByTower = false;
         TakeDamage(enemy.DamageToBase);
     }
