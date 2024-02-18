@@ -27,9 +27,11 @@ public class Attacker : MonoBehaviour
 
     private void Update()
     {
-        DecrementShootCooldown();
-        
-        if (!CanShoot()) return;
+        if (!CanShoot())
+        {
+            DecrementShootCooldown();
+            return;
+        }
         
         if (_target != null)
         {
@@ -37,6 +39,7 @@ public class Attacker : MonoBehaviour
         }
     }
 
+    
     private void DecrementShootCooldown()
     {
         _shootTimer -= Time.deltaTime;
@@ -59,6 +62,7 @@ public class Attacker : MonoBehaviour
         
         return false;
     }
+    
     
     private void Shoot()
     {

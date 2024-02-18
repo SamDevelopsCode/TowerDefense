@@ -17,6 +17,10 @@ namespace _TowerDefense.Towers
         private TowerData _towerData;
         
         private float _maxAttackRange;
+        
+        private bool _should_calculate_closest_enemy = true;
+        private bool _should_calculate_highest_health_enemy;
+        private bool _should_calculate_lowest_health_enemy;
 
         public event Action<GameObject> CurrentTargetSelected;
         
@@ -31,7 +35,6 @@ namespace _TowerDefense.Towers
         
         private void OnTriggerEnter(Collider collision)
         {
-            Debug.Log(collision);
             _possibleTargets.Add(collision.gameObject);
         }
 
@@ -40,12 +43,12 @@ namespace _TowerDefense.Towers
         {
             _possibleTargets.Remove(collision.gameObject);
         }
-
+        
         
         private void Update()
         {
             SelectCurrentTarget();
-
+            
             if (_currentTarget != null)
             {
                 AimWeapon();
@@ -57,28 +60,84 @@ namespace _TowerDefense.Towers
         {
             if (_possibleTargets.Count == 0)
             {
+                Debug.Log("List of enemies is empty.");
                 _currentTarget = null;
-                CurrentTargetSelected?.Invoke(_currentTarget);
                 return;
             }
             
-            GameObject closestTarget = null;
+            if (_should_calculate_closest_enemy)
+            {
+               _currentTarget = CalculateClosestTarget();
+            }
+            else if (_should_calculate_highest_health_enemy)
+            { 
+                _currentTarget = CalculateHighestHealthTarget();
+            }
+            else if (_should_calculate_lowest_health_enemy)
+            {
+                _currentTarget = CalculateLowestHealthTarget();
+            }
             
+            CurrentTargetSelected?.Invoke(_currentTarget);
+        }
         
+        
+        private GameObject CalculateClosestTarget()
+        {
+            GameObject closestTarget = null;
+            float smallestEnemyDistance = Mathf.Infinity;
+            
             foreach (var enemy in _possibleTargets)
             {
-                var distanceToTarget = Vector3.Distance(transform.position, enemy.transform.position);
-        
-                if (distanceToTarget <= _maxAttackRange)
+                float distanceToTarget = Vector3.Distance(transform.position, enemy.transform.position);
+            
+                if (distanceToTarget < smallestEnemyDistance)
                 {
                     closestTarget = enemy;
                 }
             }
-            _currentTarget = closestTarget;
-            CurrentTargetSelected?.Invoke(_currentTarget);
+            return closestTarget;
         }
 
-    
+        
+        private GameObject CalculateHighestHealthTarget()
+        {
+            GameObject highestHealthTarget = null;
+            float highestHealth = 0.0f;
+            
+            foreach (var enemy in _possibleTargets)
+            {
+                float currentEnemyHealth = enemy.GetComponent<Health>().CurrentHealth;
+                    
+                if (currentEnemyHealth > highestHealth)
+                {
+                    highestHealth = currentEnemyHealth;
+                    highestHealthTarget = enemy;
+                }
+            }
+            return highestHealthTarget;
+        }
+        
+        
+        private GameObject CalculateLowestHealthTarget()
+        {
+            GameObject lowestHealthTarget = null;
+            float lowestHealth = Mathf.Infinity;
+            
+            foreach (var enemy in _possibleTargets)
+            {
+                float currentEnemyHealth = enemy.GetComponent<Health>().CurrentHealth;
+                    
+                if (currentEnemyHealth < lowestHealth)
+                {
+                    lowestHealth = currentEnemyHealth;
+                    lowestHealthTarget = enemy;
+                }
+            }
+            return lowestHealthTarget;
+        }
+
+        
         private void AimWeapon()
         {
             _towerPivot.LookAt(_currentTarget.transform.position);

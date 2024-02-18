@@ -149,7 +149,6 @@ namespace _TowerDefense.Towers
 			
 			if (Bank.Instance.CanAffordTower(upgradedTower.towerData.cost))
 			{
-				Debug.Log("Can afford tower upgrade.");
 				Destroy(_currentlySelectedTowerParentTile.towerParent.GetChild(0).gameObject);
 				_towerSpawner.SpawnTower(upgradedTower, _currentlySelectedTowerParentTile.towerParent);
 				_currentlySelectedTowerData = upgradedTower.towerData;

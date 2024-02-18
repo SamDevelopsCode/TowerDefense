@@ -15,7 +15,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: e167faa6c3f4b904b93f1eb6aa66e01e, type: 3}
   towerName: Fire [Tier 3]
   cost: 100
-  range: 6
+  range: 16
   damagePerShot: 100
   shotsPerSecond: 1
   towerType: 1

@@ -1,3 +1,4 @@
+using System;
 using _TowerDefense.Towers;
 using UnityEngine;
 
@@ -5,7 +6,9 @@ public class RangeVisualizer : MonoBehaviour
 {
     private Tower _tower;
     private TowerData _towerData;
-    
+    [SerializeField] private MeshRenderer _rangeVisualizer;
+
+
     private void Awake()
     {
         _tower = GetComponent<Tower>();
