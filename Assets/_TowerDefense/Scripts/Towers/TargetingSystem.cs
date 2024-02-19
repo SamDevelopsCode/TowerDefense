@@ -16,7 +16,7 @@ namespace _TowerDefense.Towers
         private Tower _tower;
         private TowerData _towerData;
         
-        private float _maxAttackRange;
+        // private float _maxAttackRange;
         
         private bool _should_calculate_closest_enemy = true;
         private bool _should_calculate_highest_health_enemy;
@@ -29,7 +29,7 @@ namespace _TowerDefense.Towers
         {
             _tower = GetComponent<Tower>();
             _towerData = _tower.towerData;
-            _maxAttackRange = _towerData.range;
+            // _maxAttackRange = _towerData.range;
         }
 
         
@@ -89,6 +89,8 @@ namespace _TowerDefense.Towers
             
             foreach (var enemy in _possibleTargets)
             {
+                if (enemy == null) continue;
+                
                 float distanceToTarget = Vector3.Distance(transform.position, enemy.transform.position);
             
                 if (distanceToTarget < smallestEnemyDistance)

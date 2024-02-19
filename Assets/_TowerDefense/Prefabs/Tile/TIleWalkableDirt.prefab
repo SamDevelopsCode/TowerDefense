@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 469005161836314840, guid: 50413ac79d8179e4db51f37e48828355,
         type: 3}
       propertyPath: m_Name
-      value: TIle_Walkable_Dirt
+      value: TIleWalkableDirt
       objectReference: {fileID: 0}
     - target: {fileID: 477836972756446232, guid: 50413ac79d8179e4db51f37e48828355,
         type: 3}
@@ -96,7 +96,7 @@ PrefabInstance:
     - target: {fileID: 7432253901623195597, guid: 50413ac79d8179e4db51f37e48828355,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.5
+      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -13,6 +13,7 @@ public class RangeVisualizer : MonoBehaviour
     {
         _tower = GetComponent<Tower>();
         _towerData = _tower.towerData;
+        _rangeVisualizer.transform.localScale = new Vector3(_towerData.range * 2, .5f, _towerData.range * 2);
     }
     
     private void OnDrawGizmos()
