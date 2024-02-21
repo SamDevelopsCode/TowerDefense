@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using TowerDefense.Managers;
 using TowerDefense.Tower;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _TowerDefense.Towers
 {
@@ -13,27 +15,19 @@ namespace _TowerDefense.Towers
 		
 		[SerializeField] private List<GameObject> _towerBaseTypePrefabs = new();
 		[SerializeField] private List<TowerCollection> _towerCollections;
-		private Dictionary<int, List<GameObject>> allTowers = new();
+		[SerializeField] private TMP_Dropdown _targetingDropDown;
 
+		private GameObject _currentlySelectedTower;
 		private Tower _selectedTowerType;
 		private TowerData _currentlySelectedTowerData;
 		private Tile _currentlySelectedTowerParentTile;
 		private bool _canPlaceTowers;
 
-		public event Action<TowerData> TowerSelected;
+		public event Action<TowerData> TowerTypeSelected;
 		public event Action TowerPlacementFailed;
 		public event Action TowerPlacementSucceeded;
 
-		
-		private void Awake()
-		{
-			for (int i = 0; i < _towerCollections.Count; i++)
-			{
-				allTowers.Add(i, _towerCollections[i].towers);
-			}
-		}
 
-		
 		private void OnEnable()
 		{
 			GameManager.GameStateChanged += GameManagerGameStateChanged;
@@ -46,7 +40,7 @@ namespace _TowerDefense.Towers
 		}
 
 
-		private void Start() 
+		private void Start()
 		{
 			for (int i = 0; i < _validTowerTilesParent.childCount; i++)
 			{
@@ -79,17 +73,17 @@ namespace _TowerDefense.Towers
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
 				_selectedTowerType = _towerBaseTypePrefabs[0].GetComponent<Tower>();
-				TowerSelected?.Invoke(_selectedTowerType.towerData);
+				TowerTypeSelected?.Invoke(_selectedTowerType.towerData);
 			}
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
 			{
 				_selectedTowerType = _towerBaseTypePrefabs[1].GetComponent<Tower>();
-				TowerSelected?.Invoke(_selectedTowerType.towerData);
+				TowerTypeSelected?.Invoke(_selectedTowerType.towerData);
 			}	
 			else if (Input.GetKeyDown(KeyCode.Alpha3))
 			{
 				_selectedTowerType = _towerBaseTypePrefabs[2].GetComponent<Tower>();
-				TowerSelected?.Invoke(_selectedTowerType.towerData);
+				TowerTypeSelected?.Invoke(_selectedTowerType.towerData);
 			}
 		}
 
@@ -98,6 +92,7 @@ namespace _TowerDefense.Towers
 		{
 			_currentlySelectedTowerData = towerData;
 			_currentlySelectedTowerParentTile = tile;
+			_currentlySelectedTower = _currentlySelectedTowerParentTile.towerParent.GetChild(0).gameObject;
 		}
 
 		
@@ -114,7 +109,7 @@ namespace _TowerDefense.Towers
 				return;
 			}
 			
-			int towerCost = _selectedTowerType.towerData.cost; 
+			int towerCost = _selectedTowerType.towerData.cost;
 			
 			if (Bank.Instance.CanAffordTower(towerCost))
 			{
@@ -135,8 +130,7 @@ namespace _TowerDefense.Towers
 		public void UpgradeTower()
 		{
 			int currentTowerTypeIndex = ((int)_currentlySelectedTowerData.towerType);
-			GameObject currentTowerGameObject = _currentlySelectedTowerParentTile.towerParent.GetChild(0).gameObject;
-			int currentTowerIndex = currentTowerGameObject.GetComponent<Tower>().towerData.towerTier;
+			int currentTowerIndex = _currentlySelectedTower.GetComponent<Tower>().towerData.towerTier;
 			
 			if (!(currentTowerIndex <= _towerCollections[currentTowerTypeIndex].towers.Count - 1))
 			{
@@ -149,16 +143,22 @@ namespace _TowerDefense.Towers
 			
 			if (Bank.Instance.CanAffordTower(upgradedTower.towerData.cost))
 			{
-				Debug.Log("Can afford tower upgrade.");
 				Destroy(_currentlySelectedTowerParentTile.towerParent.GetChild(0).gameObject);
 				_towerSpawner.SpawnTower(upgradedTower, _currentlySelectedTowerParentTile.towerParent);
 				_currentlySelectedTowerData = upgradedTower.towerData;
-				TowerSelected?.Invoke(_currentlySelectedTowerData);
+				TowerTypeSelected?.Invoke(_currentlySelectedTowerData);
 			}
 			else
 			{
 				Debug.Log("Can't afford tower upgrade.");
 			}
+		}
+
+
+		public void UpdateTowerTargetingBehaviour(int selectedOptionIndex)
+		{
+			TargetingSystem towerTargetingSystem = _currentlySelectedTower.GetComponent<TargetingSystem>();
+			towerTargetingSystem.currentTargetingType = (TargetingSystem.TargetingType)selectedOptionIndex;
 		}
 	}
 }

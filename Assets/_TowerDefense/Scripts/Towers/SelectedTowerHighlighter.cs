@@ -15,7 +15,7 @@ public class SelectedTowerHighlighter : MonoBehaviour
 
     private void OnEnable()
     {
-        _towerManager.TowerSelected += OnTowerSelected;
+        _towerManager.TowerTypeSelected += OnTowerTypeSelected;
         _towerManager.TowerPlacementFailed += DisableChildrenSelectors;
         _towerManager.TowerPlacementSucceeded += DisableChildrenSelectors;
     }
@@ -23,7 +23,7 @@ public class SelectedTowerHighlighter : MonoBehaviour
     
     private void OnDisable()
     {
-        _towerManager.TowerSelected -= OnTowerSelected;
+        _towerManager.TowerTypeSelected -= OnTowerTypeSelected;
         _towerManager.TowerPlacementFailed -= DisableChildrenSelectors;
         _towerManager.TowerPlacementSucceeded -= DisableChildrenSelectors;
     }
@@ -55,7 +55,7 @@ public class SelectedTowerHighlighter : MonoBehaviour
     }
 
     
-    private void OnTowerSelected(TowerData towerData)
+    private void OnTowerTypeSelected(TowerData towerData)
     {
         DisableChildrenSelectors();
         

@@ -9,11 +9,17 @@ namespace _TowerDefense.Towers
         public TowerData towerData;
         [SerializeField] private SphereCollider _sphereCollider;
 
+        private void Awake()
+        {
+            _sphereCollider.radius = towerData.range;
+        }
+
         private void OnEnable()
         {
             GameManager.GameStateChanged += OnGameStateChanged;
         }
 
+        
         private void OnDisable()
         {
             GameManager.GameStateChanged -= OnGameStateChanged;
@@ -28,6 +34,7 @@ namespace _TowerDefense.Towers
             else if (gameState == GameState.EnemyWave) SetSphereColliderActive(true);
         }
 
+        
         private void SetSphereColliderActive(bool shouldEnable)
         {
             _sphereCollider.enabled = shouldEnable;

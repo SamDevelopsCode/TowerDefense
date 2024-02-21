@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TowerDefense.Enemies;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _TowerDefense.Towers
 {
@@ -15,8 +16,15 @@ namespace _TowerDefense.Towers
         
         private Tower _tower;
         private TowerData _towerData;
-        
-        private float _maxAttackRange;
+
+        public enum TargetingType
+        {
+            CLOSEST,
+            HIGHESTHEALTH,
+            LOWESTHEALTH,
+        }
+
+        public TargetingType currentTargetingType = TargetingType.CLOSEST;
 
         public event Action<GameObject> CurrentTargetSelected;
         
@@ -25,13 +33,11 @@ namespace _TowerDefense.Towers
         {
             _tower = GetComponent<Tower>();
             _towerData = _tower.towerData;
-            _maxAttackRange = _towerData.range;
         }
 
         
         private void OnTriggerEnter(Collider collision)
         {
-            Debug.Log(collision);
             _possibleTargets.Add(collision.gameObject);
         }
 
@@ -40,12 +46,12 @@ namespace _TowerDefense.Towers
         {
             _possibleTargets.Remove(collision.gameObject);
         }
-
+        
         
         private void Update()
         {
             SelectCurrentTarget();
-
+            
             if (_currentTarget != null)
             {
                 AimWeapon();
@@ -57,33 +63,89 @@ namespace _TowerDefense.Towers
         {
             if (_possibleTargets.Count == 0)
             {
+                Debug.Log("List of enemies is empty.");
                 _currentTarget = null;
-                CurrentTargetSelected?.Invoke(_currentTarget);
                 return;
             }
             
-            GameObject closestTarget = null;
+            if (currentTargetingType == TargetingType.CLOSEST)
+            {
+               _currentTarget = CalculateClosestTarget();
+            }
+            else if (currentTargetingType == TargetingType.HIGHESTHEALTH)
+            { 
+                _currentTarget = CalculateHighestHealthTarget();
+            }
+            else if (currentTargetingType == TargetingType.LOWESTHEALTH)
+            {
+                _currentTarget = CalculateLowestHealthTarget();
+            }
             
+            CurrentTargetSelected?.Invoke(_currentTarget);
+        }
         
+        
+        private GameObject CalculateClosestTarget()
+        {
+            GameObject closestTarget = null;
+            float smallestEnemyDistance = Mathf.Infinity;
+            
             foreach (var enemy in _possibleTargets)
             {
-                var distanceToTarget = Vector3.Distance(transform.position, enemy.transform.position);
-        
-                if (distanceToTarget <= _maxAttackRange)
+                if (enemy == null) continue;
+                
+                float distanceToTarget = Vector3.Distance(transform.position, enemy.transform.position);
+            
+                if (distanceToTarget < smallestEnemyDistance)
                 {
                     closestTarget = enemy;
                 }
             }
-            _currentTarget = closestTarget;
-            CurrentTargetSelected?.Invoke(_currentTarget);
+            return closestTarget;
         }
 
-    
+        
+        private GameObject CalculateHighestHealthTarget()
+        {
+            GameObject highestHealthTarget = null;
+            float highestHealth = 0.0f;
+            
+            foreach (var enemy in _possibleTargets)
+            {
+                float currentEnemyHealth = enemy.GetComponent<Health>().CurrentHealth;
+                    
+                if (currentEnemyHealth > highestHealth)
+                {
+                    highestHealth = currentEnemyHealth;
+                    highestHealthTarget = enemy;
+                }
+            }
+            return highestHealthTarget;
+        }
+        
+        
+        private GameObject CalculateLowestHealthTarget()
+        {
+            GameObject lowestHealthTarget = null;
+            float lowestHealth = Mathf.Infinity;
+            
+            foreach (var enemy in _possibleTargets)
+            {
+                float currentEnemyHealth = enemy.GetComponent<Health>().CurrentHealth;
+                    
+                if (currentEnemyHealth < lowestHealth)
+                {
+                    lowestHealth = currentEnemyHealth;
+                    lowestHealthTarget = enemy;
+                }
+            }
+            return lowestHealthTarget;
+        }
+
+        
         private void AimWeapon()
         {
             _towerPivot.LookAt(_currentTarget.transform.position);
         }
     }
 }
-
-

@@ -69,7 +69,7 @@ namespace TowerDefense.Enemies
             OnEnemyReachedPlayerBase?.Invoke(this.gameObject);
             // show vfx
             // possible sound?
-            // Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: afd1370d2d916ea4ca232af59f518ae5, type: 3}
   towerName: Ballista [Tier 2]
   cost: 100
-  range: 6
+  range: 20
   damagePerShot: 7
   shotsPerSecond: 0.8
   towerType: 0

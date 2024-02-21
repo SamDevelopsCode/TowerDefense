@@ -6,6 +6,11 @@ public class Health : MonoBehaviour
     [SerializeField] private float _maxHealth = 10f;
     [SerializeField] private float _currentHealth;
 
+    public float CurrentHealth
+    {
+        get => _currentHealth;
+    }
+    
     public event Action OnEnemyDied;
     
     
