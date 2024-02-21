@@ -45,7 +45,8 @@ public class Tile : MonoBehaviour
 			{
 				TowerData towerData = towerParent.GetChild(0).GetComponent<Tower>().towerData;
 				TowerSelected?.Invoke(towerData, this);
-				CoreGameUI.Instance.OnTowerSelected(towerData);
+				CoreGameUI.Instance.OnTowerTypeSelected(towerData);
+				CoreGameUI.Instance.UpdateDropDownTargetingBehaviourValue(towerParent.GetChild(0).gameObject);
 			}
 		}
 	}

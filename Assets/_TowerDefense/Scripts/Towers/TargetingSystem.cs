@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TowerDefense.Enemies;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _TowerDefense.Towers
 {
@@ -15,12 +16,15 @@ namespace _TowerDefense.Towers
         
         private Tower _tower;
         private TowerData _towerData;
-        
-        // private float _maxAttackRange;
-        
-        private bool _should_calculate_closest_enemy = true;
-        private bool _should_calculate_highest_health_enemy;
-        private bool _should_calculate_lowest_health_enemy;
+
+        public enum TargetingType
+        {
+            CLOSEST,
+            HIGHESTHEALTH,
+            LOWESTHEALTH,
+        }
+
+        public TargetingType currentTargetingType = TargetingType.CLOSEST;
 
         public event Action<GameObject> CurrentTargetSelected;
         
@@ -29,7 +33,6 @@ namespace _TowerDefense.Towers
         {
             _tower = GetComponent<Tower>();
             _towerData = _tower.towerData;
-            // _maxAttackRange = _towerData.range;
         }
 
         
@@ -65,15 +68,15 @@ namespace _TowerDefense.Towers
                 return;
             }
             
-            if (_should_calculate_closest_enemy)
+            if (currentTargetingType == TargetingType.CLOSEST)
             {
                _currentTarget = CalculateClosestTarget();
             }
-            else if (_should_calculate_highest_health_enemy)
+            else if (currentTargetingType == TargetingType.HIGHESTHEALTH)
             { 
                 _currentTarget = CalculateHighestHealthTarget();
             }
-            else if (_should_calculate_lowest_health_enemy)
+            else if (currentTargetingType == TargetingType.LOWESTHEALTH)
             {
                 _currentTarget = CalculateLowestHealthTarget();
             }
@@ -146,5 +149,3 @@ namespace _TowerDefense.Towers
         }
     }
 }
-
-

@@ -5,7 +5,7 @@ using TowerDefense.Enemies;
 using TowerDefense.Enemies.Data;
 using TowerDefense.Managers;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace TowerDefense.Tower
 {
@@ -24,6 +24,7 @@ namespace TowerDefense.Tower
         [SerializeField] private GameObject _waveSpawnsUI;
         [SerializeField] private GameObject _waveStatsUI;
         [SerializeField] private TextMeshProUGUI _waveTitle;
+        [SerializeField] private TMP_Dropdown _targetingDropDown;
 
         [SerializeField] private GameObject _waveSpawnPrefab;
         
@@ -34,12 +35,15 @@ namespace TowerDefense.Tower
         private void Awake()
         {
             Instance = this;
+            _targetingDropDown.onValueChanged.AddListener(delegate {
+                OnDropdownValueChanged(_targetingDropDown);
+            });
         }
 
         
         private void OnEnable()
         {
-            _towerManager.TowerSelected += OnTowerSelected;
+            _towerManager.TowerTypeSelected += OnTowerTypeSelected;
             _towerManager.TowerPlacementFailed += SetWaveSpawnsCurrentView;
             _towerManager.TowerPlacementSucceeded += SetWaveSpawnsCurrentView;
             _enemyWaveSpawner.OnNextWaveSpawned += SetWaveSpawnsData;
@@ -49,7 +53,7 @@ namespace TowerDefense.Tower
 
         private void OnDisable()
         {
-            _towerManager.TowerSelected -= OnTowerSelected;
+            _towerManager.TowerTypeSelected -= OnTowerTypeSelected;
             _towerManager.TowerPlacementFailed -= SetWaveSpawnsCurrentView;
             _towerManager.TowerPlacementSucceeded -= SetWaveSpawnsCurrentView;
             _enemyWaveSpawner.OnNextWaveSpawned -= SetWaveSpawnsData;
@@ -90,7 +94,7 @@ namespace TowerDefense.Tower
         }
 
         
-        public void OnTowerSelected(TowerData towerData)
+        public void OnTowerTypeSelected(TowerData towerData)
         {
             SetTowerStatsToCurrentView();
             _towerStats.SetTowerStatsUIData(towerData);
@@ -138,6 +142,18 @@ namespace TowerDefense.Tower
         private void SetWaveTitleToNextWave()
         {
             _waveTitle.text = NextWaveText;
+        }
+
+
+        private void OnDropdownValueChanged(TMP_Dropdown dropdown)
+        {
+            int selectedOptionIndex = dropdown.value;
+            _towerManager.UpdateTowerTargetingBehaviour(selectedOptionIndex);
+        }
+
+        public void UpdateDropDownTargetingBehaviourValue(GameObject currentlySelectedTower)
+        {
+            _targetingDropDown.value = (int)currentlySelectedTower.GetComponent<TargetingSystem>().currentTargetingType;
         }
     }
 }
