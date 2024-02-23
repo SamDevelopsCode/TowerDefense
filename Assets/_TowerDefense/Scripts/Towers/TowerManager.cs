@@ -152,6 +152,8 @@ namespace _TowerDefense.Towers
 			{
 				Debug.Log("Can't afford tower upgrade.");
 			}
+			
+			_currentlySelectedTower = upgradedTower.gameObject;
 		}
 
 

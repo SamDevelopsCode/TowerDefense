@@ -151,6 +151,7 @@ namespace TowerDefense.Tower
             _towerManager.UpdateTowerTargetingBehaviour(selectedOptionIndex);
         }
 
+        
         public void UpdateDropDownTargetingBehaviourValue(GameObject currentlySelectedTower)
         {
             _targetingDropDown.value = (int)currentlySelectedTower.GetComponent<TargetingSystem>().currentTargetingType;
