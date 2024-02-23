@@ -15,7 +15,6 @@ namespace _TowerDefense.Towers
 		
 		[SerializeField] private List<GameObject> _towerBaseTypePrefabs = new();
 		[SerializeField] private List<TowerCollection> _towerCollections;
-		[SerializeField] private TMP_Dropdown _targetingDropDown;
 
 		private GameObject _currentlySelectedTower;
 		private Tower _selectedTowerType;
