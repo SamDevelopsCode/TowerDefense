@@ -139,6 +139,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 9493269d3cd4b77458c57bc27c0d4397,
         type: 2}
+    - target: {fileID: 5564936145135578991, guid: cfac2ba935051684e84d09eaccb5d799,
+        type: 3}
+      propertyPath: towerStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 9493269d3cd4b77458c57bc27c0d4397,
+        type: 2}
     - target: {fileID: 5643754497345568921, guid: cfac2ba935051684e84d09eaccb5d799,
         type: 3}
       propertyPath: _towerPivot

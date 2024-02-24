@@ -19,11 +19,11 @@ namespace _TowerDefense.Towers
 		private GameObject _currentlySelectedTower;
 		private GameObject _newlySpawnedTower;
 		private Tower _selectedTowerType;
-		private TowerData _currentlySelectedTowerData;
+		private TowerStats _currentlySelectedTowerStats;
 		private Tile _currentlySelectedTowerParentTile;
 		private bool _canPlaceTowers;
 
-		public event Action<TowerData> TowerTypeSelected;
+		public event Action<TowerStats> TowerTypeSelected;
 		public event Action TowerPlacementFailed;
 		public event Action TowerPlacementSucceeded;
 
@@ -73,24 +73,24 @@ namespace _TowerDefense.Towers
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
 				_selectedTowerType = _towerBaseTypePrefabs[0].GetComponent<Tower>();
-				TowerTypeSelected?.Invoke(_selectedTowerType.towerData);
+				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
 			}
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
 			{
 				_selectedTowerType = _towerBaseTypePrefabs[1].GetComponent<Tower>();
-				TowerTypeSelected?.Invoke(_selectedTowerType.towerData);
+				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
 			}	
 			else if (Input.GetKeyDown(KeyCode.Alpha3))
 			{
 				_selectedTowerType = _towerBaseTypePrefabs[2].GetComponent<Tower>();
-				TowerTypeSelected?.Invoke(_selectedTowerType.towerData);
+				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
 			}
 		}
 
 		
-		private void OnTowerSelected(TowerData towerData, GameObject currentlySelectedTower)
+		private void OnTowerSelected(TowerStats towerStats, GameObject currentlySelectedTower)
 		{
-			_currentlySelectedTowerData = towerData;
+			_currentlySelectedTowerStats = towerStats;
 			_currentlySelectedTower = currentlySelectedTower;
 		}
 
@@ -108,7 +108,7 @@ namespace _TowerDefense.Towers
 				return;
 			}
 			
-			int towerCost = _selectedTowerType.towerData.cost;
+			int towerCost = _selectedTowerType.towerStats.cost;
 			
 			if (Bank.Instance.CanAffordTower(towerCost))
 			{
@@ -129,8 +129,8 @@ namespace _TowerDefense.Towers
 		
 		public void UpgradeTower()
 		{
-			int currentTowerTypeIndex = ((int)_currentlySelectedTowerData.towerType);
-			int currentTowerIndex = _currentlySelectedTower.GetComponent<Tower>().towerData.towerTier;
+			int currentTowerTypeIndex = ((int)_currentlySelectedTowerStats.towerType);
+			int currentTowerIndex = _currentlySelectedTower.GetComponent<Tower>().towerStats.towerTier;
 			
 			if (!(currentTowerIndex <= _towerCollections[currentTowerTypeIndex].towers.Count - 1))
 			{
@@ -141,7 +141,7 @@ namespace _TowerDefense.Towers
 			GameObject upgradedTowerPrefab =
 				_towerCollections[currentTowerTypeIndex].towers[currentTowerIndex];
 			
-			if (Bank.Instance.CanAffordTower(upgradedTowerPrefab.GetComponent<Tower>().towerData.cost))
+			if (Bank.Instance.CanAffordTower(upgradedTowerPrefab.GetComponent<Tower>().towerStats.cost))
 			{
 				// store the current tower's targeting behaviour to pass on to the newly spawned tower
 				int _currentTowerTargetingType =
@@ -154,14 +154,14 @@ namespace _TowerDefense.Towers
 				_newlySpawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
 				
 				// retrieve the upgraded towers stats and fire off the event to send it to the UI to display
-				_currentlySelectedTowerData = upgradedTowerPrefab.GetComponent<Tower>().towerData;
-				TowerTypeSelected?.Invoke(_currentlySelectedTowerData);
+				_currentlySelectedTowerStats = upgradedTowerPrefab.GetComponent<Tower>().towerStats;
+				TowerTypeSelected?.Invoke(_currentlySelectedTowerStats);
 				
 				// set the current tower to the newly spawned tower
 				_currentlySelectedTower = _newlySpawnedTower;
 				
 				// updating the targeting behaviour of the currently selected tower
-				// and updating the dropdown's value to reflect the change
+				// and updating the UI dropdown's value to reflect the same value
 				UpdateTowerTargetingBehaviour(_currentTowerTargetingType);
 				CoreGameUI.Instance.UpdateTargetingDropDownValue(_currentlySelectedTower);
 			}

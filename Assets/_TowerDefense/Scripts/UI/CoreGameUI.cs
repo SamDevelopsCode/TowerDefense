@@ -92,10 +92,10 @@ namespace TowerDefense.Tower
         }
 
         
-        public void OnTowerTypeSelected(TowerData towerData)
+        public void OnTowerTypeSelected(TowerStats towerStats)
         {
             SetTowerStatsToCurrentView();
-            _towerStats.SetTowerStatsUIData(towerData);
+            _towerStats.SetTowerStatsUIData(towerStats);
         }
 
 

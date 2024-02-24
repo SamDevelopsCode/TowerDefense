@@ -5,15 +5,15 @@ using UnityEngine;
 public class RangeVisualizer : MonoBehaviour
 {
     private Tower _tower;
-    private TowerData _towerData;
+    private TowerStats _towerStats;
     [SerializeField] private MeshRenderer _rangeVisualizer;
 
 
     private void Awake()
     {
         _tower = GetComponent<Tower>();
-        _towerData = _tower.towerData;
-        _rangeVisualizer.transform.localScale = new Vector3(_towerData.range * 2, .5f, _towerData.range * 2);
+        _towerStats = _tower.towerStats;
+        _rangeVisualizer.transform.localScale = new Vector3(_towerStats.range * 2, .5f, _towerStats.range * 2);
     }
     
     // private void OnDrawGizmos()

@@ -2,20 +2,21 @@ using System;
 using TowerDefense.Managers;
 using TowerDefense.Tower;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _TowerDefense.Towers
 {
     public class Tower : MonoBehaviour
     {
-        public TowerData towerData;
+        public TowerStats towerStats;
         [SerializeField] private SphereCollider _sphereCollider;
         
-        public event Action<TowerData, GameObject> TowerSelected;
+        public event Action<TowerStats, GameObject> TowerSelected;
 
         
         private void Awake()
         {
-            _sphereCollider.radius = towerData.range;
+            _sphereCollider.radius = towerStats.range;
         }
 
         
@@ -35,9 +36,9 @@ namespace _TowerDefense.Towers
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                TowerData towerData = GetComponent<Tower>().towerData;
-                TowerSelected?.Invoke(towerData, gameObject);
-                CoreGameUI.Instance.OnTowerTypeSelected(towerData);
+                TowerStats towerStats = GetComponent<Tower>().towerStats;
+                TowerSelected?.Invoke(towerStats, gameObject);
+                CoreGameUI.Instance.OnTowerTypeSelected(towerStats);
                 CoreGameUI.Instance.UpdateTargetingDropDownValue(gameObject);
             }
         }

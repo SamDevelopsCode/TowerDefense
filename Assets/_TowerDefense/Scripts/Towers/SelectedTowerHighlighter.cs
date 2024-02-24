@@ -55,19 +55,19 @@ public class SelectedTowerHighlighter : MonoBehaviour
     }
 
     
-    private void OnTowerTypeSelected(TowerData towerData)
+    private void OnTowerTypeSelected(TowerStats towerStats)
     {
         DisableChildrenSelectors();
         
-        switch (towerData.towerType)
+        switch (towerStats.towerType)
         {
-            case TowerData.TowerType.Ballista:
+            case TowerStats.TowerType.Ballista:
                 _selectors[0].SetActive(true);
                 break;
-            case TowerData.TowerType.Fire:
+            case TowerStats.TowerType.Fire:
                 _selectors[1].SetActive(true);
                 break;
-            case TowerData.TowerType.Lightning:
+            case TowerStats.TowerType.Lightning:
                 _selectors[2].SetActive(true);
                 break;
             default:
