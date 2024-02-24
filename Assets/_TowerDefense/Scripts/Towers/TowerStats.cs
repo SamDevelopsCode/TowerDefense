@@ -3,7 +3,7 @@ using UnityEngine;
 namespace _TowerDefense.Towers
 {
 	[CreateAssetMenu(fileName = "Tower", menuName = "Tower / Create New Tower Data") ]
-	public class TowerData : ScriptableObject
+	public class TowerStats : ScriptableObject
 	{
 		public Sprite icon;
 		public string towerName;

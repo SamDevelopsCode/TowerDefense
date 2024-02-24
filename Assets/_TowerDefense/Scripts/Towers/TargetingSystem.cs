@@ -15,7 +15,7 @@ namespace _TowerDefense.Towers
         private GameObject _currentTarget;
         
         private Tower _tower;
-        private TowerData _towerData;
+        private TowerStats _towerStats;
 
         public enum TargetingType
         {
@@ -32,7 +32,7 @@ namespace _TowerDefense.Towers
         private void Awake()
         {
             _tower = GetComponent<Tower>();
-            _towerData = _tower.towerData;
+            _towerStats = _tower.towerStats;
         }
 
         
@@ -63,7 +63,6 @@ namespace _TowerDefense.Towers
         {
             if (_possibleTargets.Count == 0)
             {
-                Debug.Log("List of enemies is empty.");
                 _currentTarget = null;
                 return;
             }

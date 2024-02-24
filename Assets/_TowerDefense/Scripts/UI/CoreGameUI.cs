@@ -35,9 +35,7 @@ namespace TowerDefense.Tower
         private void Awake()
         {
             Instance = this;
-            _targetingDropDown.onValueChanged.AddListener(delegate {
-                OnDropdownValueChanged(_targetingDropDown);
-            });
+            _targetingDropDown.onValueChanged.AddListener(OnDropdownValueChanged);
         }
 
         
@@ -94,10 +92,10 @@ namespace TowerDefense.Tower
         }
 
         
-        public void OnTowerTypeSelected(TowerData towerData)
+        public void OnTowerTypeSelected(TowerStats towerStats)
         {
             SetTowerStatsToCurrentView();
-            _towerStats.SetTowerStatsUIData(towerData);
+            _towerStats.SetTowerStatsUIData(towerStats);
         }
 
 
@@ -145,13 +143,15 @@ namespace TowerDefense.Tower
         }
 
 
-        private void OnDropdownValueChanged(TMP_Dropdown dropdown)
+        private void OnDropdownValueChanged(int index)
         {
-            int selectedOptionIndex = dropdown.value;
+            Debug.Log("Changed drop down value");
+            int selectedOptionIndex = index;
             _towerManager.UpdateTowerTargetingBehaviour(selectedOptionIndex);
         }
 
-        public void UpdateDropDownTargetingBehaviourValue(GameObject currentlySelectedTower)
+        
+        public void UpdateTargetingDropDownValue(GameObject currentlySelectedTower)
         {
             _targetingDropDown.value = (int)currentlySelectedTower.GetComponent<TargetingSystem>().currentTargetingType;
         }

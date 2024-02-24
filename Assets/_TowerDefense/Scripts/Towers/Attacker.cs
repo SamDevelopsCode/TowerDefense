@@ -9,7 +9,7 @@ public class Attacker : MonoBehaviour
 {
     private TargetingSystem _targetingSystem;
     private Tower _tower;
-    private TowerData _towerData;
+    private TowerStats _towerStats;
     
     private float _shootTimer;
 
@@ -19,7 +19,7 @@ public class Attacker : MonoBehaviour
     private void Awake()
     {
         _tower = GetComponent<Tower>();
-        _towerData = _tower.towerData;
+        _towerStats = _tower.towerStats;
         _targetingSystem = GetComponent<TargetingSystem>();
         _targetingSystem.CurrentTargetSelected += UpdateCurrentTarget;
     }
@@ -56,7 +56,7 @@ public class Attacker : MonoBehaviour
     {
         if (_shootTimer <= 0)
         {
-            _shootTimer = _towerData.shotsPerSecond;
+            _shootTimer = _towerStats.shotsPerSecond;
            return true;
         }
         
@@ -67,6 +67,6 @@ public class Attacker : MonoBehaviour
     private void Shoot()
     {
         var healthComponent = _target.GetComponent<Health>();
-        healthComponent.TakeDamage(_towerData.damagePerShot);
+        healthComponent.TakeDamage(_towerStats.damagePerShot);
     }   
 }

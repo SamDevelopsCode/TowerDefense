@@ -18,14 +18,14 @@ public class TowerStatsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _towerShotPerSecondLabel;
     
     
-    public void SetTowerStatsUIData(TowerData towerData)
+    public void SetTowerStatsUIData(TowerStats towerStats)
     {
         _towerIconImage.color = _iconBackgroundColor;
-        _towerIconImage.sprite = towerData.icon;
-        _towerNameLabel.text = $"{towerData.towerName}";
-        _towerCostLabel.text = $"{towerData.cost}";
-        _towerRangeLabel.text = $"{towerData.range}";
-        _towerDamageLabel.text = $"{towerData.damagePerShot}";
-        _towerShotPerSecondLabel.text = $"{towerData.shotsPerSecond}";
+        _towerIconImage.sprite = towerStats.icon;
+        _towerNameLabel.text = $"{towerStats.towerName}";
+        _towerCostLabel.text = $"{towerStats.cost}";
+        _towerRangeLabel.text = $"{towerStats.range}";
+        _towerDamageLabel.text = $"{towerStats.damagePerShot}";
+        _towerShotPerSecondLabel.text = $"{towerStats.shotsPerSecond}";
     }
 }

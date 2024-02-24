@@ -16,7 +16,6 @@ public class Tile : MonoBehaviour
 
 	public event Action<string> OnTileMouseOver;
 	public event Action<Tile> TowerPlaceAttempted;
-	public event Action<TowerData, Tile> TowerSelected;
 	
 	private bool _mouseHasEnteredTile;
 
@@ -39,14 +38,7 @@ public class Tile : MonoBehaviour
 		{
 			if (_canPlaceTower)
 			{
-				TowerPlaceAttempted?.Invoke(this); 
-			}
-			else
-			{
-				TowerData towerData = towerParent.GetChild(0).GetComponent<Tower>().towerData;
-				TowerSelected?.Invoke(towerData, this);
-				CoreGameUI.Instance.OnTowerTypeSelected(towerData);
-				CoreGameUI.Instance.UpdateDropDownTargetingBehaviourValue(towerParent.GetChild(0).gameObject);
+				TowerPlaceAttempted?.Invoke(this);
 			}
 		}
 	}
