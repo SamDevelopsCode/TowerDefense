@@ -14,6 +14,9 @@ namespace _TowerDefense.Towers
 		[SerializeField] private List<GameObject> _towerBaseTypePrefabs = new();
 		[SerializeField] private List<TowerCollection> _towerCollections;
 
+		[SerializeField] private List<GameObject> _towerVisualizations = new();
+		private GameObject _selectedTowerVisualization;
+
 		private GameObject _currentlySelectedTower;
 		private GameObject _newlySpawnedTower;
 		private Tower _selectedTowerType;
@@ -44,10 +47,21 @@ namespace _TowerDefense.Towers
 			{
 				Tile tile = _validTowerTilesParent.GetChild(i).GetComponent<Tile>();
 				tile.TowerPlaceAttempted += OnTowerPlaceAttempted;
+				tile.TileMouseHovered += OnTileMouseHovered;
 			}
 		}
 
 		
+		private void OnTileMouseHovered(Transform tileCenter)
+		{
+			Debug.Log($"Hovered over tile at {tileCenter.position}");
+			if (_selectedTowerVisualization != null)
+			{
+				_selectedTowerVisualization.transform.position = tileCenter.position;
+			}
+		}
+
+
 		private void GameManagerGameStateChanged(GameState state)
 		{
 			_canPlaceTowers = state == GameState.TowerPlacement;
@@ -70,17 +84,35 @@ namespace _TowerDefense.Towers
 			
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
+				if (_selectedTowerVisualization != null)
+				{
+					HideTowerSelectionVisualization();	
+				}
+				
 				_selectedTowerType = _towerBaseTypePrefabs[0].GetComponent<Tower>();
+				_selectedTowerVisualization = _towerVisualizations[0];
 				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
 			}
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
 			{
+				if (_selectedTowerVisualization != null)
+				{
+					HideTowerSelectionVisualization();	
+				}
+				
 				_selectedTowerType = _towerBaseTypePrefabs[1].GetComponent<Tower>();
+				_selectedTowerVisualization = _towerVisualizations[1];
 				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
 			}	
 			else if (Input.GetKeyDown(KeyCode.Alpha3))
 			{
+				if (_selectedTowerVisualization != null)
+				{
+					HideTowerSelectionVisualization();	
+				}
+				
 				_selectedTowerType = _towerBaseTypePrefabs[2].GetComponent<Tower>();
+				_selectedTowerVisualization = _towerVisualizations[2];
 				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
 			}
 		}
@@ -117,11 +149,19 @@ namespace _TowerDefense.Towers
 			if (Bank.Instance.CanAffordTower(towerCost))
 			{
 				tile.CanPlaceTower = false;
+				
 				GameObject spawnedTower = _towerSpawner.SpawnTower(_selectedTowerType.gameObject, tile.towerParent);
+				
 				spawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
+				
 				Bank.Instance.DetractFromBalance(towerCost);
+				
 				TowerPlacementSucceeded?.Invoke();
+				
 				_selectedTowerType = null;
+				
+				HideTowerSelectionVisualization();
+				_selectedTowerVisualization = null;
 			}
 			else
 			{
@@ -131,6 +171,14 @@ namespace _TowerDefense.Towers
 		}
 
 		
+		public void HideTowerSelectionVisualization()
+		{
+			if (_selectedTowerVisualization == null) return; 
+			
+			_selectedTowerVisualization.transform.localPosition = new Vector3(0,0,0);
+		}
+
+
 		public void UpgradeTower()
 		{
 			int currentTowerTypeIndex = ((int)_currentlySelectedTowerStats.towerType);
