@@ -63,7 +63,6 @@ namespace _TowerDefense.Towers
         {
             if (_possibleTargets.Count == 0)
             {
-                Debug.Log("List of enemies is empty.");
                 _currentTarget = null;
                 return;
             }

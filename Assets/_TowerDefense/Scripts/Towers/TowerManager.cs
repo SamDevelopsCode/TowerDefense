@@ -17,6 +17,7 @@ namespace _TowerDefense.Towers
 		[SerializeField] private List<TowerCollection> _towerCollections;
 
 		private GameObject _currentlySelectedTower;
+		private GameObject _newlySpawnedTower;
 		private Tower _selectedTowerType;
 		private TowerData _currentlySelectedTowerData;
 		private Tile _currentlySelectedTowerParentTile;
@@ -45,7 +46,6 @@ namespace _TowerDefense.Towers
 			{
 				Tile tile = _validTowerTilesParent.GetChild(i).GetComponent<Tile>();
 				tile.TowerPlaceAttempted += OnTowerPlaceAttempted;
-				tile.TowerSelected += OnTowerSelected;
 			}
 		}
 
@@ -59,6 +59,7 @@ namespace _TowerDefense.Towers
 		private void Update()
 		{
 			SelectTowerType();
+			Debug.Log(_currentlySelectedTower);
 		}
 
 		
@@ -87,11 +88,10 @@ namespace _TowerDefense.Towers
 		}
 
 		
-		private void OnTowerSelected(TowerData towerData, Tile tile)
+		private void OnTowerSelected(TowerData towerData, GameObject currentlySelectedTower)
 		{
 			_currentlySelectedTowerData = towerData;
-			_currentlySelectedTowerParentTile = tile;
-			_currentlySelectedTower = _currentlySelectedTowerParentTile.towerParent.GetChild(0).gameObject;
+			_currentlySelectedTower = currentlySelectedTower;
 		}
 
 		
@@ -113,7 +113,8 @@ namespace _TowerDefense.Towers
 			if (Bank.Instance.CanAffordTower(towerCost))
 			{
 				tile.CanPlaceTower = false;
-				_towerSpawner.SpawnTower(_selectedTowerType, tile.towerParent);
+				GameObject spawnedTower = _towerSpawner.SpawnTower(_selectedTowerType.gameObject, tile.towerParent);
+				spawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
 				Bank.Instance.DetractFromBalance(towerCost);
 				TowerPlacementSucceeded?.Invoke();
 				_selectedTowerType = null;
@@ -137,22 +138,26 @@ namespace _TowerDefense.Towers
 				return;
 			}
 			
-			Tower upgradedTower =
-				_towerCollections[currentTowerTypeIndex].towers[currentTowerIndex].GetComponent<Tower>();
+			GameObject upgradedTowerPrefab =
+				_towerCollections[currentTowerTypeIndex].towers[currentTowerIndex];
 			
-			if (Bank.Instance.CanAffordTower(upgradedTower.towerData.cost))
+			if (Bank.Instance.CanAffordTower(upgradedTowerPrefab.GetComponent<Tower>().towerData.cost))
 			{
-				Destroy(_currentlySelectedTowerParentTile.towerParent.GetChild(0).gameObject);
-				_towerSpawner.SpawnTower(upgradedTower, _currentlySelectedTowerParentTile.towerParent);
-				_currentlySelectedTowerData = upgradedTower.towerData;
+				int _currentTowerTargetingType =
+					(int)_currentlySelectedTower.GetComponent<TargetingSystem>().currentTargetingType;
+				Destroy(_currentlySelectedTower);
+				_newlySpawnedTower = _towerSpawner.SpawnTower(upgradedTowerPrefab, _currentlySelectedTower.transform.parent);
+				_newlySpawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
+				_currentlySelectedTowerData = upgradedTowerPrefab.GetComponent<Tower>().towerData;
 				TowerTypeSelected?.Invoke(_currentlySelectedTowerData);
+				_currentlySelectedTower = _newlySpawnedTower;
+				UpdateTowerTargetingBehaviour(_currentTowerTargetingType);
+				CoreGameUI.Instance.UpdateTargetingDropDownValue(_currentlySelectedTower);
 			}
 			else
 			{
 				Debug.Log("Can't afford tower upgrade.");
 			}
-			
-			_currentlySelectedTower = upgradedTower.gameObject;
 		}
 
 
