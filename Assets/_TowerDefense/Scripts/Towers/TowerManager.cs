@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
 using TowerDefense.Managers;
 using TowerDefense.Tower;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace _TowerDefense.Towers
 {
@@ -149,27 +147,21 @@ namespace _TowerDefense.Towers
 			
 			if (Bank.Instance.CanAffordTower(upgradedTowerPrefab.GetComponent<Tower>().towerStats.cost))
 			{
-				// store the current tower's targeting behaviour to pass on to the newly spawned tower
 				int _currentTowerTargetingType =
 					(int)_currentlySelectedTower.GetComponent<TargetingSystem>().currentTargetingType;
 				
 				Destroy(_currentlySelectedTower);
 				
-				// spawn new upgraded tower and connect the towerSelected Event
 				_newlySpawnedTower = _towerSpawner.SpawnTower(upgradedTowerPrefab, _currentlySelectedTower.transform.parent);
 				_newlySpawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
 				
 				_newlySpawnedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();
 				
-				// retrieve the upgraded towers stats and fire off the event to send it to the UI to display
 				_currentlySelectedTowerStats = upgradedTowerPrefab.GetComponent<Tower>().towerStats;
 				TowerTypeSelected?.Invoke(_currentlySelectedTowerStats);
 				
-				// set the current tower to the newly spawned tower
 				_currentlySelectedTower = _newlySpawnedTower;
 				
-				// updating the targeting behaviour of the currently selected tower
-				// and updating the UI dropdown's value to reflect the same value
 				UpdateTowerTargetingBehaviour(_currentTowerTargetingType);
 				CoreGameUI.Instance.UpdateTargetingDropDownValue(_currentlySelectedTower);
 			}
