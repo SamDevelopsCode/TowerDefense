@@ -16,10 +16,24 @@ public class RangeVisualizer : MonoBehaviour
         _rangeVisualizer.transform.localScale = new Vector3(_towerStats.range * 2, .5f, _towerStats.range * 2);
     }
     
-    // private void OnDrawGizmos()
-    // {
-    //     // Draw a yellow sphere at the transform's position
-    //     Gizmos.color = Color.yellow;
-    //     Gizmos.DrawWireSphere(transform.position, _towerData.range);
-    // }
+    private void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, _towerStats.range);
+    }
+
+    
+    public void EnableRangeVisualization()
+    {
+        _rangeVisualizer.enabled = true;
+    }
+    
+    
+    public void DisableRangeVisualization()
+    {
+        _rangeVisualizer.enabled = false;
+    }
+    
+    
 }

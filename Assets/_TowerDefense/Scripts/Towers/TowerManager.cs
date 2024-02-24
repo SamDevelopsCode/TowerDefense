@@ -90,8 +90,14 @@ namespace _TowerDefense.Towers
 		
 		private void OnTowerSelected(TowerStats towerStats, GameObject currentlySelectedTower)
 		{
+			if (_currentlySelectedTower != null)
+			{
+				_currentlySelectedTower.GetComponent<RangeVisualizer>().DisableRangeVisualization();
+			}
+			
 			_currentlySelectedTowerStats = towerStats;
 			_currentlySelectedTower = currentlySelectedTower;
+			_currentlySelectedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();
 		}
 
 		
@@ -152,6 +158,8 @@ namespace _TowerDefense.Towers
 				// spawn new upgraded tower and connect the towerSelected Event
 				_newlySpawnedTower = _towerSpawner.SpawnTower(upgradedTowerPrefab, _currentlySelectedTower.transform.parent);
 				_newlySpawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
+				
+				_newlySpawnedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();
 				
 				// retrieve the upgraded towers stats and fire off the event to send it to the UI to display
 				_currentlySelectedTowerStats = upgradedTowerPrefab.GetComponent<Tower>().towerStats;
