@@ -1400,16 +1400,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6975496355512088513, guid: d9c30d72b3e58c446aa77a4d93406435,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975496355512088513, guid: d9c30d72b3e58c446aa77a4d93406435,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975496355512088513, guid: d9c30d72b3e58c446aa77a4d93406435,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 967969993}
@@ -1418,26 +1408,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 237957972}
-    - target: {fileID: 6975496355512088513, guid: d9c30d72b3e58c446aa77a4d93406435,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975496355512088513, guid: d9c30d72b3e58c446aa77a4d93406435,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: HideTowerSelectionVisualization
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975496355512088513, guid: d9c30d72b3e58c446aa77a4d93406435,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: _TowerDefense.Towers.TowerManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975496355512088513, guid: d9c30d72b3e58c446aa77a4d93406435,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7400861910288330843, guid: d9c30d72b3e58c446aa77a4d93406435,
         type: 3}
       propertyPath: m_Name

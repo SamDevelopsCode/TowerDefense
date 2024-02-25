@@ -178,7 +178,7 @@ namespace _TowerDefense.Towers
 			if (Bank.Instance.CanAffordTower(upgradedTowerPrefab.GetComponent<Tower>().towerStats.cost))
 			{
 				int _currentTowerTargetingType =
-					(int)_currentlySelectedTower.GetComponent<TargetingSystem>().currentTargetingType;
+					(int)_currentlySelectedTower.GetComponent<Tower>().targetingSystem.currentTargetingType;
 				
 				Destroy(_currentlySelectedTower);
 				
@@ -287,7 +287,7 @@ namespace _TowerDefense.Towers
 		
 		public void UpdateTowerTargetingBehaviour(int selectedOptionIndex)
 		{
-			TargetingSystem towerTargetingSystem = _currentlySelectedTower.GetComponent<TargetingSystem>();
+			TargetingSystem towerTargetingSystem = _currentlySelectedTower.GetComponent<Tower>().targetingSystem;
 			towerTargetingSystem.currentTargetingType = (TargetingSystem.TargetingType)selectedOptionIndex;
 		}
 	}
