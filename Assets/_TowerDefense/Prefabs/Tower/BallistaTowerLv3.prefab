@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4554632058013597442, guid: cfac2ba935051684e84d09eaccb5d799,
+        type: 3}
+      propertyPath: _towerPivot
+      value: 
+      objectReference: {fileID: 1262172370949998002}
     - target: {fileID: 5132297016179339958, guid: cfac2ba935051684e84d09eaccb5d799,
         type: 3}
       propertyPath: m_Name

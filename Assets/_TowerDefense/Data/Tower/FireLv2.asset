@@ -16,7 +16,7 @@ MonoBehaviour:
   towerName: Fire [Tier 2]
   cost: 100
   range: 13
-  damagePerShot: 50
+  damagePerShot: 2
   shotsPerSecond: 1.5
   towerType: 1
   towerTier: 2

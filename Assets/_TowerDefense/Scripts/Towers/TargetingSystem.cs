@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TowerDefense.Enemies;
+using TowerDefense.Managers;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,13 +10,13 @@ namespace _TowerDefense.Towers
 {
     public class TargetingSystem : MonoBehaviour
     {
+        [SerializeField] private Tower _tower;
+        private TowerStats _towerStats;
         [SerializeField] private Transform _towerPivot;
-
+        [SerializeField] private SphereCollider _sphereCollider;
+        
         [SerializeField] private List<GameObject> _possibleTargets;
         private GameObject _currentTarget;
-        
-        private Tower _tower;
-        private TowerStats _towerStats;
 
         public enum TargetingType
         {
@@ -31,10 +32,22 @@ namespace _TowerDefense.Towers
         
         private void Awake()
         {
-            _tower = GetComponent<Tower>();
             _towerStats = _tower.towerStats;
+            _sphereCollider.radius = _towerStats.range;
+        }
+        
+        
+        private void OnEnable()
+        {
+            GameManager.GameStateChanged += OnGameStateChanged;
         }
 
+        
+        private void OnDisable()
+        {
+            GameManager.GameStateChanged -= OnGameStateChanged;
+        }
+        
         
         private void OnTriggerEnter(Collider collision)
         {
@@ -141,6 +154,21 @@ namespace _TowerDefense.Towers
             return lowestHealthTarget;
         }
 
+        
+        // Toggles the towers target detection colliders so they won't interfere with the placing of
+        // other towers nearby with mouse detection
+        private void OnGameStateChanged(GameState gameState)
+        {
+            if (gameState == GameState.TowerPlacement) SetSphereColliderActive(false);
+            else if (gameState == GameState.EnemyWave) SetSphereColliderActive(true);
+        }
+        
+        
+        private void SetSphereColliderActive(bool shouldEnable)
+        {
+            _sphereCollider.enabled = shouldEnable;
+        }
+        
         
         private void AimWeapon()
         {

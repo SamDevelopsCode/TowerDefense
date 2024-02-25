@@ -1,11 +1,9 @@
-using System;
 using _TowerDefense.Towers;
 using TMPro;
 using TowerDefense.Enemies;
 using TowerDefense.Enemies.Data;
 using TowerDefense.Managers;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace TowerDefense.Tower
 {
@@ -158,7 +156,7 @@ namespace TowerDefense.Tower
         
         public void UpdateTargetingDropDownValue(GameObject currentlySelectedTower)
         {
-            _targetingDropDown.value = (int)currentlySelectedTower.GetComponent<TargetingSystem>().currentTargetingType;
+            _targetingDropDown.value = (int)currentlySelectedTower.GetComponent<_TowerDefense.Towers.Tower>().targetingSystem.currentTargetingType;
         }
     }
 }

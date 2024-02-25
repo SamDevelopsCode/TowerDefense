@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class Attacker : MonoBehaviour
 {
-    private TargetingSystem _targetingSystem;
-    private Tower _tower;
+    [SerializeField] private TargetingSystem _targetingSystem;
+    [SerializeField] private Tower _tower;
     private TowerStats _towerStats;
     
     private float _shootTimer;
@@ -18,9 +18,7 @@ public class Attacker : MonoBehaviour
     
     private void Awake()
     {
-        _tower = GetComponent<Tower>();
         _towerStats = _tower.towerStats;
-        _targetingSystem = GetComponent<TargetingSystem>();
         _targetingSystem.CurrentTargetSelected += UpdateCurrentTarget;
     }
 

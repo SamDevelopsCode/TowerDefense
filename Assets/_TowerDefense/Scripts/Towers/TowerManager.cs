@@ -163,6 +163,8 @@ namespace _TowerDefense.Towers
 		
 		public void UpgradeTower()
 		{
+			if (GameManager.Instance.State != GameState.TowerPlacement) return;
+			
 			int currentTowerTypeIndex = ((int)_currentlySelectedTowerStats.towerType);
 			int currentTowerIndex = _currentlySelectedTower.GetComponent<Tower>().towerStats.towerTier;
 			
@@ -177,8 +179,8 @@ namespace _TowerDefense.Towers
 			
 			if (Bank.Instance.CanAffordTower(upgradedTowerPrefab.GetComponent<Tower>().towerStats.cost))
 			{
-				int _currentTowerTargetingType =
-					(int)_currentlySelectedTower.GetComponent<TargetingSystem>().currentTargetingType;
+				int currentTowerTargetingType =
+					(int)_currentlySelectedTower.GetComponent<Tower>().targetingSystem.currentTargetingType;
 				
 				Destroy(_currentlySelectedTower);
 				
@@ -192,7 +194,7 @@ namespace _TowerDefense.Towers
 				
 				_currentlySelectedTower = _newlySpawnedTower;
 				
-				UpdateTowerTargetingBehaviour(_currentTowerTargetingType);
+				UpdateTowerTargetingBehaviour(currentTowerTargetingType);
 				CoreGameUI.Instance.UpdateTargetingDropDownValue(_currentlySelectedTower);
 			}
 			else
@@ -204,16 +206,16 @@ namespace _TowerDefense.Towers
 
 		private void OnTowerPlaceAttempted(Tile tile)
 		{
-			if (!_canPlaceTowers)
-			{
-				return;
-			}
-			
 			if (_selectedTowerType == null)
 			{
 				TowerTypeSelected?.Invoke(null);
 				HideCurrentlySelectedTowersRangeVisualization();
 				Debug.Log("No tower has been selected.");
+				return;
+			}
+			
+			if (!_canPlaceTowers)
+			{
 				return;
 			}
 			
@@ -287,7 +289,7 @@ namespace _TowerDefense.Towers
 		
 		public void UpdateTowerTargetingBehaviour(int selectedOptionIndex)
 		{
-			TargetingSystem towerTargetingSystem = _currentlySelectedTower.GetComponent<TargetingSystem>();
+			TargetingSystem towerTargetingSystem = _currentlySelectedTower.GetComponent<Tower>().targetingSystem;
 			towerTargetingSystem.currentTargetingType = (TargetingSystem.TargetingType)selectedOptionIndex;
 		}
 	}
