@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
 using TowerDefense.Managers;
 using TowerDefense.Tower;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace _TowerDefense.Towers
 {
@@ -15,6 +13,9 @@ namespace _TowerDefense.Towers
 		
 		[SerializeField] private List<GameObject> _towerBaseTypePrefabs = new();
 		[SerializeField] private List<TowerCollection> _towerCollections;
+
+		[SerializeField] private List<GameObject> _towerVisualizations;
+		private GameObject _selectedTowerVisualization;
 
 		private GameObject _currentlySelectedTower;
 		private GameObject _newlySpawnedTower;
@@ -46,23 +47,41 @@ namespace _TowerDefense.Towers
 			{
 				Tile tile = _validTowerTilesParent.GetChild(i).GetComponent<Tile>();
 				tile.TowerPlaceAttempted += OnTowerPlaceAttempted;
+				tile.TileMouseHovered += OnTileMouseHovered;
 			}
 		}
-
 		
-		private void GameManagerGameStateChanged(GameState state)
-		{
-			_canPlaceTowers = state == GameState.TowerPlacement;
-		}
-	
 		
 		private void Update()
 		{
 			SelectTowerType();
-			Debug.Log(_currentlySelectedTower);
+		}
+		
+		
+		private void OnTileMouseHovered(Transform tileCenter)
+		{
+			if (_selectedTowerVisualization != null)
+			{
+				_selectedTowerVisualization.transform.position = tileCenter.position;
+			}
 		}
 
-		
+
+		private void GameManagerGameStateChanged(GameState state)
+		{
+			_canPlaceTowers = state == GameState.TowerPlacement;
+
+			if (state == GameState.EnemyWave)
+			{
+				HideCurrentlySelectedTowersRangeVisualization();
+				NullifyCurrentlySelectedTower();
+				HideTowerSelectionVisualization();
+				NullifySelectedTowerVisualization();
+				NullifySelectedTowerType();
+			}
+		}
+
+
 		private void SelectTowerType()
 		{
 			if (!_canPlaceTowers)
@@ -72,64 +91,73 @@ namespace _TowerDefense.Towers
 			
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
+				if (_selectedTowerVisualization != null)
+				{
+					HideTowerSelectionVisualization();
+				}
+				
+				if (_currentlySelectedTower != null)
+				{
+					HideCurrentlySelectedTowersRangeVisualization();
+				}
+				
 				_selectedTowerType = _towerBaseTypePrefabs[0].GetComponent<Tower>();
+				_selectedTowerVisualization = _towerVisualizations[0];
 				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
 			}
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
 			{
+				if (_selectedTowerVisualization != null)
+				{
+					HideTowerSelectionVisualization();
+				}
+				
+				if (_currentlySelectedTower != null)
+				{
+					HideCurrentlySelectedTowersRangeVisualization();
+				}
+				
 				_selectedTowerType = _towerBaseTypePrefabs[1].GetComponent<Tower>();
+				_selectedTowerVisualization = _towerVisualizations[1];
 				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
 			}	
 			else if (Input.GetKeyDown(KeyCode.Alpha3))
 			{
+				if (_selectedTowerVisualization != null)
+				{
+					HideTowerSelectionVisualization();
+				}
+				
+				if (_currentlySelectedTower != null)
+				{
+					HideCurrentlySelectedTowersRangeVisualization();
+				}
+				
 				_selectedTowerType = _towerBaseTypePrefabs[2].GetComponent<Tower>();
+				_selectedTowerVisualization = _towerVisualizations[2];
 				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
 			}
 		}
 
-		
+
 		private void OnTowerSelected(TowerStats towerStats, GameObject currentlySelectedTower)
 		{
 			if (_currentlySelectedTower != null)
 			{
-				_currentlySelectedTower.GetComponent<RangeVisualizer>().DisableRangeVisualization();
+				HideCurrentlySelectedTowersRangeVisualization();
+			}
+			
+			if (_selectedTowerVisualization != null)
+			{
+				HideTowerSelectionVisualization();
+				NullifySelectedTowerVisualization();
+				NullifySelectedTowerType();
+				TowerTypeSelected?.Invoke(null);
 			}
 			
 			_currentlySelectedTowerStats = towerStats;
 			_currentlySelectedTower = currentlySelectedTower;
-			_currentlySelectedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();
-		}
-
-		
-		private void OnTowerPlaceAttempted(Tile tile)
-		{
-			if (!_canPlaceTowers)
-			{
-				return;
-			}
-			
-			if (_selectedTowerType == null)
-			{
-				Debug.Log("No tower has been selected.");
-				return;
-			}
-			
-			int towerCost = _selectedTowerType.towerStats.cost;
-			
-			if (Bank.Instance.CanAffordTower(towerCost))
-			{
-				tile.CanPlaceTower = false;
-				GameObject spawnedTower = _towerSpawner.SpawnTower(_selectedTowerType.gameObject, tile.towerParent);
-				spawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
-				Bank.Instance.DetractFromBalance(towerCost);
-				TowerPlacementSucceeded?.Invoke();
-				_selectedTowerType = null;
-			}
-			else
-			{
-				TowerPlacementFailed?.Invoke();
-				Debug.Log("Not enough funds. Tower cost: " + towerCost + ". Current money: " + Bank.Instance.CurrentBalance);
-			}
+			ShowCurrentlySelectedTowersRangeVisualization();
 		}
 
 		
@@ -149,27 +177,21 @@ namespace _TowerDefense.Towers
 			
 			if (Bank.Instance.CanAffordTower(upgradedTowerPrefab.GetComponent<Tower>().towerStats.cost))
 			{
-				// store the current tower's targeting behaviour to pass on to the newly spawned tower
 				int _currentTowerTargetingType =
 					(int)_currentlySelectedTower.GetComponent<TargetingSystem>().currentTargetingType;
 				
 				Destroy(_currentlySelectedTower);
 				
-				// spawn new upgraded tower and connect the towerSelected Event
 				_newlySpawnedTower = _towerSpawner.SpawnTower(upgradedTowerPrefab, _currentlySelectedTower.transform.parent);
 				_newlySpawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
 				
 				_newlySpawnedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();
 				
-				// retrieve the upgraded towers stats and fire off the event to send it to the UI to display
 				_currentlySelectedTowerStats = upgradedTowerPrefab.GetComponent<Tower>().towerStats;
 				TowerTypeSelected?.Invoke(_currentlySelectedTowerStats);
 				
-				// set the current tower to the newly spawned tower
 				_currentlySelectedTower = _newlySpawnedTower;
 				
-				// updating the targeting behaviour of the currently selected tower
-				// and updating the UI dropdown's value to reflect the same value
 				UpdateTowerTargetingBehaviour(_currentTowerTargetingType);
 				CoreGameUI.Instance.UpdateTargetingDropDownValue(_currentlySelectedTower);
 			}
@@ -178,8 +200,91 @@ namespace _TowerDefense.Towers
 				Debug.Log("Can't afford tower upgrade.");
 			}
 		}
+		
+
+		private void OnTowerPlaceAttempted(Tile tile)
+		{
+			if (!_canPlaceTowers)
+			{
+				return;
+			}
+			
+			if (_selectedTowerType == null)
+			{
+				TowerTypeSelected?.Invoke(null);
+				HideCurrentlySelectedTowersRangeVisualization();
+				Debug.Log("No tower has been selected.");
+				return;
+			}
+			
+			int towerCost = _selectedTowerType.towerStats.cost;
+			
+			if (Bank.Instance.CanAffordTower(towerCost))
+			{
+				tile.CanPlaceTower = false;
+				
+				GameObject spawnedTower = _towerSpawner.SpawnTower(_selectedTowerType.gameObject, tile.towerParent);
+				
+				spawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
+				
+				Bank.Instance.DetractFromBalance(towerCost);
+				
+				TowerPlacementSucceeded?.Invoke();
+				
+				NullifySelectedTowerType();
+				
+				HideTowerSelectionVisualization();
+				NullifySelectedTowerVisualization();
+			}
+			else
+			{
+				TowerPlacementFailed?.Invoke();
+				Debug.Log("Not enough funds. Tower cost: " + towerCost + ". Current money: " + Bank.Instance.CurrentBalance);
+			}
+		}
+
+		
+		private void ShowCurrentlySelectedTowersRangeVisualization()
+		{
+			_currentlySelectedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();
+		}
+	
+		
+		private void HideCurrentlySelectedTowersRangeVisualization()
+		{
+			if (_currentlySelectedTower != null)
+			{
+				_currentlySelectedTower.GetComponent<RangeVisualizer>().DisableRangeVisualization();
+			}
+		}
+
+		
+		public void HideTowerSelectionVisualization()
+		{
+			if (_selectedTowerVisualization == null) return; 
+			
+			_selectedTowerVisualization.transform.localPosition = new Vector3(0,0,0);
+		}
+		
+		
+		private void NullifyCurrentlySelectedTower()
+		{
+			_currentlySelectedTower = null;
+		}
+		
+		
+		private void NullifySelectedTowerType()
+		{
+			_selectedTowerType = null;
+		}
 
 
+		private void NullifySelectedTowerVisualization()
+		{
+			_selectedTowerVisualization = null;
+		}
+
+		
 		public void UpdateTowerTargetingBehaviour(int selectedOptionIndex)
 		{
 			TargetingSystem towerTargetingSystem = _currentlySelectedTower.GetComponent<TargetingSystem>();

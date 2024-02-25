@@ -94,6 +94,12 @@ namespace TowerDefense.Tower
         
         public void OnTowerTypeSelected(TowerStats towerStats)
         {
+            if (towerStats == null)
+            {
+                SetWaveSpawnsCurrentView();
+                return;
+            }
+            
             SetTowerStatsToCurrentView();
             _towerStats.SetTowerStatsUIData(towerStats);
         }
@@ -145,7 +151,6 @@ namespace TowerDefense.Tower
 
         private void OnDropdownValueChanged(int index)
         {
-            Debug.Log("Changed drop down value");
             int selectedOptionIndex = index;
             _towerManager.UpdateTowerTargetingBehaviour(selectedOptionIndex);
         }
