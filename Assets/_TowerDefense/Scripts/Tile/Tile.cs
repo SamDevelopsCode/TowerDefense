@@ -27,9 +27,7 @@ public class Tile : MonoBehaviour
 	
 	private void OnMouseOver()
 	{
-		if (GameManager.Instance.State != GameState.TowerPlacement) return;
-		
-		if (_canPlaceTower)
+		if (_canPlaceTower && GameManager.Instance.State == GameState.TowerPlacement)
 		{
 			TileMouseHovered?.Invoke(towerParent);
 		}
