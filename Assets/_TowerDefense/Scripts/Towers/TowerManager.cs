@@ -50,7 +50,13 @@ namespace _TowerDefense.Towers
 				tile.TileMouseHovered += OnTileMouseHovered;
 			}
 		}
-
+		
+		
+		private void Update()
+		{
+			SelectTowerType();
+		}
+		
 		
 		private void OnTileMouseHovered(Transform tileCenter)
 		{
@@ -67,21 +73,15 @@ namespace _TowerDefense.Towers
 
 			if (state == GameState.EnemyWave)
 			{
-				_currentlySelectedTower.GetComponent<RangeVisualizer>().DisableRangeVisualization();
-				_currentlySelectedTower = null;
+				HideCurrentlySelectedTowersRangeVisualization();
+				NullifyCurrentlySelectedTower();
+				HideTowerSelectionVisualization();
 				NullifySelectedTowerVisualization();
 				NullifySelectedTowerType();
 			}
 		}
-	
-		
-		private void Update()
-		{
-			Debug.Log(_currentlySelectedTower);
-			SelectTowerType();
-		}
 
-		
+
 		private void SelectTowerType()
 		{
 			if (!_canPlaceTowers)
@@ -161,79 +161,6 @@ namespace _TowerDefense.Towers
 		}
 
 		
-		private void NullifySelectedTowerType()
-		{
-			_selectedTowerType = null;
-		}
-
-
-		private void NullifySelectedTowerVisualization()
-		{
-			_selectedTowerVisualization = null;
-		}
-
-
-		private void OnTowerPlaceAttempted(Tile tile)
-		{
-			if (!_canPlaceTowers)
-			{
-				return;
-			}
-			
-			if (_selectedTowerType == null)
-			{
-				TowerTypeSelected?.Invoke(null);
-				Debug.Log("No tower has been selected.");
-				return;
-			}
-			
-			int towerCost = _selectedTowerType.towerStats.cost;
-			
-			if (Bank.Instance.CanAffordTower(towerCost))
-			{
-				tile.CanPlaceTower = false;
-				
-				GameObject spawnedTower = _towerSpawner.SpawnTower(_selectedTowerType.gameObject, tile.towerParent);
-				
-				spawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
-				
-				Bank.Instance.DetractFromBalance(towerCost);
-				
-				TowerPlacementSucceeded?.Invoke();
-				
-				NullifySelectedTowerType();
-				
-				HideTowerSelectionVisualization();
-				NullifySelectedTowerVisualization();
-			}
-			else
-			{
-				TowerPlacementFailed?.Invoke();
-				Debug.Log("Not enough funds. Tower cost: " + towerCost + ". Current money: " + Bank.Instance.CurrentBalance);
-			}
-		}
-
-		
-		private void ShowCurrentlySelectedTowersRangeVisualization()
-		{
-			_currentlySelectedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();
-		}
-	
-		
-		private void HideCurrentlySelectedTowersRangeVisualization()
-		{
-			_currentlySelectedTower.GetComponent<RangeVisualizer>().DisableRangeVisualization();
-		}
-
-		
-		public void HideTowerSelectionVisualization()
-		{
-			if (_selectedTowerVisualization == null) return; 
-			
-			_selectedTowerVisualization.transform.localPosition = new Vector3(0,0,0);
-		}
-		
-		
 		public void UpgradeTower()
 		{
 			int currentTowerTypeIndex = ((int)_currentlySelectedTowerStats.towerType);
@@ -273,8 +200,91 @@ namespace _TowerDefense.Towers
 				Debug.Log("Can't afford tower upgrade.");
 			}
 		}
+		
+
+		private void OnTowerPlaceAttempted(Tile tile)
+		{
+			if (!_canPlaceTowers)
+			{
+				return;
+			}
+			
+			if (_selectedTowerType == null)
+			{
+				TowerTypeSelected?.Invoke(null);
+				HideCurrentlySelectedTowersRangeVisualization();
+				Debug.Log("No tower has been selected.");
+				return;
+			}
+			
+			int towerCost = _selectedTowerType.towerStats.cost;
+			
+			if (Bank.Instance.CanAffordTower(towerCost))
+			{
+				tile.CanPlaceTower = false;
+				
+				GameObject spawnedTower = _towerSpawner.SpawnTower(_selectedTowerType.gameObject, tile.towerParent);
+				
+				spawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
+				
+				Bank.Instance.DetractFromBalance(towerCost);
+				
+				TowerPlacementSucceeded?.Invoke();
+				
+				NullifySelectedTowerType();
+				
+				HideTowerSelectionVisualization();
+				NullifySelectedTowerVisualization();
+			}
+			else
+			{
+				TowerPlacementFailed?.Invoke();
+				Debug.Log("Not enough funds. Tower cost: " + towerCost + ". Current money: " + Bank.Instance.CurrentBalance);
+			}
+		}
+
+		
+		private void ShowCurrentlySelectedTowersRangeVisualization()
+		{
+			_currentlySelectedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();
+		}
+	
+		
+		private void HideCurrentlySelectedTowersRangeVisualization()
+		{
+			if (_currentlySelectedTower != null)
+			{
+				_currentlySelectedTower.GetComponent<RangeVisualizer>().DisableRangeVisualization();
+			}
+		}
+
+		
+		public void HideTowerSelectionVisualization()
+		{
+			if (_selectedTowerVisualization == null) return; 
+			
+			_selectedTowerVisualization.transform.localPosition = new Vector3(0,0,0);
+		}
+		
+		
+		private void NullifyCurrentlySelectedTower()
+		{
+			_currentlySelectedTower = null;
+		}
+		
+		
+		private void NullifySelectedTowerType()
+		{
+			_selectedTowerType = null;
+		}
 
 
+		private void NullifySelectedTowerVisualization()
+		{
+			_selectedTowerVisualization = null;
+		}
+
+		
 		public void UpdateTowerTargetingBehaviour(int selectedOptionIndex)
 		{
 			TargetingSystem towerTargetingSystem = _currentlySelectedTower.GetComponent<TargetingSystem>();
