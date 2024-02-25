@@ -29,24 +29,14 @@ public class Tile : MonoBehaviour
 	{
 		if (GameManager.Instance.State != GameState.TowerPlacement) return;  
 		
-		if (!_mouseHasEnteredTile)
+		if (_canPlaceTower)
 		{
 			TileMouseHovered?.Invoke(towerParent);
-			_mouseHasEnteredTile = true;
-		}		
-		
-		if (Input.GetKeyDown(KeyCode.Mouse0))
-		{
-			if (_canPlaceTower)
-			{
-				TowerPlaceAttempted?.Invoke(this);
-			}
 		}
-	}
-	
-	
-	private void OnMouseExit()
-	{
-		_mouseHasEnteredTile = false;
+		
+		if (Input.GetKeyDown(KeyCode.Mouse0) && _canPlaceTower)
+		{
+			TowerPlaceAttempted?.Invoke(this);
+		}
 	}
 }

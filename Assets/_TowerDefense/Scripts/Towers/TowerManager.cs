@@ -14,7 +14,7 @@ namespace _TowerDefense.Towers
 		[SerializeField] private List<GameObject> _towerBaseTypePrefabs = new();
 		[SerializeField] private List<TowerCollection> _towerCollections;
 
-		[SerializeField] private List<GameObject> _towerVisualizations = new();
+		[SerializeField] private List<GameObject> _towerVisualizations;
 		private GameObject _selectedTowerVisualization;
 
 		private GameObject _currentlySelectedTower;
@@ -54,7 +54,6 @@ namespace _TowerDefense.Towers
 		
 		private void OnTileMouseHovered(Transform tileCenter)
 		{
-			Debug.Log($"Hovered over tile at {tileCenter.position}");
 			if (_selectedTowerVisualization != null)
 			{
 				_selectedTowerVisualization.transform.position = tileCenter.position;
@@ -65,13 +64,21 @@ namespace _TowerDefense.Towers
 		private void GameManagerGameStateChanged(GameState state)
 		{
 			_canPlaceTowers = state == GameState.TowerPlacement;
+
+			if (state == GameState.EnemyWave)
+			{
+				_currentlySelectedTower.GetComponent<RangeVisualizer>().DisableRangeVisualization();
+				_currentlySelectedTower = null;
+				NullifySelectedTowerVisualization();
+				NullifySelectedTowerType();
+			}
 		}
 	
 		
 		private void Update()
 		{
-			SelectTowerType();
 			Debug.Log(_currentlySelectedTower);
+			SelectTowerType();
 		}
 
 		
@@ -86,7 +93,12 @@ namespace _TowerDefense.Towers
 			{
 				if (_selectedTowerVisualization != null)
 				{
-					HideTowerSelectionVisualization();	
+					HideTowerSelectionVisualization();
+				}
+				
+				if (_currentlySelectedTower != null)
+				{
+					HideCurrentlySelectedTowersRangeVisualization();
 				}
 				
 				_selectedTowerType = _towerBaseTypePrefabs[0].GetComponent<Tower>();
@@ -97,7 +109,12 @@ namespace _TowerDefense.Towers
 			{
 				if (_selectedTowerVisualization != null)
 				{
-					HideTowerSelectionVisualization();	
+					HideTowerSelectionVisualization();
+				}
+				
+				if (_currentlySelectedTower != null)
+				{
+					HideCurrentlySelectedTowersRangeVisualization();
 				}
 				
 				_selectedTowerType = _towerBaseTypePrefabs[1].GetComponent<Tower>();
@@ -108,7 +125,12 @@ namespace _TowerDefense.Towers
 			{
 				if (_selectedTowerVisualization != null)
 				{
-					HideTowerSelectionVisualization();	
+					HideTowerSelectionVisualization();
+				}
+				
+				if (_currentlySelectedTower != null)
+				{
+					HideCurrentlySelectedTowersRangeVisualization();
 				}
 				
 				_selectedTowerType = _towerBaseTypePrefabs[2].GetComponent<Tower>();
@@ -117,20 +139,40 @@ namespace _TowerDefense.Towers
 			}
 		}
 
-		
+
 		private void OnTowerSelected(TowerStats towerStats, GameObject currentlySelectedTower)
 		{
 			if (_currentlySelectedTower != null)
 			{
-				_currentlySelectedTower.GetComponent<RangeVisualizer>().DisableRangeVisualization();
+				HideCurrentlySelectedTowersRangeVisualization();
+			}
+			
+			if (_selectedTowerVisualization != null)
+			{
+				HideTowerSelectionVisualization();
+				NullifySelectedTowerVisualization();
+				NullifySelectedTowerType();
+				TowerTypeSelected?.Invoke(null);
 			}
 			
 			_currentlySelectedTowerStats = towerStats;
 			_currentlySelectedTower = currentlySelectedTower;
-			_currentlySelectedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();
+			ShowCurrentlySelectedTowersRangeVisualization();
 		}
 
 		
+		private void NullifySelectedTowerType()
+		{
+			_selectedTowerType = null;
+		}
+
+
+		private void NullifySelectedTowerVisualization()
+		{
+			_selectedTowerVisualization = null;
+		}
+
+
 		private void OnTowerPlaceAttempted(Tile tile)
 		{
 			if (!_canPlaceTowers)
@@ -140,6 +182,7 @@ namespace _TowerDefense.Towers
 			
 			if (_selectedTowerType == null)
 			{
+				TowerTypeSelected?.Invoke(null);
 				Debug.Log("No tower has been selected.");
 				return;
 			}
@@ -158,10 +201,10 @@ namespace _TowerDefense.Towers
 				
 				TowerPlacementSucceeded?.Invoke();
 				
-				_selectedTowerType = null;
+				NullifySelectedTowerType();
 				
 				HideTowerSelectionVisualization();
-				_selectedTowerVisualization = null;
+				NullifySelectedTowerVisualization();
 			}
 			else
 			{
@@ -171,14 +214,26 @@ namespace _TowerDefense.Towers
 		}
 
 		
+		private void ShowCurrentlySelectedTowersRangeVisualization()
+		{
+			_currentlySelectedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();
+		}
+	
+		
+		private void HideCurrentlySelectedTowersRangeVisualization()
+		{
+			_currentlySelectedTower.GetComponent<RangeVisualizer>().DisableRangeVisualization();
+		}
+
+		
 		public void HideTowerSelectionVisualization()
 		{
 			if (_selectedTowerVisualization == null) return; 
 			
 			_selectedTowerVisualization.transform.localPosition = new Vector3(0,0,0);
 		}
-
-
+		
+		
 		public void UpgradeTower()
 		{
 			int currentTowerTypeIndex = ((int)_currentlySelectedTowerStats.towerType);
