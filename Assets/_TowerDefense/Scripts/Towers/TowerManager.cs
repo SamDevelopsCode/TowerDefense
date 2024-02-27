@@ -27,6 +27,9 @@ namespace _TowerDefense.Towers
 		public event Action<TowerStats> TowerTypeSelected;
 		public event Action TowerPlacementFailed;
 		public event Action TowerPlacementSucceeded;
+		public event Action TowerUpgraded;
+		public event Action TowerUpgradeFailed;
+		public event Action<Tower> TowerFiredShot;
 
 
 		private void OnEnable()
@@ -179,6 +182,7 @@ namespace _TowerDefense.Towers
 			
 			if (Bank.Instance.CanAffordTower(upgradedTowerPrefab.GetComponent<Tower>().towerStats.cost))
 			{
+				TowerUpgraded?.Invoke();
 				int currentTowerTargetingType =
 					(int)_currentlySelectedTower.GetComponent<Tower>().targetingSystem.currentTargetingType;
 				
@@ -186,6 +190,7 @@ namespace _TowerDefense.Towers
 				
 				_newlySpawnedTower = _towerSpawner.SpawnTower(upgradedTowerPrefab, _currentlySelectedTower.transform.parent);
 				_newlySpawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
+				_newlySpawnedTower.GetComponent<Attacker>().shotFired += OnTowerShotFired;
 				
 				_newlySpawnedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();
 				
@@ -199,6 +204,7 @@ namespace _TowerDefense.Towers
 			}
 			else
 			{
+				TowerUpgradeFailed?.Invoke();
 				Debug.Log("Can't afford tower upgrade.");
 			}
 		}
@@ -223,15 +229,16 @@ namespace _TowerDefense.Towers
 			
 			if (Bank.Instance.CanAffordTower(towerCost))
 			{
+				TowerPlacementSucceeded?.Invoke();
+				
 				tile.CanPlaceTower = false;
 				
 				GameObject spawnedTower = _towerSpawner.SpawnTower(_selectedTowerType.gameObject, tile.towerParent);
 				
 				spawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
+				spawnedTower.GetComponent<Attacker>().shotFired += OnTowerShotFired;
 				
 				Bank.Instance.DetractFromBalance(towerCost);
-				
-				TowerPlacementSucceeded?.Invoke();
 				
 				NullifySelectedTowerType();
 				
@@ -246,6 +253,12 @@ namespace _TowerDefense.Towers
 		}
 
 		
+		private void OnTowerShotFired(Tower tower)
+		{
+			TowerFiredShot?.Invoke(tower);
+		}
+
+
 		private void ShowCurrentlySelectedTowersRangeVisualization()
 		{
 			_currentlySelectedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();

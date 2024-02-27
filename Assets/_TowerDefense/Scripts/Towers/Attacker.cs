@@ -14,6 +14,8 @@ public class Attacker : MonoBehaviour
     private float _shootTimer;
 
     private GameObject _target;
+
+    public event Action<Tower> shotFired;
     
     
     private void Awake()
@@ -54,7 +56,7 @@ public class Attacker : MonoBehaviour
     {
         if (_shootTimer <= 0)
         {
-            _shootTimer = _towerStats.shotsPerSecond;
+            _shootTimer = _towerStats.fireCooldown;
            return true;
         }
         
@@ -64,6 +66,7 @@ public class Attacker : MonoBehaviour
     
     private void Shoot()
     {
+        shotFired?.Invoke(_tower);
         var healthComponent = _target.GetComponent<Health>();
         healthComponent.TakeDamage(_towerStats.damagePerShot);
     }   
