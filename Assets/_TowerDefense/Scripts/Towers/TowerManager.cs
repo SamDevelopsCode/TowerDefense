@@ -30,6 +30,13 @@ namespace _TowerDefense.Towers
 		public event Action TowerUpgraded;
 		public event Action TowerUpgradeFailed;
 		public event Action<Tower> TowerFiredShot;
+		
+		private enum TowerType
+		{
+			Ballista,
+			Fire,
+			Lightning,
+		}
 
 
 		private void OnEnable()
@@ -57,7 +64,7 @@ namespace _TowerDefense.Towers
 		
 		private void Update()
 		{
-			SelectTowerType();
+			HandleTowerSelectionInput();
 		}
 		
 		
@@ -85,7 +92,7 @@ namespace _TowerDefense.Towers
 		}
 
 
-		private void SelectTowerType()
+		private void HandleTowerSelectionInput()
 		{
 			if (!_canPlaceTowers)
 			{
@@ -94,52 +101,34 @@ namespace _TowerDefense.Towers
 			
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
-				if (_selectedTowerVisualization != null)
-				{
-					HideTowerSelectionVisualization();
-				}
-				
-				if (_currentlySelectedTower != null)
-				{
-					HideCurrentlySelectedTowersRangeVisualization();
-				}
-				
-				_selectedTowerType = _towerBaseTypePrefabs[0].GetComponent<Tower>();
-				_selectedTowerVisualization = _towerVisualizations[0];
-				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
+				SelectTowerType((int)TowerType.Ballista);
 			}
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
 			{
-				if (_selectedTowerVisualization != null)
-				{
-					HideTowerSelectionVisualization();
-				}
-				
-				if (_currentlySelectedTower != null)
-				{
-					HideCurrentlySelectedTowersRangeVisualization();
-				}
-				
-				_selectedTowerType = _towerBaseTypePrefabs[1].GetComponent<Tower>();
-				_selectedTowerVisualization = _towerVisualizations[1];
-				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
+				SelectTowerType((int)TowerType.Fire);
 			}	
 			else if (Input.GetKeyDown(KeyCode.Alpha3))
 			{
-				if (_selectedTowerVisualization != null)
-				{
-					HideTowerSelectionVisualization();
-				}
-				
-				if (_currentlySelectedTower != null)
-				{
-					HideCurrentlySelectedTowersRangeVisualization();
-				}
-				
-				_selectedTowerType = _towerBaseTypePrefabs[2].GetComponent<Tower>();
-				_selectedTowerVisualization = _towerVisualizations[2];
-				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
+				SelectTowerType((int)TowerType.Lightning);
 			}
+		}
+
+
+		private void SelectTowerType(int index)
+		{
+			if (_selectedTowerVisualization != null)
+			{
+				HideTowerSelectionVisualization();
+			}
+				
+			if (_currentlySelectedTower != null)
+			{
+				HideCurrentlySelectedTowersRangeVisualization();
+			}
+				
+			_selectedTowerType = _towerBaseTypePrefabs[index].GetComponent<Tower>();
+			_selectedTowerVisualization = _towerVisualizations[index];
+			TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
 		}
 
 
@@ -173,6 +162,7 @@ namespace _TowerDefense.Towers
 			
 			if (!(currentTowerIndex <= _towerCollections[currentTowerTypeIndex].towers.Count - 1))
 			{
+				TowerUpgradeFailed?.Invoke();
 				Debug.Log("Upgrade maxed out");
 				return;
 			}

@@ -17,7 +17,6 @@ namespace _TowerDefense.Towers
         
         private void OnMouseOver()
         {
-            Debug.Log("The mouse is hover over this collider ");
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 TowerStats towerStats = GetComponent<Tower>().towerStats;
