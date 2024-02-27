@@ -18,6 +18,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e1cc8be9cb9c9b5449ad104e626ecf4d, type: 3}
   lightningAttacks:
   - {fileID: 8300000, guid: 32f518f98a19d934595087890832065f, type: 3}
+  towerTypeSelects:
+  - {fileID: 8300000, guid: ba550612dc10f1e46abd4cc40d56ea4c, type: 3}
   towerPlacements:
   - {fileID: 8300000, guid: 059ceabb2db0386428de50637b9e64e9, type: 3}
   towerUpgrades:

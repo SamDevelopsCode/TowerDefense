@@ -128,7 +128,9 @@ namespace _TowerDefense.Towers
 				
 			_selectedTowerType = _towerBaseTypePrefabs[index].GetComponent<Tower>();
 			_selectedTowerVisualization = _towerVisualizations[index];
+			
 			TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
+
 		}
 
 

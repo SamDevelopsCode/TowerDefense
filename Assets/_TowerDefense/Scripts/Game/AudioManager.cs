@@ -18,9 +18,16 @@ public class AudioManager : MonoBehaviour
         _towerManager.TowerPlacementFailed += OnTowerPlacementFailed;
         _towerManager.TowerUpgraded += OnTowerUpgraded;
         _towerManager.TowerUpgradeFailed += OnTowerUpgradeFailed;
+        _towerManager.TowerTypeSelected += OnTowerTypeSelected;
     }
 
     
+    private void OnTowerTypeSelected(TowerStats towerStats)
+    {
+        PlaySound(soundReferences.towerTypeSelects, Camera.main.transform.position);
+    }
+
+
     private void OnTowerUpgradeFailed()
     {
         PlaySound(soundReferences.errors, Camera.main.transform.position);
