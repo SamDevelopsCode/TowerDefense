@@ -28,6 +28,7 @@ namespace _TowerDefense.Towers
 		public event Action TowerPlacementFailed;
 		public event Action TowerPlacementSucceeded;
 		public event Action TowerUpgraded;
+		public event Action TowerSold;
 		public event Action TowerUpgradeFailed;
 		public event Action<Tower> TowerFiredShot;
 		
@@ -124,13 +125,13 @@ namespace _TowerDefense.Towers
 			if (_currentlySelectedTower != null)
 			{
 				HideCurrentlySelectedTowersRangeVisualization();
+				NullifyCurrentlySelectedTower();
 			}
 				
 			_selectedTowerType = _towerBaseTypePrefabs[index].GetComponent<Tower>();
 			_selectedTowerVisualization = _towerVisualizations[index];
 			
 			TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
-
 		}
 
 
@@ -158,6 +159,8 @@ namespace _TowerDefense.Towers
 		public void UpgradeTower()
 		{
 			if (GameManager.Instance.State != GameState.TowerPlacement) return;
+
+			if (_currentlySelectedTower == null) return;
 			
 			int currentTowerTypeIndex = ((int)_currentlySelectedTowerStats.towerType);
 			int currentTowerIndex = _currentlySelectedTower.GetComponent<Tower>().towerStats.towerTier;
@@ -200,8 +203,27 @@ namespace _TowerDefense.Towers
 				Debug.Log("Can't afford tower upgrade.");
 			}
 		}
-		
 
+
+		public void SellTower()
+		{
+			if (GameManager.Instance.State != GameState.TowerPlacement) return;
+
+			if (_currentlySelectedTower == null) return;
+
+			int sellAmount = Mathf.RoundToInt(_currentlySelectedTower.GetComponent<Tower>().towerStats.cost * .5f);
+			Bank.Instance.AddToBalance(sellAmount);
+
+			Tile tile = _currentlySelectedTower.transform.parent.parent.GetComponent<Tile>();
+			tile.CanPlaceTower = true;
+			
+			Destroy(_currentlySelectedTower);
+			NullifyCurrentlySelectedTower();
+			
+			TowerSold?.Invoke();
+		}
+		
+		
 		private void OnTowerPlaceAttempted(Tile tile)
 		{
 			if (_selectedTowerType == null)

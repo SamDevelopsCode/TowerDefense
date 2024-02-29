@@ -42,6 +42,7 @@ namespace TowerDefense.Tower
             _towerManager.TowerTypeSelected += OnTowerTypeSelected;
             _towerManager.TowerPlacementFailed += SetWaveSpawnsCurrentView;
             _towerManager.TowerPlacementSucceeded += SetWaveSpawnsCurrentView;
+            _towerManager.TowerSold += SetWaveSpawnsCurrentView;
             _enemyWaveSpawner.OnNextWaveSpawned += SetWaveSpawnsData;
             GameManager.GameStateChanged += GameStateChanged;
         }

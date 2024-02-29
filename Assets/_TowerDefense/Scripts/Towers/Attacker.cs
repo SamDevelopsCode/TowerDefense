@@ -10,7 +10,7 @@ public class Attacker : MonoBehaviour
     [SerializeField] private TargetingSystem _targetingSystem;
     [SerializeField] private Tower _tower;
     private TowerStats _towerStats;
-    
+
     private float _shootTimer;
 
     private GameObject _target;

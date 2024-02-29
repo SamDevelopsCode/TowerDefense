@@ -24,6 +24,7 @@ namespace _TowerDefense.Towers
                 CoreGameUI.Instance.OnTowerTypeSelected(towerStats);
                 CoreGameUI.Instance.UpdateTargetingDropDownValue(gameObject);
             }
+            
         }
     }
 }

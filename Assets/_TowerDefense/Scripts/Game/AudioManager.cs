@@ -14,9 +14,9 @@ public class AudioManager : MonoBehaviour
     private void OnEnable()
     {
         _towerManager.TowerFiredShot += OnTowerFiredShot;
+        _towerManager.TowerUpgraded += OnTowerUpgraded;
         _towerManager.TowerPlacementSucceeded += OnTowerPlacementSucceeded;
         _towerManager.TowerPlacementFailed += OnTowerPlacementFailed;
-        _towerManager.TowerUpgraded += OnTowerUpgraded;
         _towerManager.TowerUpgradeFailed += OnTowerUpgradeFailed;
         _towerManager.TowerTypeSelected += OnTowerTypeSelected;
     }
