@@ -19,7 +19,6 @@ namespace TowerDefense.Enemies
         private bool _killedByTower;
         public bool KilledByTower
         {
-            get => _killedByTower;
             set
             {
                 _killedByTower = value;
@@ -66,10 +65,7 @@ namespace TowerDefense.Enemies
             {
                 DropResources();
             }
-            OnEnemyReachedPlayerBase?.Invoke(this.gameObject);
-            // show vfx
-            // possible sound?
-            Destroy(gameObject);
+            OnEnemyReachedPlayerBase?.Invoke(gameObject);
         }
     }
 }

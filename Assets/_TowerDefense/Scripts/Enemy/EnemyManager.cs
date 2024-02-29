@@ -29,6 +29,7 @@ public class EnemyManager : MonoBehaviour
     public void DeleteEnemyFromList(GameObject enemy)
     {
         _listOfEnemiesInWave.Remove(enemy);
+        Destroy(enemy);
 
         if (_listOfEnemiesInWave.Count == 0)
         {
