@@ -17,6 +17,6 @@ MonoBehaviour:
   cost: 100
   range: 15
   damagePerShot: 50
-  shotsPerSecond: 0.75
+  shotsPerSecond: 1
   towerType: 2
   towerTier: 3

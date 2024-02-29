@@ -27,6 +27,17 @@ namespace _TowerDefense.Towers
 		public event Action<TowerStats> TowerTypeSelected;
 		public event Action TowerPlacementFailed;
 		public event Action TowerPlacementSucceeded;
+		public event Action TowerUpgraded;
+		public event Action TowerSold;
+		public event Action TowerUpgradeFailed;
+		public event Action<Tower> TowerFiredShot;
+		
+		private enum TowerType
+		{
+			Ballista,
+			Fire,
+			Lightning,
+		}
 
 
 		private void OnEnable()
@@ -54,7 +65,7 @@ namespace _TowerDefense.Towers
 		
 		private void Update()
 		{
-			SelectTowerType();
+			HandleTowerSelectionInput();
 		}
 		
 		
@@ -82,7 +93,7 @@ namespace _TowerDefense.Towers
 		}
 
 
-		private void SelectTowerType()
+		private void HandleTowerSelectionInput()
 		{
 			if (!_canPlaceTowers)
 			{
@@ -91,52 +102,36 @@ namespace _TowerDefense.Towers
 			
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
-				if (_selectedTowerVisualization != null)
-				{
-					HideTowerSelectionVisualization();
-				}
-				
-				if (_currentlySelectedTower != null)
-				{
-					HideCurrentlySelectedTowersRangeVisualization();
-				}
-				
-				_selectedTowerType = _towerBaseTypePrefabs[0].GetComponent<Tower>();
-				_selectedTowerVisualization = _towerVisualizations[0];
-				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
+				SelectTowerType((int)TowerType.Ballista);
 			}
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
 			{
-				if (_selectedTowerVisualization != null)
-				{
-					HideTowerSelectionVisualization();
-				}
-				
-				if (_currentlySelectedTower != null)
-				{
-					HideCurrentlySelectedTowersRangeVisualization();
-				}
-				
-				_selectedTowerType = _towerBaseTypePrefabs[1].GetComponent<Tower>();
-				_selectedTowerVisualization = _towerVisualizations[1];
-				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
+				SelectTowerType((int)TowerType.Fire);
 			}	
 			else if (Input.GetKeyDown(KeyCode.Alpha3))
 			{
-				if (_selectedTowerVisualization != null)
-				{
-					HideTowerSelectionVisualization();
-				}
-				
-				if (_currentlySelectedTower != null)
-				{
-					HideCurrentlySelectedTowersRangeVisualization();
-				}
-				
-				_selectedTowerType = _towerBaseTypePrefabs[2].GetComponent<Tower>();
-				_selectedTowerVisualization = _towerVisualizations[2];
-				TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
+				SelectTowerType((int)TowerType.Lightning);
 			}
+		}
+
+
+		private void SelectTowerType(int index)
+		{
+			if (_selectedTowerVisualization != null)
+			{
+				HideTowerSelectionVisualization();
+			}
+				
+			if (_currentlySelectedTower != null)
+			{
+				HideCurrentlySelectedTowersRangeVisualization();
+				NullifyCurrentlySelectedTower();
+			}
+				
+			_selectedTowerType = _towerBaseTypePrefabs[index].GetComponent<Tower>();
+			_selectedTowerVisualization = _towerVisualizations[index];
+			
+			TowerTypeSelected?.Invoke(_selectedTowerType.towerStats);
 		}
 
 
@@ -164,12 +159,15 @@ namespace _TowerDefense.Towers
 		public void UpgradeTower()
 		{
 			if (GameManager.Instance.State != GameState.TowerPlacement) return;
+
+			if (_currentlySelectedTower == null) return;
 			
 			int currentTowerTypeIndex = ((int)_currentlySelectedTowerStats.towerType);
 			int currentTowerIndex = _currentlySelectedTower.GetComponent<Tower>().towerStats.towerTier;
 			
 			if (!(currentTowerIndex <= _towerCollections[currentTowerTypeIndex].towers.Count - 1))
 			{
+				TowerUpgradeFailed?.Invoke();
 				Debug.Log("Upgrade maxed out");
 				return;
 			}
@@ -179,6 +177,7 @@ namespace _TowerDefense.Towers
 			
 			if (Bank.Instance.CanAffordTower(upgradedTowerPrefab.GetComponent<Tower>().towerStats.cost))
 			{
+				TowerUpgraded?.Invoke();
 				int currentTowerTargetingType =
 					(int)_currentlySelectedTower.GetComponent<Tower>().targetingSystem.currentTargetingType;
 				
@@ -186,6 +185,7 @@ namespace _TowerDefense.Towers
 				
 				_newlySpawnedTower = _towerSpawner.SpawnTower(upgradedTowerPrefab, _currentlySelectedTower.transform.parent);
 				_newlySpawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
+				_newlySpawnedTower.GetComponent<Attacker>().shotFired += OnTowerShotFired;
 				
 				_newlySpawnedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();
 				
@@ -199,11 +199,31 @@ namespace _TowerDefense.Towers
 			}
 			else
 			{
+				TowerUpgradeFailed?.Invoke();
 				Debug.Log("Can't afford tower upgrade.");
 			}
 		}
-		
 
+
+		public void SellTower()
+		{
+			if (GameManager.Instance.State != GameState.TowerPlacement) return;
+
+			if (_currentlySelectedTower == null) return;
+
+			int sellAmount = Mathf.RoundToInt(_currentlySelectedTower.GetComponent<Tower>().towerStats.cost * .5f);
+			Bank.Instance.AddToBalance(sellAmount);
+
+			Tile tile = _currentlySelectedTower.transform.parent.parent.GetComponent<Tile>();
+			tile.CanPlaceTower = true;
+			
+			Destroy(_currentlySelectedTower);
+			NullifyCurrentlySelectedTower();
+			
+			TowerSold?.Invoke();
+		}
+		
+		
 		private void OnTowerPlaceAttempted(Tile tile)
 		{
 			if (_selectedTowerType == null)
@@ -223,15 +243,16 @@ namespace _TowerDefense.Towers
 			
 			if (Bank.Instance.CanAffordTower(towerCost))
 			{
+				TowerPlacementSucceeded?.Invoke();
+				
 				tile.CanPlaceTower = false;
 				
 				GameObject spawnedTower = _towerSpawner.SpawnTower(_selectedTowerType.gameObject, tile.towerParent);
 				
 				spawnedTower.GetComponent<Tower>().TowerSelected += OnTowerSelected;
+				spawnedTower.GetComponent<Attacker>().shotFired += OnTowerShotFired;
 				
 				Bank.Instance.DetractFromBalance(towerCost);
-				
-				TowerPlacementSucceeded?.Invoke();
 				
 				NullifySelectedTowerType();
 				
@@ -246,6 +267,12 @@ namespace _TowerDefense.Towers
 		}
 
 		
+		private void OnTowerShotFired(Tower tower)
+		{
+			TowerFiredShot?.Invoke(tower);
+		}
+
+
 		private void ShowCurrentlySelectedTowersRangeVisualization()
 		{
 			_currentlySelectedTower.GetComponent<RangeVisualizer>().EnableRangeVisualization();

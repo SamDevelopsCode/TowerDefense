@@ -1,6 +1,7 @@
 using System;
 using TowerDefense.Managers;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Tile : MonoBehaviour
 {
@@ -27,14 +28,18 @@ public class Tile : MonoBehaviour
 	
 	private void OnMouseOver()
 	{
-		if (_canPlaceTower && GameManager.Instance.State == GameState.TowerPlacement)
+
+		if (!EventSystem.current.IsPointerOverGameObject())
 		{
-			TileMouseHovered?.Invoke(towerParent);
-		}
+			if (_canPlaceTower && GameManager.Instance.State == GameState.TowerPlacement)
+			{
+				TileMouseHovered?.Invoke(towerParent);
+			}
 		
-		if (Input.GetKeyDown(KeyCode.Mouse0) && _canPlaceTower)
-		{
-			TowerPlaceAttempted?.Invoke(this);
+			if (Input.GetKeyDown(KeyCode.Mouse0) && _canPlaceTower)
+			{
+				TowerPlaceAttempted?.Invoke(this);
+			}
 		}
 	}
 }

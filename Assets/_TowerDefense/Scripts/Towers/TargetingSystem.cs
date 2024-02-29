@@ -77,6 +77,7 @@ namespace _TowerDefense.Towers
             if (_possibleTargets.Count == 0)
             {
                 _currentTarget = null;
+                CurrentTargetSelected?.Invoke(_currentTarget);
                 return;
             }
             

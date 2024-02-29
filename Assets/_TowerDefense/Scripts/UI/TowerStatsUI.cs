@@ -26,6 +26,6 @@ public class TowerStatsUI : MonoBehaviour
         _towerCostLabel.text = $"{towerStats.cost}";
         _towerRangeLabel.text = $"{towerStats.range}";
         _towerDamageLabel.text = $"{towerStats.damagePerShot}";
-        _towerShotPerSecondLabel.text = $"{towerStats.shotsPerSecond}";
+        _towerShotPerSecondLabel.text = $"{towerStats.fireCooldown}";
     }
 }

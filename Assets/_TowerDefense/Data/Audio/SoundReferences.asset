@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5383eb8707a03cb4eb9ecb82969184a9, type: 3}
+  m_Name: SoundReferences
+  m_EditorClassIdentifier: 
+  arrowAttacks:
+  - {fileID: 8300000, guid: 9a850901e9affbf4c98ef53d8935fec7, type: 3}
+  fireAttacks:
+  - {fileID: 8300000, guid: e1cc8be9cb9c9b5449ad104e626ecf4d, type: 3}
+  lightningAttacks:
+  - {fileID: 8300000, guid: 32f518f98a19d934595087890832065f, type: 3}
+  towerTypeSelects:
+  - {fileID: 8300000, guid: ba550612dc10f1e46abd4cc40d56ea4c, type: 3}
+  towerPlacements:
+  - {fileID: 8300000, guid: 059ceabb2db0386428de50637b9e64e9, type: 3}
+  towerUpgrades:
+  - {fileID: 8300000, guid: 3419caa26aa1f9740b67c0cbe6cc18d7, type: 3}
+  errors:
+  - {fileID: 8300000, guid: f7b157a1ae4f82a48a890b074e55e7db, type: 3}

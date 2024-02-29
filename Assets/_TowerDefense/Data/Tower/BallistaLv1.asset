@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 51c82589ecccac849a5ecc5e0f141e63, type: 3}
   towerName: Ballista [Tier 1]
-  cost: 100
+  cost: 75
   range: 15
-  damagePerShot: 5
-  shotsPerSecond: 1.25
+  damagePerShot: 10
+  fireCooldown: 2
   towerType: 0
   towerTier: 1

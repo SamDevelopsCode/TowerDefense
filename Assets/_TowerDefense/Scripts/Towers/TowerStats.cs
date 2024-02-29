@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _TowerDefense.Towers
 {
@@ -10,7 +11,7 @@ namespace _TowerDefense.Towers
 		public int cost = 100;
 		public float range = 6f;
 		public float damagePerShot = 5f;
-		public float shotsPerSecond = 2f;
+		public float fireCooldown = 2f;
 		public TowerType towerType;
 		public int towerTier;
 		
