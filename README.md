@@ -3,7 +3,7 @@ Languages: C#**
 
 A simple tower defense game to learn the Unity Engine. 
 
-**Features -**
+## **Features -**
 
 **Towers:**
   - Multiple types can be chosen, then visualized before placing. 
