@@ -6,18 +6,18 @@ A simple tower defense game to learn the Unity Engine.
 **Features -**
 
 **Towers:**
-  Multiple types can be chosen, then visualized before placing. 
-  Each tower upgraded up to 3 times. 
+  - Multiple types can be chosen, then visualized before placing. 
+  - Each tower upgraded up to 3 times. 
   
 **Currency:**
-  Gained when an enemy is killed.
+  - Gained when an enemy is killed.
   
 **Player Base:**
-  Health is lost when an enemy successfully makes it to the base.  
+  - Health is lost when an enemy successfully makes it to the base.  
  
 **Enemies:**
-  Uses ScriptableObjects to create groups and then waves out of those groups. I wanted to put some focus more on making designer friendly systems.
-  Multiple enemy types, such as light (fast), medium (balanced), heavy (slow). 
+  - Uses ScriptableObjects to create groups and then waves out of those groups. I wanted to put some focus more on making designer friendly systems.
+  - Multiple enemy types, such as light (fast), medium (balanced), heavy (slow). 
 
 
 *Attack VFX missing but the towers can acquire targets and attack, killing enemies.*
