@@ -1,7 +1,7 @@
 **Technologies: Unity \
 Languages: C#**
 
-A simple tower defense game to learn the Unity Engine. 
+A tower defense game to learn the Unity Engine. 
 
 ## **Features -**
 
